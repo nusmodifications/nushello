@@ -1,4 +1,4 @@
-= NUSWAT API
+= NUSHello API
 
 == Contribute
 === Dependencies:
