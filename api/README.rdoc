@@ -1,28 +1,26 @@
-== README
+= NUSWAT API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+== Contribute
+=== Dependencies:
+* ruby
+* rails-api
+* postgresql
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== How to set up:
+1. Fork this repo.
+2. Install postgres.
+    brew install postgresql
+3. Start postgres at start up
+    ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+4. Or start it temporarily
+    postgres -D /usr/local/var/postgres
+5. Install the bundle
+    bundle install
+6. Set up database
+    bundle exec rake db:setup
+7. Run
+    bundle exec rails-api server
+8. Use `rails-api` instead of `rails`, this avoids generating view templates which we don't need. E.g.
+    rails-api generate model user
