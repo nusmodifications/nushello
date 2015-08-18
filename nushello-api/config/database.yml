@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: nushello-api_production
-  username: nushello-api
-  password: <%= ENV['NUSHELLO-API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
