@@ -1,5 +1,6 @@
-# NUSWAT
-What do you think we are doing?
+# NUSHello
+
+Hello :trollface:
 
 # Creators
 * Karen Ang (A0116603R)
