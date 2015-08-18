@@ -9,7 +9,7 @@
 
 === How to set up:
 1. Fork this repo.
-2. Install ruby and rails. (Recommend using rbenv)
+2. Install ruby (v2.2.2). (Recommend using rbenv)
 3. Install postgres.
     brew install postgresql
 4. Start postgres at start up
