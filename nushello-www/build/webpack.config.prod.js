@@ -81,12 +81,12 @@ export default {
     loaders: [
       { test  : /\.jsx?$/, loader: 'babel?stage=0',  exclude: /node_modules/ },
       {
-        test  : /\.styl$/,
-        loader: Extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}!stylus')
-      },
-      {
         test  : /\.css$/,
         loader: Extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}')
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass'
       }
     ]
   }
