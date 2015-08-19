@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819113723) do
+ActiveRecord::Schema.define(version: 20150819115007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20150819113723) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
+
+  create_table "majors", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "faculty_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "majors", ["faculty_id"], name: "index_majors_on_faculty_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "facebook_id",         null: false
@@ -40,4 +49,5 @@ ActiveRecord::Schema.define(version: 20150819113723) do
 
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true, using: :btree
 
+  add_foreign_key "majors", "faculties"
 end
