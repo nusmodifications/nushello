@@ -1,0 +1,8 @@
+{
+  "name": "NUSHello",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.5"
+  },
+  "devDependencies": {}
+}
