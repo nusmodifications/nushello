@@ -1,0 +1,27 @@
+= NUSHello API
+
+== Contribute
+=== Dependencies:
+* ruby
+* rails-api
+* postgresql
+
+
+=== How to set up:
+1. Fork this repo.
+2. Install ruby (v2.2.2). (Recommend using rbenv)
+3. Install postgres.
+    brew install postgresql
+4. Start postgres at start up
+    ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+5. Or start it temporarily
+    postgres -D /usr/local/var/postgres
+6. Install the bundle
+    bundle install
+7. Set up database
+    bundle exec rake db:setup
+8. Run
+    bundle exec rails-api server
+9. Use `rails-api` instead of `rails`, this avoids generating view templates which we don't need. E.g.
+    rails-api generate model user
