@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819143356) do
+ActiveRecord::Schema.define(version: 20150819192853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.boolean  "user_1_accepted"
+    t.boolean  "user_2_accepted"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_1_id"
+    t.integer  "user_2_id"
+  end
+
+  add_index "conversations", ["user_1_id"], name: "index_conversations_on_user_1_id", using: :btree
+  add_index "conversations", ["user_2_id"], name: "index_conversations_on_user_2_id", using: :btree
 
   create_table "faculties", force: :cascade do |t|
     t.string   "name",                                null: false
@@ -61,6 +73,8 @@ ActiveRecord::Schema.define(version: 20150819143356) do
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true, using: :btree
   add_index "users", ["residence_id"], name: "index_users_on_residence_id", using: :btree
 
+  add_foreign_key "conversations", "users", column: "user_1_id"
+  add_foreign_key "conversations", "users", column: "user_2_id"
   add_foreign_key "majors", "faculties"
   add_foreign_key "users", "majors", column: "first_major_id"
   add_foreign_key "users", "majors", column: "second_major_id"
