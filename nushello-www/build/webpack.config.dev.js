@@ -68,7 +68,7 @@ export default {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style!css!sass!import-glob'
       }
     ]
   }
