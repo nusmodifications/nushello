@@ -1,6 +1,5 @@
 # NUSHello
 
-=======
 Hello :trollface:
 
 # Creators
