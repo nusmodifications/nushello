@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819134218) do
+ActiveRecord::Schema.define(version: 20150819143356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,11 +55,14 @@ ActiveRecord::Schema.define(version: 20150819134218) do
     t.datetime "updated_at",          null: false
     t.integer  "first_major_id"
     t.integer  "second_major_id"
+    t.integer  "residence_id"
   end
 
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true, using: :btree
+  add_index "users", ["residence_id"], name: "index_users_on_residence_id", using: :btree
 
   add_foreign_key "majors", "faculties"
   add_foreign_key "users", "majors", column: "first_major_id"
   add_foreign_key "users", "majors", column: "second_major_id"
+  add_foreign_key "users", "residences"
 end
