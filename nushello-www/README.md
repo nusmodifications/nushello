@@ -1,8 +1,9 @@
-Details: https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-iii-f272e03087e3
+# NUSHello
+
+### Set up
 
 ```
-$ git clone git@github.com:alexfedoseev/universal-basics.git
-$ cd universal-basics/
+$ bower install
 $ npm install
 $ npm start
 ```
