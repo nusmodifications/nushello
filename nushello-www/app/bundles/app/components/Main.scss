@@ -1,3 +1,41 @@
 #main {
-  margin: 2rem auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+
+  .main-wrapper {
+    .main-icon {
+      position: static;
+      width: 450px;
+      height: auto;
+      margin-bottom: -60px;
+    }
+
+    .intro {
+      position: static;
+      text-align: center;
+
+      h1 {
+        font-size: 7em;
+        letter-spacing: -.08em;
+        font-weight: 100;
+        color: #333;
+        margin: 0px;
+      }
+
+      h2 {
+        font-size: 2em;
+        color: #00cc99;
+        margin: 0px;
+      }
+
+      h3 {
+        font-size: 1em;
+        color: inherit;
+        line-height: 1.5em;
+      }
+    }
+  }
 }
