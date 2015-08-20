@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "license": "MIT",
   "main": "server.app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:xinan/nushello.git"
+  },
   "scripts": {
     "start": "gulp start:dev",
     "prod": "gulp start:prod",
