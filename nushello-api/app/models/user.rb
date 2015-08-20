@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :second_major, class_name: 'Major', foreign_key: 'second_major_id'
   belongs_to :residence
 
+  has_one :preference, dependent: :destroy
   has_many :active_conversations, class_name: 'Conversation', foreign_key: 'user_1_id', dependent: :destroy
   has_many :passive_conversations, class_name: 'Conversation', foreign_key: 'user_2_id', dependent: :destroy
   has_many :messages, class_name: 'Message', foreign_key: 'user_id'
