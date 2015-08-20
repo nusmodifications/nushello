@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819200952) do
+ActiveRecord::Schema.define(version: 20150820101408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_1_status", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "user_1_id"
     t.integer  "user_2_id"
+    t.integer  "user_2_status", default: 0
   end
 
   add_index "conversations", ["user_1_id"], name: "index_conversations_on_user_1_id", using: :btree
