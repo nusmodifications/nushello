@@ -24,7 +24,7 @@ export default class Head extends React.Component {
           <base href="/" />
           <meta charSet="utf-8" />
 
-          <title>I'm a page title!</title>
+          <title>NUSHello</title>
 
           <meta name="viewport" content="width=device-width,initial-scale=1" />
 
