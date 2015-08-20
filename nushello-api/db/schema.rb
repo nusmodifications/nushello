@@ -17,12 +17,10 @@ ActiveRecord::Schema.define(version: 20150819200952) do
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.boolean  "user_1_accepted", default: false
-    t.boolean  "user_2_accepted", default: false
-    t.boolean  "user_1_rejected", default: false
-    t.boolean  "user_2_rejected", default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "user_1_status", default: 0
+    t.integer  "user_2_status", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "user_1_id"
     t.integer  "user_2_id"
   end
