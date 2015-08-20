@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       token_id = Koala::Facebook::API.new(params[:facebookToken]).get_object('me')['id']
     rescue Koala::Facebook::AuthenticationError => e
-      generate_error_payload('Bad Request', 400, 'Bad Token')
+      return generate_error_payload('Bad Request', 400, 'Bad Token')
     end
 
     return generate_error_payload('Bad Request', 400, 'ID/Token mismatch') unless token_id == params[:facebookId]
