@@ -11,13 +11,17 @@ export default class FacebookLogin extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.props.appId) {
+      throw "app ID please!";
+    }
+
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1467581460234203',
+        appId      : this.props.appId,
         xfbml      : true,
         version    : 'v2.4'
       });
-    };
+    }.bind(this);
 
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -37,6 +41,7 @@ export default class FacebookLogin extends React.Component {
       var accessToken = response.authResponse.accessToken;
       var userID = response.authResponse.userID;
       // api here
+      console.log('logged in ' + userID);
     } else {
       // error message here
     }
