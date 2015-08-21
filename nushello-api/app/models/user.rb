@@ -11,10 +11,16 @@ class User < ActiveRecord::Base
   delegate :faculty, to: :first_major
 
   validates :facebook_id, presence: true, uniqueness: true
-  validates :nusnet_id, presence: true, uniqueness: true
+  validates :nusnet_id, uniqueness: true, allow_nil: true
   validates :name, presence: true
+
+  before_create :generate_access_token
 
   def conversations
     active_conversations | passive_conversations
+  end
+
+  def generate_access_token
+    self.access_token = Digest::SHA2::base64digest(facebook_token)
   end
 end
