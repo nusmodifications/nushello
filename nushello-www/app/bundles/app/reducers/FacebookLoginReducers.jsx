@@ -1,4 +1,4 @@
-import * as actions from '../constants/FacebookLoginConstants';
+ import * as actions from '../constants/FacebookLoginConstants';
 
 const initialState = {
   type: null,
@@ -19,6 +19,8 @@ export default function facebookLogin(state = initialState, action) {
       };
 
     case actions.AUTH_SUCCEED:
+
+    console.log(action);
       return {
         type, 
         error: null,

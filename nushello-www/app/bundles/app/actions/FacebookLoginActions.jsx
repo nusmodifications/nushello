@@ -2,6 +2,7 @@ import * as actions from '../constants/FacebookLoginConstants';
 import apiCall from 'app/libs/apiCall';
 
 export function facebookLogin({ data }) {
+  console.log(data);
   return dispatch => {
     dispatch({
       type: actions.AUTH_REQUESTED
