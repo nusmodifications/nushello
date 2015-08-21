@@ -1,4 +1,4 @@
-import * as actions from '../constants/CommentsConstants';
+import * as actions from '../constants/FacebookLoginConstants';
 
 const initialState = {
   type: null,

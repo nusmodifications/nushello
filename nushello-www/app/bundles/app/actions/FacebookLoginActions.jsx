@@ -1,4 +1,4 @@
-import * as actions from '../constants/CommentsConstants';
+import * as actions from '../constants/FacebookLoginConstants';
 import apiCall from 'app/libs/apiCall';
 
 export function facebookLogin({ data }) {
@@ -6,9 +6,8 @@ export function facebookLogin({ data }) {
     dispatch({
       type: actions.AUTH_REQUESTED
     });
-
     return apiCall ({
-      method: 'POST',
+      method: 'GET',
       host: 'api.nushello.com/users/auth', // need config
       data: data
     }).then(res => {
@@ -17,11 +16,13 @@ export function facebookLogin({ data }) {
         data: res.data // need to figure out this
       });
     }).catch(res => {
-      type  : actionS.AUTH_FAILED,
-      errors: {
-        code: res.status,
-        data: res.data
-      }
+      dispatch({
+        type  : actions.AUTH_FAILED,
+        errors: {
+          code: res.status,
+          data: res.data
+        }
+      });
     });
   };
 }
