@@ -3,11 +3,11 @@ class UserSerializer < ActiveModel::Serializer
              :first_major, :second_major, :residence, :online
 
   def faculty
-    object.faculty.name
+    object.faculty.try(:name)
   end
 
   def first_major
-    object.first_major.name
+    object.first_major.try(:name)
   end
 
   def second_major
@@ -15,6 +15,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def residence
-    object.residence.name
+    object.residence.try(:name)
   end
 end
