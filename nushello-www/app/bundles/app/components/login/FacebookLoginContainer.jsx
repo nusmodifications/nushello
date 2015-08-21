@@ -1,14 +1,14 @@
 import React                    from 'react';
 import { bindActionCreators }   from 'redux';
-import { Connector }            from 'react-redux';
+import { connect }              from 'react-redux';
 
 import FacebookLogin from './FacebookLogin';
 
 import * as FacebookLoginActions from '../../actions/FacebookLoginActions';
 
-// @connect(state => ({
-//   comments: state.comments
-// }))
+@connect(state => ({
+  
+}))
 
 export default class FacebookLoginContainer extends React.Component {
 
@@ -17,15 +17,14 @@ export default class FacebookLoginContainer extends React.Component {
     super(props, context);
   }
 
-
   render() {
 
     const { dispatch } = this.props;
-
+    let boundActionCreators = bindActionCreators(FacebookLoginActions, dispatch);
     // returning Component with branches of the state, action creators and the rest
     return (
       <FacebookLogin
-          FacebookLoginActions={bindActionCreators(FacebookLoginActions, dispatch)}
+          {...boundActionCreators}
           {...this.props}
       />
     );
