@@ -1,0 +1,3 @@
+export const AUTH_REQUESTED = 'AUTH_REQUESTED';
+export const AUTH_SUCCEED = 'AUTH_SUCCEED';
+export const AUTH_FAILED = 'AUTH_FAILED';
