@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821083122) do
+ActiveRecord::Schema.define(version: 20150821125645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20150821083122) do
     t.integer  "first_major_id"
     t.integer  "second_major_id"
     t.integer  "residence_id"
-    t.text     "facebook_token"
+    t.text     "facebook_token",                     null: false
     t.text     "ivle_token"
     t.datetime "last_activity_at"
     t.boolean  "online",              default: true
