@@ -42,6 +42,9 @@ export default class FacebookLogin extends React.Component {
       var userID = response.authResponse.userID;
       // api here
       console.log('logged in ' + userID);
+      // for testing only
+      // http://api.nushello.com/users/auth/:facebookId/:facebookToken
+      console.log(response.authResponse);
     } else {
       // error message here
     }
