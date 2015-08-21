@@ -20,11 +20,10 @@ export default class FacebookLoginContainer extends React.Component {
   render() {
 
     const { dispatch } = this.props;
-    let boundActionCreators = bindActionCreators(FacebookLoginActions, dispatch);
     // returning Component with branches of the state, action creators and the rest
     return (
       <FacebookLogin
-          {...boundActionCreators}
+          FacebookLoginActions={bindActionCreators(FacebookLoginActions, dispatch)}
           {...this.props}
       />
     );

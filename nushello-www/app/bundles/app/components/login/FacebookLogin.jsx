@@ -33,21 +33,24 @@ export default class FacebookLogin extends React.Component {
   }
 
   handleClick() {
-    FB.login(this.handleLogin);
-  }
+    const { FacebookLoginActions } = this.props;
 
-  handleLogin(response) {
-    if (response.status === "connected") {
-      var accessToken = response.authResponse.accessToken;
-      var userID = response.authResponse.userID;
-      // api here
-      console.log('logged in ' + userID);
-      // for testing only
-      // http://api.nushello.com/users/auth/:facebookId/:facebookToken
-      console.log(response.authResponse);
-    } else {
-      // error message here
-    }
+    var accessToken;
+    var userID;
+    FB.login(function(response) {
+      if (response.status === "connected") {
+        accessToken = response.authResponse.accessToken;
+        userID = response.authResponse.userID;
+
+        console.log('logged in ' + userID);
+        console.log(response.authResponse);
+
+      } else {
+        // error message here
+      }
+    });
+
+    FacebookLoginActions.facebookLogin('a');
   }
 
   render() {
