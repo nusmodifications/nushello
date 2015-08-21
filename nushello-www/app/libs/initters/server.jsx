@@ -1,10 +1,18 @@
-import React      from 'react';
-import Router     from 'react-router';
-import Location   from 'react-router/lib/Location';
-import Jade       from 'jade';
+import React                from 'react';
+import Router               from 'react-router';
+import Location             from 'react-router/lib/Location';
+import { combineReducers }  from 'redux';
+import { applyMiddleware }  from 'redux';
+import { createStore }      from 'redux';
+import { Provider }         from 'react-redux';
+import middleware           from 'redux-thunk';
+import serialize            from 'serialize-javascript';
+import Jade                 from 'jade';
 
 
 export default (req, res, next, params) => {
+  const reducer   = combineReducers(params.reducers);
+  const store     = applyMiddleware(middleware)(createStore)(reducer);
 
   const { routes, bundle, locals, Head } = params;
 
@@ -21,7 +29,9 @@ export default (req, res, next, params) => {
       );
 
       locals.body = React.renderToString(
-        <Router location={location} {...initialState} />
+        <Provider store={store}>
+          {() => <Router location={location} {...initialState} />}
+        </Provider>
       );
 
       const chunks = __DEV__ ? {} : require('public/assets/chunk-manifest.json');
