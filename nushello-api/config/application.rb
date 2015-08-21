@@ -39,5 +39,8 @@ module NushelloApi
         resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
       end
     end
+
+    # Autoload libs
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
