@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821183643) do
+ActiveRecord::Schema.define(version: 20150822093054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 20150821183643) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
+  create_table "personalities", force: :cascade do |t|
+    t.boolean  "party",      null: false
+    t.boolean  "sports",     null: false
+    t.boolean  "mugger",     null: false
+    t.boolean  "introvert",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "personalities", ["user_id"], name: "index_personalities_on_user_id", using: :btree
+
   create_table "preferences", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "gender"
@@ -67,6 +79,10 @@ ActiveRecord::Schema.define(version: 20150821183643) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "filter_facebook_friends", default: true
+    t.boolean  "party"
+    t.boolean  "sports"
+    t.boolean  "mugger"
+    t.boolean  "introvert"
   end
 
   add_index "preferences", ["user_id"], name: "index_preferences_on_user_id", using: :btree
@@ -108,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150821183643) do
   add_foreign_key "majors", "faculties"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "personalities", "users"
   add_foreign_key "preferences", "users"
   add_foreign_key "users", "majors", column: "first_major_id"
   add_foreign_key "users", "majors", column: "second_major_id"

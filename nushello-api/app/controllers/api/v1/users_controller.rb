@@ -34,9 +34,7 @@ class Api::V1::UsersController < ApplicationController
 
   def ivle_auth
     ivle_profile = IVLE.new(params[:ivleToken]).get_profile
-    unless ivle_profile.present? && ivle_profile[:nusnet_id].casecmp(params[:nusnetId]) == 0
-      return generate_error_payload('Unauthorized', 401, 'Your token is not my token.')
-    end
+    return generate_error_payload('Unauthorized', 401, 'Your token is not my token.') unless ivle_profile.present?
 
     @user.assign_attributes(ivle_profile.slice(:nusnet_id, :name, :gender, :matriculation_year, :ivle_token))
 

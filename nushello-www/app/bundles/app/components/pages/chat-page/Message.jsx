@@ -1,6 +1,6 @@
 import React  from 'react';
 
-import Avatar from '../Utils/Avatar'
+import Avatar from '../../utils/Avatar'
 
 export default class How extends React.Component {
 
