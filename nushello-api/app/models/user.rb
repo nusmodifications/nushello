@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
       if user.present?
         user.update_attributes(user_fields)
       else
-        user = create(user_fields)
+        user = create(user_fields.merge(fake_name: NameGenerator.random))
       end
       user
     end
