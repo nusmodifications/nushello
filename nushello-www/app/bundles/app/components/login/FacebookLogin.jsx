@@ -39,10 +39,9 @@ export default class FacebookLogin extends React.Component {
         let accessToken = response.authResponse.accessToken;
         let userID = response.authResponse.userID;
 
-        console.log('logged in ' + userID);
-        console.log(response.authResponse);
-
-        cookie.save('facebookUid', userID);
+        // Had to be done this way because cookies messes things up for now
+        // TODO: Switch all to cookies
+        localStorage.setItem('facebookUid', userID);
 
         const data = {
           'userID': userID,
@@ -54,8 +53,6 @@ export default class FacebookLogin extends React.Component {
         // error message here
       }
     });
-
-    
   }
 
   render() {

@@ -44,15 +44,16 @@ export default class Ivle extends React.Component {
               secondMajor: ivleUserProfile.SecondMajor,
               matriculationYear: ivleUserProfile.MatriculationYear
             };
-            console.log(userProfile);
-            localStorage.setItem('ivleToken', ivleToken);
+
+            // Saves token into cookie
+            cookie.save('ivleToken', ivleToken);
+
+            // Saves user object into localStorage
             localStorage.setItem('user', JSON.stringify(userProfile));
-            console.log(localStorage.getItem('ivleToken'));
 
-            // Do something with student profile and token
-
-            let facebookUid = cookie.load('facebookUid');
+            let facebookUid = localStorage.getItem('facebookUid');
             let NUSHelloToken = cookie.load('auth').accessToken;
+
             $.ajax({
               type: 'PUT',
               beforeSend: function(xhr) {
@@ -60,10 +61,7 @@ export default class Ivle extends React.Component {
               },
               url: 'http://api.nushello.com/users/' + facebookUid + '/ivle',
               data: {
-                'ivleToken': localStorage.getItem('ivleToken')
-              },
-              success: function() {
-                console.log('Facebook Token Put!');
+                'ivleToken': cookie.load('ivleToken')
               },
               dataType: 'json'
             });
