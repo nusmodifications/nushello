@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'users/auth/:facebookId/:facebookToken', to: 'users#fb_auth'
       put 'users/:facebookId/ivle', to: 'users#ivle_auth'
       put 'users/:facebookId', to: 'users#update'
+      get 'users/:facebookId', to: 'users#show'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
