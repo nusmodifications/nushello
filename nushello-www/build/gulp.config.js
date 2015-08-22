@@ -20,6 +20,7 @@ export default (isDevBuild) => {
     copy: {
       from : _assets,
       files: [
+        [ '/images/', '/images/' ],
         [ '/tinies/favicon.ico', '/' ],
         [ '/tinies/robots.txt',  '/' ]
       ],

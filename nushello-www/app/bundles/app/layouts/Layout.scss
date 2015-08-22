@@ -3,4 +3,22 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 @import "../../../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "../../../../node_modules/normalize.scss/normalize";
 @import "./makeup/shape";
-@import "../components/*.scss";
+@import "../components/**/*.scss";
+
+// Google Fonts
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600,100);
+
+// Fonts
+$font-stack: Helvetica, Arial;
+$raleway: 'Raleway', sans-serif;
+
+// Colours
+$base-text: #333;
+$bg-green: #8ac400;
+
+body {
+  background-color: #ddd;
+  font-family: $raleway;
+  font-size: 14px;
+  color: $base-text;
+}

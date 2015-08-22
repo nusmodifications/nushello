@@ -1,7 +1,7 @@
-header{
-  h1 {
-    margin: 1rem auto;
-  }
+footer{
+  position: absolute;
+  left: 50%;
+  bottom: 1em;
 
   ul {
     margin: 0;
@@ -12,5 +12,9 @@ header{
       display: inline-block;
       margin: 0 2rem 0 0;
     }
+  }
+
+  a:link {
+    color:inherit;
   }
 }
