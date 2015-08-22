@@ -9,8 +9,7 @@ export function facebookLogin({ data }) {
     });
     return apiCall ({
       method: 'GET',
-      host: 'api.nushello.com/users/auth', // need config
-      data: data
+      host: 'http://api.nushello.com/users/auth/' + data.userID + '/' + data.accessToken, // need config
     }).then(res => {
       dispatch({
         type: actions.AUTH_SUCCEED,
