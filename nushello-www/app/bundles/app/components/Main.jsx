@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Link }   from 'react-router';
-
 import Footer from './layouts/Footer/Footer';
+import FacebookLogin from './Login/FacebookLoginContainer';
 
 export default class Main extends React.Component {
 
@@ -23,14 +23,12 @@ export default class Main extends React.Component {
             <h2>Say hello to a new NUS experience</h2>
             <h3><p>Get matched. Chat anonymously. Mutually reveal identities.</p>The best part? No strings attached.</h3>
             <Link className="btn btn-info btn-lg" to="/chat">Facebook Login</Link>
+            <FacebookLogin appId="1467581460234203" />
             <hr/>
           </div>
         </div>
         <Footer/>
       </section>
     );
-
   }
-
-
 }
