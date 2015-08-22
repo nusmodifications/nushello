@@ -1,4 +1,5 @@
- import * as actions from '../../constants/Login/FacebookLoginConstants';
+import * as actions from '../../constants/Login/FacebookLoginConstants';
+import cookie from 'react-cookie';
 
 const initialState = {
   type: null,
@@ -19,8 +20,11 @@ export default function facebookLogin(state = initialState, action) {
       };
 
     case actions.AUTH_SUCCEED:
+      cookie.save('auth', {
+        accessToken: data.data.accessToken,
+        type: data.type
+      });
 
-    console.log(action);
       return {
         type, 
         error: null,
