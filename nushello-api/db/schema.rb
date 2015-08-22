@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822085720) do
+ActiveRecord::Schema.define(version: 20150822093054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,10 @@ ActiveRecord::Schema.define(version: 20150822085720) do
     t.boolean  "introvert",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "personalities", ["user_id"], name: "index_personalities_on_user_id", using: :btree
 
   create_table "preferences", force: :cascade do |t|
     t.integer  "user_id"
@@ -121,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150822085720) do
   add_foreign_key "majors", "faculties"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "personalities", "users"
   add_foreign_key "preferences", "users"
   add_foreign_key "users", "majors", column: "first_major_id"
   add_foreign_key "users", "majors", column: "second_major_id"
