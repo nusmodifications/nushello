@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :nusnet_id, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
-  before_create :generate_access_token
+  before_save :generate_access_token, if: :facebook_token_changed?
 
   def conversations
     active_conversations | passive_conversations
