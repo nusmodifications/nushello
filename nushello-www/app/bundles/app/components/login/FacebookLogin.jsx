@@ -1,5 +1,5 @@
 import React  from 'react';
-
+import cookie from 'react-cookie';
 
 export default class FacebookLogin extends React.Component {
 
@@ -36,11 +36,12 @@ export default class FacebookLogin extends React.Component {
     const { FacebookLoginActions } = this.props;
     FB.login(function(response) {
       if (response.status === "connected") {
-        var accessToken = response.authResponse.accessToken;
-        var userID = response.authResponse.userID;
+        let accessToken = response.authResponse.accessToken;
+        let userID = response.authResponse.userID;
 
-        console.log('logged in ' + userID);
-        console.log(response.authResponse);
+        // Had to be done this way because cookies messes things up for now
+        // TODO: Switch all to cookies
+        localStorage.setItem('facebookUid', userID);
 
         const data = {
           'userID': userID,
@@ -52,12 +53,9 @@ export default class FacebookLogin extends React.Component {
         // error message here
       }
     });
-
-    
   }
 
   render() {
-
     return (
         <button className='facebook-login' onClick={this.handleClick}>
           Log in using Facebook!

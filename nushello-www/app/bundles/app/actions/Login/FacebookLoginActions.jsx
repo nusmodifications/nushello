@@ -3,7 +3,6 @@ import * as api from '../../constants/APIEndpoints';
 import apiCall from 'app/libs/apiCall';
 
 export function facebookLogin({ data }) {
-  console.log(data);
   return dispatch => {
     dispatch({
       type: actions.AUTH_REQUESTED
@@ -14,7 +13,7 @@ export function facebookLogin({ data }) {
     }).then(res => {
       dispatch({
         type: actions.AUTH_SUCCEED,
-        data: res.data // need to figure out this
+        data: res.data
       });
     }).catch(res => {
       dispatch({
