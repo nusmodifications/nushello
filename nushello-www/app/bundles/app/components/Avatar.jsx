@@ -9,7 +9,7 @@ export default class How extends React.Component {
 
   render() {
     return (
-      <span><img className="profile-pic" src="red_panda.jpg" /></span>
+      <span><img className="profile-pic" src="/images/red_panda.jpg" /></span>
     );
   }
 }

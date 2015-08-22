@@ -12,7 +12,7 @@ export default class Privacy extends React.Component {
   render() {
 
   var bgStyle = {
-    backgroundImage: 'url(https://dl.dropboxusercontent.com/u/12163566/sidebarph.jpg)'
+    backgroundImage: 'url(/images/sidebarph.jpg)'
   };
     return (
       <div className="sidebar">
