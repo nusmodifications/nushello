@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       get 'users/auth/:facebookId/:facebookToken', to: 'users#fb_auth'
       put 'users/:facebookId/ivle', to: 'users#ivle_auth'
+      put 'users/:facebookId', to: 'users#update'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
