@@ -19,6 +19,7 @@
     "express": "^4.13.1",
     "jade": "^1.11.0",
     "react": "^0.13.3",
+    "react-cookie": "^0.3.4",
     "react-redux": "^0.9.0",
     "react-router": "^1.0.0-beta3",
     "redux": "^1.0.1",
