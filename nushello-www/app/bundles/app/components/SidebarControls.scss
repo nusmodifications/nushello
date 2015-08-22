@@ -1,0 +1,16 @@
+.match-list {
+  position: absolute;
+  top: 0px;
+  left: 15%;
+  ul {
+    margin: 0;
+    padding: 1em;
+    list-style: none;
+    color: #fff;
+
+    li {
+      font-size: 1.5em;
+      margin-bottom: .5em;
+    }
+  }
+}
