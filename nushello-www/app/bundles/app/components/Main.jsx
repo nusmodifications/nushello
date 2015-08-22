@@ -14,7 +14,7 @@ export default class Main extends React.Component {
     return (
         <section id="main">
           <div className="main-wrapper">
-          <img className="main-icon" src="nushello-main-icon-s.png" />
+          <img className="main-icon" src="/images/nushello-main-icon-s.png" />
           <div className="intro">
             <h1>NUSHello</h1>
             <h2>Say hello to a new NUS experience</h2>
