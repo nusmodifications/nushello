@@ -2,7 +2,9 @@ import initter    from 'app/libs/initters/server';
 import getAsset   from 'app/libs/getAsset';
 import config     from 'config/server.app';
 import routes     from '../routes/routes';
+import reducers   from '../reducers/reducers';
 import Head       from '../layouts/Head';
+import * as FacebookLoginActions   from '../actions/FacebookLoginActions';
 
 
 export default (req, res, next) => {
@@ -14,6 +16,8 @@ export default (req, res, next) => {
     bundle,
     routes,
     Head,
+    reducers,
+    FacebookLoginActions,
 
     locals: {
 
