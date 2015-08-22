@@ -1,0 +1,17 @@
+.message-wrapper {
+  .message-header {
+    font-size: .8em;
+    color: #00cc99;
+    padding: 1em 0em 1em 3em;
+    text-transform: uppercase;
+
+    .profile-pic {
+      border-radius: 50%;
+    }
+  }
+
+  .message-body {
+    font-size: 1em;
+    padding-left: 4em;
+  }
+}

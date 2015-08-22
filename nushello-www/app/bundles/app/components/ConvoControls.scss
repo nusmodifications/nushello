@@ -1,0 +1,13 @@
+$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap";
+
+@import "../../../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+
+.convo-controls {
+  position: absolute;
+  bottom: 0em;
+  left: 0px;
+  width: inherit;
+  height: 100%;
+  padding: 1em;
+  margin: 0;
+}
