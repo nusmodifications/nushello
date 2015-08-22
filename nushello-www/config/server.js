@@ -2,7 +2,9 @@
 
 let config = {};
 
-config.env     = process.env.NODE_ENV  || 'development';
-config.devPort = 3001;
+config.env          = process.env.NODE_ENV  || 'development';
+config.devPort      = 3001;
+
+config.apiHost      = 'http://api.nushello.com/';
 
 export default config;

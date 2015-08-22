@@ -10,8 +10,7 @@ import ChatPage       from '../components/pages/chat-page/ChatPage';
 import AboutPage      from '../components/pages/about-page/AboutPage';
 import PrivacyPage    from '../components/pages/privacy-page/PrivacyPage';
 import HowPage        from '../components/pages/how-page/HowPage';
-import NotFoundPage   from '../components/NotFound/NotFound';
-
+import NotFoundPage   from '../components/pages/not-found-page/NotFoundPage';
 
 export default (
 
