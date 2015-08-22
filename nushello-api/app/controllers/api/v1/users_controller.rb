@@ -19,18 +19,7 @@ class Api::V1::UsersController < ApplicationController
     ivle_profile = IVLE.new(params[:ivleToken]).get_profile
     return generate_error_payload('Unauthorized', 401, 'Your token is not my token.') unless ivle_profile.present?
 
-    @user.assign_attributes(ivle_profile.slice(:nusnet_id, :name, :gender, :matriculation_year, :ivle_token))
-
-    # Auto seed Faculties and Majors
-    faculty = Faculty.find_by_name(ivle_profile[:faculty]) || Faculty.create(name: ivle_profile[:faculty])
-    first_major = Major.find_by_name(ivle_profile[:first_major]) || Major.new(name: ivle_profile[:first_major])
-    first_major.faculty = faculty
-    first_major.save if first_major.new_record? || first_major.changed?
-    second_major = ivle_profile[:second_major].blank? ? nil :
-        Major.find_by_name(ivle_profile[:second_major]) || Major.create(name: ivle_profile[:second_major])
-
-    @user.first_major = first_major
-    @user.second_major = second_major
+    @user.assign_ivle_profile(ivle_profile)
 
     if @user.save
       generate_api_payload('ivleAuthenticated', UserSerializer.new(@user))

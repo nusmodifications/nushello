@@ -25,6 +25,21 @@ class User < ActiveRecord::Base
     self.access_token = Digest::SHA2::base64digest(facebook_token)
   end
 
+  def assign_ivle_profile(ivle_profile)
+    assign_attributes(ivle_profile.slice(:nusnet_id, :name, :gender, :matriculation_year, :ivle_token))
+
+    # Auto seed Faculties and Majors
+    faculty = Faculty.find_by_name(ivle_profile[:faculty]) || Faculty.create(name: ivle_profile[:faculty])
+    first_major = Major.find_by_name(ivle_profile[:first_major]) || Major.new(name: ivle_profile[:first_major])
+    first_major.faculty = faculty
+    first_major.save if first_major.new_record? || first_major.changed?
+    second_major = ivle_profile[:second_major].blank? ? nil :
+        Major.find_by_name(ivle_profile[:second_major]) || Major.create(name: ivle_profile[:second_major])
+
+    self.first_major = first_major
+    self.second_major = second_major
+  end
+
   class << self
     def create_or_update_from_fb_info(fb_user_object, fb_long_live_token_info)
       user_fields = {
