@@ -24,4 +24,25 @@ class User < ActiveRecord::Base
   def generate_access_token
     self.access_token = Digest::SHA2::base64digest(facebook_token)
   end
+
+  class << self
+    def create_or_update_from_fb_info(fb_user_object, fb_long_live_token_info)
+      user_fields = {
+        facebook_id: fb_user_object['id'],
+        name: fb_user_object['name'],
+        last_name: fb_user_object['last_name'],
+        email: fb_user_object['email'],
+        profile_picture_url: fb_user_object['picture']['data']['url'],
+        facebook_token: fb_long_live_token_info['access_token'],
+        facebook_token_expire_at: Time.now + fb_long_live_token_info['expires_in']
+      }
+      user = find_by_facebook_id(fb_user_object['id'])
+      if user.present?
+        user.update_attributes(user_fields)
+      else
+        user = create(user_fields)
+      end
+      user
+    end
+  end
 end
