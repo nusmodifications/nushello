@@ -3,13 +3,13 @@ import { Route }  from 'react-router';
 
 import App        from '../layouts/Layout';
 import Main       from '../components/Main';
-import About      from '../components/About';
-import Privacy    from '../components/Privacy';
-import How        from '../components/How';
+import About      from '../components/About/About';
+import Privacy    from '../components/Privacy/Privacy';
+import How        from '../components/How/How';
 
-import Chat       from '../components/Chat';
+import Chat       from '../components/Chat/Chat';
 
-import NotFound   from '../components/NotFound';
+import NotFound   from '../components/NotFound/NotFound';
 
 
 export default (

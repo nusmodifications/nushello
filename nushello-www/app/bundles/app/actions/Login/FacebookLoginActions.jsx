@@ -1,4 +1,4 @@
-import * as actions from '../constants/FacebookLoginConstants';
+import * as actions from '../../constants/Login/FacebookLoginConstants';
 import apiCall from 'app/libs/apiCall';
 
 export function facebookLogin({ data }) {

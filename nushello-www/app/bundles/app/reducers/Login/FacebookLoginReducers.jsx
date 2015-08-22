@@ -1,4 +1,4 @@
- import * as actions from '../constants/FacebookLoginConstants';
+ import * as actions from '../../constants/Login/FacebookLoginConstants';
 
 const initialState = {
   type: null,

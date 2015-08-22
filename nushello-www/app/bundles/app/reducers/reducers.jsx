@@ -1,3 +1,3 @@
-import facebookLogin from './FacebookLoginReducers';
+import facebookLogin from './Login/FacebookLoginReducers';
 
 export default { facebookLogin };

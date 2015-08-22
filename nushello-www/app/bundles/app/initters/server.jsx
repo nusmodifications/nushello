@@ -4,7 +4,7 @@ import config     from 'config/server.app';
 import routes     from '../routes/routes';
 import reducers   from '../reducers/reducers';
 import Head       from '../layouts/Head';
-import * as FacebookLoginActions   from '../actions/FacebookLoginActions';
+import * as FacebookLoginActions   from '../actions/Login/FacebookLoginActions';
 
 
 export default (req, res, next) => {
