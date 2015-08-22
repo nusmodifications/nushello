@@ -22,6 +22,6 @@ class Preference < ActiveRecord::Base
   end
 
   def year_must_be_in_range
-    errors.add(:year, 'invalid range') if year.is_a?(Array) && year[0] > year[1]
+    errors.add(:year, 'invalid range') if year.present? && year[0] > year[1]
   end
 end

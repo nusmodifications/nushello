@@ -6,6 +6,7 @@ import MainPage       from '../components/Main';
 
 import IvlePage       from '../components/pages/ivle-page/IvlePage';
 
+import PrefsPage      from '../components/pages/prefs-page/PrefsPage';
 import ChatPage       from '../components/pages/chat-page/ChatPage';
 
 import AboutPage      from '../components/pages/about-page/AboutPage';
@@ -22,6 +23,7 @@ export default (
     <Route name="ivle" path="/ivle" component={IvlePage} />
 
     <Route name="chat" path="/chat" component={ChatPage} />
+    <Route name="prefs" path="/prefs" component={PrefsPage} />
 
     <Route name="about" path="/about" component={AboutPage} />
     <Route name="privacy" path="/privacy" component={PrivacyPage} />
