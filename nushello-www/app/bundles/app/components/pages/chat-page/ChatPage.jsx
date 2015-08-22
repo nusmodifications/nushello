@@ -1,6 +1,6 @@
 import React      from 'react';
 
-import Sidebar    from './Sidebar';
+import Sidebar    from '../../layouts/Sidebar';
 import Chatbox    from './Chatbox';
 
 export default class Privacy extends React.Component {
