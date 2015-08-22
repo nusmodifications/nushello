@@ -7,6 +7,8 @@ import About      from '../components/About';
 import Privacy    from '../components/Privacy';
 import How        from '../components/How';
 
+import Chat       from '../components/Chat';
+
 import NotFound   from '../components/NotFound';
 
 
@@ -18,7 +20,9 @@ export default (
     <Route name="about"       path="/about"   component={About} />
 
     <Route name="privacy"     path="/privacy" component={Privacy} />
-    <Route name="how"         path="/how"     component={How}     />
+    <Route name="how"         path="/how"     component={How} />
+
+    <Route name="chat"        path="/chat"    component={Chat} />
 
     <Route name="not-found"   path="*"        component={NotFound} />
 
