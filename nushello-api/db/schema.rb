@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821075946) do
+ActiveRecord::Schema.define(version: 20150821183643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150821075946) do
 
   create_table "faculties", force: :cascade do |t|
     t.string   "name",                                null: false
-    t.decimal  "latitude",   precision: 10, scale: 6
-    t.decimal  "longitude",  precision: 10, scale: 6
+    t.decimal  "latitude",   precision: 10, scale: 7
+    t.decimal  "longitude",  precision: 10, scale: 7
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
@@ -73,16 +73,16 @@ ActiveRecord::Schema.define(version: 20150821075946) do
 
   create_table "residences", force: :cascade do |t|
     t.string   "name",                                null: false
-    t.decimal  "latitude",   precision: 10, scale: 6
-    t.decimal  "longitude",  precision: 10, scale: 6
+    t.decimal  "latitude",   precision: 10, scale: 7
+    t.decimal  "longitude",  precision: 10, scale: 7
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "facebook_id",                        null: false
-    t.string   "nusnet_id",                          null: false
-    t.string   "name",                               null: false
+    t.string   "nusnet_id"
+    t.string   "name"
     t.text     "profile_picture_url"
     t.string   "last_name"
     t.string   "email"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20150821075946) do
     t.integer  "first_major_id"
     t.integer  "second_major_id"
     t.integer  "residence_id"
-    t.text     "facebook_token"
+    t.text     "facebook_token",                     null: false
     t.text     "ivle_token"
     t.datetime "last_activity_at"
     t.boolean  "online",              default: true

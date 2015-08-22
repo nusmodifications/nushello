@@ -2,5 +2,5 @@ ActiveModel::Serializer.setup do |config|
   config.key_format = :lower_camel
 end
 
-ActiveModel::Serializer.root = 'data'
-ActiveModel::ArraySerializer.root = 'data'
+ActiveModel::Serializer.root = false
+ActiveModel::ArraySerializer.root = false

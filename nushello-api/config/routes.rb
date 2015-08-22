@@ -1,11 +1,10 @@
-require 'api_constraints'
-
 Rails.application.routes.draw do
   root to: redirect('http://nushello.com')
 
   namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: '/' do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      get 'users/auth/:facebookId/:facebookToken', to: 'users#auth'
+      get 'users/auth/:facebookId/:facebookToken', to: 'users#fb_auth'
+      put 'users/:facebookId/ivle', to: 'users#ivle_auth'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
