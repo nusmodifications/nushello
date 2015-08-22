@@ -1,0 +1,1 @@
+export const FACEBOOK_AUTH_API = 'users/auth/';
