@@ -5,20 +5,20 @@ class Api::V1::UsersController < ApplicationController
     begin
       fb_user_object = Koala::Facebook::API.new(params[:facebookToken])
           .get_object('me?fields=id,name,last_name,email,picture.type(large){url}&redirect=false')
-      fb_user_id = fb_user_object['id']
-    rescue Koala::Facebook::AuthenticationError => e
+      fb_long_live_token_info = Koala::Facebook::OAuth.new.exchange_access_token_info(params['facebookToken'])
+    rescue Koala::Facebook::AuthenticationError, Koala::Facebook::OAuthTokenRequestError => e
       return generate_error_payload('Bad Request', 400, 'Bad Token')
     end
 
-    return generate_error_payload('Bad Request', 400, 'ID/Token mismatch') unless fb_user_id == params[:facebookId]
-
+    fb_user_id = fb_user_object['id']
     fb_user_fields = {
       facebook_id: fb_user_id,
       name: fb_user_object['name'],
       last_name: fb_user_object['last_name'],
       email: fb_user_object['email'],
       profile_picture_url: fb_user_object['picture']['data']['url'],
-      facebook_token: params['facebookToken']
+      facebook_token: fb_long_live_token_info['access_token'],
+      facebook_token_expire_at: Time.now + fb_long_live_token_info['expires_in']
     }
 
     user = User.find_by_facebook_id(fb_user_id)
@@ -83,6 +83,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
+    generate_api_payload('userProfile', UserSerializer.new(@user))
   end
 
   private

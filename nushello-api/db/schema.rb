@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822093054) do
+ActiveRecord::Schema.define(version: 20150822141706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150822093054) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "facebook_id",                        null: false
+    t.string   "facebook_id",                             null: false
     t.string   "nusnet_id"
     t.string   "name"
     t.text     "profile_picture_url"
@@ -105,15 +105,18 @@ ActiveRecord::Schema.define(version: 20150822093054) do
     t.string   "gender"
     t.integer  "matriculation_year"
     t.string   "access_token"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "first_major_id"
     t.integer  "second_major_id"
     t.integer  "residence_id"
-    t.text     "facebook_token",                     null: false
+    t.text     "facebook_token",                          null: false
     t.text     "ivle_token"
     t.datetime "last_activity_at"
-    t.boolean  "online",              default: true
+    t.boolean  "online",                   default: true
+    t.datetime "facebook_token_expire_at"
+    t.string   "fake_name"
+    t.text     "fake_profile_picture_url"
   end
 
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true, using: :btree
