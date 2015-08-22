@@ -1,4 +1,5 @@
 import * as actions from '../../constants/Login/FacebookLoginConstants';
+import * as api from '../../constants/APIEndpoints';
 import apiCall from 'app/libs/apiCall';
 
 export function facebookLogin({ data }) {
@@ -9,7 +10,8 @@ export function facebookLogin({ data }) {
     });
     return apiCall ({
       method: 'GET',
-      host: 'http://api.nushello.com/users/auth/' + data.userID + '/' + data.accessToken, // need config
+      path: api.FACEBOOK_AUTH_API,
+      data: [data.userID, data.accessToken],
     }).then(res => {
       dispatch({
         type: actions.AUTH_SUCCEED,
