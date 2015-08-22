@@ -4,7 +4,7 @@ import { connect }              from 'react-redux';
 
 import FacebookLogin from './FacebookLogin';
 
-import * as FacebookLoginActions from '../../actions/FacebookLoginActions';
+import * as FacebookLoginActions from '../../actions/Login/FacebookLoginActions';
 
 @connect(state => ({
   

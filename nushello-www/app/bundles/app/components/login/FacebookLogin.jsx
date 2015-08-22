@@ -34,7 +34,6 @@ export default class FacebookLogin extends React.Component {
 
   handleClick() {
     const { FacebookLoginActions } = this.props;
-
     FB.login(function(response) {
       if (response.status === "connected") {
         var accessToken = response.authResponse.accessToken;
@@ -47,7 +46,6 @@ export default class FacebookLogin extends React.Component {
           'userID': userID,
           'accessToken': accessToken
         };
-
         FacebookLoginActions.facebookLogin({ data });
 
       } else {
