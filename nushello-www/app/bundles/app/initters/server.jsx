@@ -3,7 +3,7 @@ import getAsset   from 'app/libs/getAsset';
 import config     from 'config/server.app';
 import routes     from '../routes/routes';
 import reducers   from '../reducers/reducers';
-import Head       from '../layouts/Head';
+import Head       from '../layouts/Head/Head';
 import * as FacebookLoginActions   from '../actions/Login/FacebookLoginActions';
 
 

@@ -9,7 +9,7 @@ import HowPage        from '../components/pages/how-page/HowPage';
 
 import ChatPage       from '../components/pages/chat-page/ChatPage';
 
-import NotFoundPage   from '../components/NotFound/NotFound';
+import NotFoundPage   from '../components/pages/not-found-page/NotFoundPage';
 
 
 export default (
