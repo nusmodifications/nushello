@@ -38,8 +38,16 @@ export default (req, res, next, params) => {
 
       locals.chunks = JSON.stringify(chunks);
 
-      const layout = `${process.cwd()}/app/bundles/${bundle}/layouts/Layout.jade`;
-      const html   = Jade.compileFile(layout, { pretty: false })(locals);
+      switch (location.pathname) {
+        case '/ivlelogin':
+          var layout = `${process.cwd()}/app/bundles/${bundle}/layouts/IvleLogin.jade`;
+          break;
+        default:
+          var layout = `${process.cwd()}/app/bundles/${bundle}/layouts/Layout.jade`;
+          break;
+      }
+      
+      var html = Jade.compileFile(layout, { pretty: false })(locals);
 
       res.send(html);
 

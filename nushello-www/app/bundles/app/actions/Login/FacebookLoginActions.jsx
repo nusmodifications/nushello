@@ -10,8 +10,7 @@ export function facebookLogin({ data }) {
     });
     return apiCall ({
       method: 'GET',
-      path: api.FACEBOOK_AUTH_API,
-      data: [data.userID, data.accessToken],
+      path: api.FACEBOOK_AUTH_API(data.userID, data.accessToken)
     }).then(res => {
       dispatch({
         type: actions.AUTH_SUCCEED,

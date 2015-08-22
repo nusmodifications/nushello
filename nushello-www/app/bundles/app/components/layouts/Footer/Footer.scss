@@ -1,4 +1,9 @@
-footer {
+.footer {
+  position: fixed;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+  text-align: center;
 
   ul {
     margin: 0;
@@ -13,5 +18,9 @@ footer {
 
   a:link {
     color:inherit;
+  }
+
+  a:visited {
+    color: inherit;
   }
 }

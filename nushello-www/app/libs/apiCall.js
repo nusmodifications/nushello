@@ -6,8 +6,7 @@ import config   from 'config/server';
 export default (params) => {
 
   const method       = params.method;
-  const url          = `${params.host || config.apiHost}${params.path}${params.data.join('/')}`;
-  console.log(url);
+  const url          = `${params.host || config.apiHost}${params.path}`;
   const responseType = 'json';
 
   let headers = {
