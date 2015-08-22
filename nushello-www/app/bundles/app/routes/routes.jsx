@@ -7,6 +7,7 @@ import AboutPage      from '../components/pages/about-page/AboutPage';
 import PrivacyPage    from '../components/pages/privacy-page/PrivacyPage';
 import HowPage        from '../components/pages/how-page/HowPage';
 
+import PrefsPage      from '../components/pages/prefs-page/PrefsPage';
 import ChatPage       from '../components/pages/chat-page/ChatPage';
 
 import NotFoundPage   from '../components/pages/not-found-page/NotFoundPage';
@@ -22,6 +23,7 @@ export default (
     <Route name="privacy"     path="/privacy" component={PrivacyPage} />
     <Route name="how"         path="/how"     component={HowPage} />
 
+    <Route name="prefs"       path="/prefs"   component={PrefsPage} />
     <Route name="chat"        path="/chat"    component={ChatPage} />
 
     <Route name="not-found"   path="*"        component={NotFoundPage} />
