@@ -14,6 +14,8 @@ export default class SidebarControls extends React.Component {
         <div className="sidebar-nav">
           <ul>
             <li><Link to="prefs"><img src="/images/prefs.png" /></Link></li>
+            <li><Link to="matches"><img src="/images/users.png" /></Link></li>
+            <li><Link to="profile"><img src="/images/user.png" /></Link></li>
           </ul>
         </div>
       </div>

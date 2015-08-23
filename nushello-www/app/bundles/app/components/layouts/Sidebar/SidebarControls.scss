@@ -8,6 +8,9 @@
     ul {
       margin: 0;
       list-style: none;
+      li {
+        display: inline-block;
+      }
     }
     img {
       height: 40px;
