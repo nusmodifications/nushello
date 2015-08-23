@@ -1,6 +1,6 @@
 import React      from 'react';
 
-export default class Privacy extends React.Component {
+export default class ConvoControls extends React.Component {
 
 
   constructor(props, context) {

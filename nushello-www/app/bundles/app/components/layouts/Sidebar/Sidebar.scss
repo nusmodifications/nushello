@@ -6,12 +6,13 @@
   width: 25%;
   height: 100%;
   overflow: hidden;
+  z-index: 0;
 
   .sidebar-background {
     background-size: cover;
     background-position: center;
     -webkit-filter: blur(6px);
-    opacity: .9;
+    opacity:1;
     height: 100%;
   }
 

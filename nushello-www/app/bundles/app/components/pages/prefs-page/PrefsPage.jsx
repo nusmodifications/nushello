@@ -3,7 +3,7 @@ import React       from 'react';
 import PrefsForm   from './PrefsForm';
 import Footer      from '../../layouts/Footer/Footer'
 
-export default class How extends React.Component {
+export default class PrefsPage extends React.Component {
 
 
   constructor(props, context) {

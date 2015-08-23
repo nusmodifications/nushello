@@ -2,7 +2,7 @@ import React  from 'react';
 
 import Footer from './../../layouts/Footer/Footer';
 
-export default class Privacy extends React.Component {
+export default class PrivacyPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);

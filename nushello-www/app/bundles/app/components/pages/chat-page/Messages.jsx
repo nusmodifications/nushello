@@ -2,7 +2,7 @@ import React           from 'react';
 
 import Message         from './Message';
 
-export default class Privacy extends React.Component {
+export default class Messages extends React.Component {
 
   constructor(props, context) {
     super(props, context);
