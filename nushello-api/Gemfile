@@ -14,6 +14,7 @@ gem 'responders'
 gem 'koala', '~> 2.2'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'newrelic_rpm'
+gem 'firebase'
 gem 'firebase_token_generator'
 
 group :development, :test do
