@@ -9,4 +9,7 @@ class Conversation < ActiveRecord::Base
 
   validates :user_1_id, presence: true, uniqueness: { scope: :user_2_id }
   validates :user_2_id, presence: true, uniqueness: { scope: :user_1_id }
+
+  scope :between, -> (user_1, user_2) { where('(user_1_id = ? AND user_2_id = ?) OR (user_1_id = ? AND user_2_id = ?)',
+      user_1.id, user_2.id, user_2.id, user_1.id).first }
 end
