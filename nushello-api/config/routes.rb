@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       get 'residences', to: 'residences#index'
 
       get 'faculties', to: 'faculties#index'
+
+      get 'majors/:facultyId', to: 'majors#show'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
