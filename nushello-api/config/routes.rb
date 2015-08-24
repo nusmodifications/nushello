@@ -11,11 +11,11 @@ Rails.application.routes.draw do
       get 'users/:facebookId/matches', to: 'users#matches'
 
       get 'residences', to: 'residences#index'
+      get 'residences/:residenceId', to: 'residences#show'
 
       get 'faculties', to: 'faculties#index'
       get 'faculties/:facultyId', to: 'faculties#show'
-
-      get 'majors/:facultyId', to: 'majors#show'
+      get 'faculties/:facultyId/majors', to: 'faculties#majors'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
