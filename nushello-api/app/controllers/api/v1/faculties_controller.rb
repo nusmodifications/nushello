@@ -7,8 +7,8 @@ class Api::V1::FacultiesController < ApplicationController
   end
 
   def show
-    faculties = ActiveModel::ArraySerializer.new(Faculty.where(id: params[:facultyId]), each_serializer: FacultySerializer)
-    generate_api_payload('faculties', faculties)
+    faculty = ActiveModel::ArraySerializer.new(Faculty.where(id: params[:facultyId]), each_serializer: FacultySerializer)
+    generate_api_payload('faculty', faculty)
   end
 
   def majors

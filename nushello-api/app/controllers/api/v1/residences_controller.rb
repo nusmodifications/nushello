@@ -7,7 +7,7 @@ class Api::V1::ResidencesController < ApplicationController
   end
 
   def show
-    residences = ActiveModel::ArraySerializer.new(Residence.where(id: params[:residenceId]), each_serializer: ResidenceSerializer)
-    generate_api_payload('residences', residences)
+    residence = ActiveModel::ArraySerializer.new(Residence.where(id: params[:residenceId]), each_serializer: ResidenceSerializer)
+    generate_api_payload('residence', residence)
   end
 end
