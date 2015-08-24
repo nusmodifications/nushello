@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       put 'users/:facebookId', to: 'users#update'
       get 'users/:facebookId', to: 'users#show'
       get 'users/:facebookId/randomName', to: 'users#random_name'
+      get 'users/:facebookId/matches', to: 'users#matches'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
