@@ -66,6 +66,7 @@ gulp.task('bundle', done => {
 
   if (isDevBuild) {
 
+    console.log('run');
     startServer('server.dev.js', done);
 
   } else {
@@ -135,3 +136,4 @@ gulp.task('clean', done => {
   del(['./public/**/*'], done);
 
 });
+
