@@ -5,12 +5,11 @@ import App        from '../layouts/Layout';
 import MainPage       from '../components/Main';
 
 import IvlePage       from '../components/pages/ivle-page/IvlePage';
-
+import RegisterPage   from '../components/pages/register-page/RegisterPage'
 import ProfilePage    from '../components/pages/profile-page/ProfilePage';
 import PrefsPage      from '../components/pages/prefs-page/PrefsPage';
 import MatchesPage    from '../components/pages/matches-page/MatchesPage';
 import ChatPage       from '../components/pages/chat-page/ChatPage';
-
 import AboutPage      from '../components/pages/about-page/AboutPage';
 import PrivacyPage    from '../components/pages/privacy-page/PrivacyPage';
 import HowPage        from '../components/pages/how-page/HowPage';
@@ -25,6 +24,7 @@ export default (
     <Route name="ivle" path="/ivle" component={IvlePage} />
 
     <Route name="profile" path="/profile" component={ProfilePage} />
+    <Route name="register" path="/register" component={RegisterPage} />
     <Route name="prefs" path="/prefs" component={PrefsPage} />
     <Route name="matches" path="/matches" component={MatchesPage} />
     <Route name="chat" path="/chat" component={ChatPage} />
