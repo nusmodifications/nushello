@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       get 'users/:facebookId/randomName', to: 'users#random_name'
       get 'users/:facebookId/matches', to: 'users#matches'
 
+      get 'users/:facebookId/conversations', to: 'conversations#index'
+
       get 'residences', to: 'residences#index'
       get 'residences/:residenceId', to: 'residences#show'
 
