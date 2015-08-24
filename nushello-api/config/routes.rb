@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'users/:facebookId/matches', to: 'users#matches'
 
       get 'users/:facebookId/conversations', to: 'conversations#index'
+      get 'users/:facebookId/conversations/token', to: 'conversations#token'
 
       get 'residences', to: 'residences#index'
       get 'residences/:residenceId', to: 'residences#show'
