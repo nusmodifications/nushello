@@ -48,6 +48,7 @@ GEM
     erubis (2.7.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    firebase_token_generator (2.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     httparty (0.13.5)
@@ -147,6 +148,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate (~> 2.6.6)
+  firebase_token_generator
   httparty
   koala (~> 2.2)
   newrelic_rpm
