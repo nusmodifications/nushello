@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link }   from 'react-router';
 import Footer from './layouts/Footer/Footer';
-import FacebookLogin from './Login/FacebookLoginContainer';
+import FacebookLogin from './login/FacebookLoginContainer';
 
 import cookie from 'react-cookie';
 
