@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :passive_conversations, class_name: 'Conversation', foreign_key: 'user_2_id', dependent: :destroy
   has_many :messages, class_name: 'Message', foreign_key: 'user_id'
 
-  delegate :faculty, to: :first_major
+  delegate :faculty, to: :first_major, allow_nil: true
 
   validates :facebook_id, presence: true, uniqueness: true
   validates :nusnet_id, uniqueness: true, allow_nil: true
