@@ -16,11 +16,12 @@ export default class FacebookLoginContainer extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { dispatch } = this.props;
     return (
-      <FacebookLogin
-          FacebookLoginActions={bindActionCreators(FacebookLoginActions, dispatch)}
-          {...this.props}
+      <FacebookLogin 
+        FacebookLoginActions={bindActionCreators(FacebookLoginActions, dispatch)}
+        {...this.props}
       />
     );
 

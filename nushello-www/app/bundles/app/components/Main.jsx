@@ -23,7 +23,7 @@ export default class Main extends React.Component {
   render() {
 
     const isLogin = typeof this.state.auth !== 'undefined';
-    const loginButton = (<FacebookLogin appId="1467581460234203" />);
+    const loginButton = (<FacebookLogin className="btn btn-info btn-lg" appId="1467581460234203" />);
 
     return (
       <section id="main">
@@ -35,7 +35,6 @@ export default class Main extends React.Component {
                 <h1>NUSHello</h1>
                 <h2>Say hello to a new NUS experience</h2>
                 <h3><p>Get matched. Chat anonymously. Mutually reveal identities.</p>The best part? No strings attached.</h3>
-                <Link className="btn btn-info btn-lg" to="/chat">Facebook Login</Link>
                 { isLogin ? null : loginButton }
               </div>
             </div>

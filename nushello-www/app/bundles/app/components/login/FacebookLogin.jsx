@@ -57,8 +57,8 @@ export default class FacebookLogin extends React.Component {
 
   render() {
     return (
-        <button className='facebook-login' onClick={this.handleClick}>
-          Log in using Facebook!
+        <button className='facebook-login' onClick={this.handleClick} {...this.props}>
+          Facebook Login
         </button>
     );
 
