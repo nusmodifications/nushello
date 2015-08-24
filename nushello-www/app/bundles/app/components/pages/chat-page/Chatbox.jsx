@@ -3,7 +3,7 @@ import React           from 'react';
 import ConvoControls   from './ConvoControls'
 import Messages        from './Messages'
 
-export default class Privacy extends React.Component {
+export default class Chatbox extends React.Component {
 
 
   constructor(props, context) {

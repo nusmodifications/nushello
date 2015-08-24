@@ -1,8 +1,8 @@
 import React  from 'react';
 
-import Avatar from '../../utils/Avatar'
+import Avatar from '../../Utils/Avatar'
 
-export default class How extends React.Component {
+export default class Message extends React.Component {
 
 
   constructor(props, context) {

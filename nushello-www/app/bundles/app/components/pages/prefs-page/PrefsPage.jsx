@@ -1,9 +1,10 @@
 import React       from 'react';
 
+import Sidebar     from '../../layouts/Sidebar/Sidebar';
 import PrefsForm   from './PrefsForm';
 import Footer      from '../../layouts/Footer/Footer'
 
-export default class How extends React.Component {
+export default class PrefsPage extends React.Component {
 
 
   constructor(props, context) {
@@ -13,6 +14,7 @@ export default class How extends React.Component {
   render() {
     return (
       <div className="container prefs">
+      <Sidebar />
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
             <h1>Enter your preferences</h1>
@@ -21,7 +23,6 @@ export default class How extends React.Component {
         <div className="row">
           <PrefsForm />
         </div>
-        <Footer />
       </div>
     );
   }

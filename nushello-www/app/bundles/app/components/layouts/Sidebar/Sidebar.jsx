@@ -1,8 +1,9 @@
 import React           from 'react';
 
-import SidebarControls from './SidebarControls'
+import SidebarControls from './SidebarControls';
+import MatchList       from '../../pages/chat-page/MatchList';
 
-export default class Privacy extends React.Component {
+export default class Sidebar extends React.Component {
 
 
   constructor(props, context) {
@@ -16,9 +17,10 @@ export default class Privacy extends React.Component {
   };
     return (
       <div className="sidebar">
+        <SidebarControls />
+        <MatchList />
         <div className="sidebar-background" style={bgStyle}>
         </div>
-        <SidebarControls />
       </div>
     );
   }
