@@ -21,7 +21,7 @@ export default class PrefsPage extends React.Component {
           </div>
         </div>
         <div className="row">
-          <PrefsForm />
+          <PrefsForm hah="aa"/>
         </div>
       </div>
     );

@@ -1,4 +1,7 @@
-import React      from 'react';
+import React from 'react';
+import $ from 'jquery';
+import FacultyPicker from 'app/bundles/app/components/Utils/FacultyPicker'
+
 
 export default class PrefsForm extends React.Component {
 
@@ -6,18 +9,20 @@ export default class PrefsForm extends React.Component {
     super(props, context);
   }
 
+  componentDidMount() {
+    var self = this;
+    $.get('http://api.nushello.com/faculties', function(data) {
+      if (data.type === "faculties") {
+        self.setState({ faculties: data.data });
+      }
+    });
+  }
+
   render() {
     return (
     <div className="col-sm-6 col-sm-offset-3">
       <form>
-        <div className="form-group">
-          <label htmlFor="faculty">Faculty</label>
-          <select id="faculty" className="form-control">
-          <option>Arts</option>
-          <option>Computing</option>
-          <option>Science</option>
-          </select>
-        </div>
+        <FacultyPicker faculties={ this.state ? this.state.faculties : [] }/>
 
         <div className="form-group">
           <label htmlFor="major">Major</label>
