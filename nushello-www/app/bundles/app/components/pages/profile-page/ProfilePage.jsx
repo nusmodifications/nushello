@@ -1,6 +1,8 @@
-import React      from 'react';
+import React from 'react';
 
-import Sidebar    from '../../layouts/Sidebar/Sidebar';
+import Sidebar from '../../layouts/Sidebar/Sidebar';
+import ProfilePicture from './ProfilePicture';
+import ProfileEditButton from './ProfileEditButton';
 
 export default class ProfilePage extends React.Component {
 
@@ -11,13 +13,14 @@ export default class ProfilePage extends React.Component {
 
   render() {
     return (
-      <div className="container profile">
+      <div>
         <Sidebar />
-          <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-              <h1>User Profile</h1>
-            </div>
-          </div>
+        <div className="profile">
+          <h1>User Profile</h1>
+          <ProfilePicture />
+          <h2>Johnny Kong</h2>
+          <p>Bio:</p>
+        </div>
       </div>
     );
   }
