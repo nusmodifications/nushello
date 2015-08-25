@@ -14,6 +14,6 @@ export default class Messages extends React.Component {
       for (var i=0; i < tmp; i++) {
         msgs.push(<Message key={i} id={i} />);
       }
-      return <div>{msgs}</div>;
+      return <div className="messages">{msgs}</div>;
   }
 }

@@ -13,9 +13,7 @@ export default class Chatbox extends React.Component {
   render() {
     return (
       <div className="chatbox">
-        <div className="messages">
         <Messages />
-        </div>
         <div className="input">
         <ConvoControls />
         </div>

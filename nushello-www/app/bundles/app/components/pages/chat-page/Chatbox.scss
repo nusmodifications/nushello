@@ -1,13 +1,4 @@
 .chatbox {
-  .messages {
-    position: absolute;
-    left: 25%;
-    width: 100%;
-    height: 90%;
-    background-color: #eee;
-    overflow: auto;
-    padding: 1em 0em 2em 0em;
-  }
   .input {
     position: absolute;
     bottom: 0;
@@ -17,5 +8,4 @@
     background-color: #eee;
     border-top: 1px #ddd solid;
   }
-
 }
