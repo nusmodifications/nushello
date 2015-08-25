@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   delegate :faculty, to: :first_major, allow_nil: true
 
   validates :facebook_id, presence: true, uniqueness: true
+  validates :facebook_token, presence: true
   validates :nusnet_id, uniqueness: true, allow_nil: true
   validates :name, presence: true
+  validates :bio, length: { maximum: 140 }
 
   before_save :generate_access_token, if: :facebook_token_changed?
 

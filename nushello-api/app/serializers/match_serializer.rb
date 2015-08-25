@@ -1,5 +1,5 @@
 class MatchSerializer < ActiveModel::Serializer
-  attributes :fake_name, :gender, :matriculation_year, :faculty, :first_major, :second_major, :residence, :online
+  attributes :fake_name, :bio, :gender, :matriculation_year, :faculty, :first_major, :second_major, :residence, :online
 
   has_one :personality, serializer: PersonalitySerializer
 
