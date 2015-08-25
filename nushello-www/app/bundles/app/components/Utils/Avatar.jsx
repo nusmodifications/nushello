@@ -1,6 +1,6 @@
 import React  from 'react';
 
-export default class How extends React.Component {
+export default class Avatar extends React.Component {
 
 
   constructor(props, context) {
