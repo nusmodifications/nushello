@@ -9,13 +9,14 @@ export default class PrefsForm extends React.Component {
   render() {
     return (
     <div className="col-sm-6 col-sm-offset-3">
-      <form><div className="form-group">
-        <label htmlFor="faculty">Faculty</label>
-        <select id="faculty" className="form-control">
-        <option>Arts</option>
-        <option>Computing</option>
-        <option>Science</option>
-        </select>
+      <form>
+        <div className="form-group">
+          <label htmlFor="faculty">Faculty</label>
+          <select id="faculty" className="form-control">
+          <option>Arts</option>
+          <option>Computing</option>
+          <option>Science</option>
+          </select>
         </div>
 
         <div className="form-group">
@@ -29,22 +30,23 @@ export default class PrefsForm extends React.Component {
 
         <div className="form-group">
           <label htmlFor="modules">Modules</label>
-            <input type="text" className="form-control" id="modules" />
-            </div>
+          <input type="text" className="form-control" id="modules" />
+        </div>
 
         <div className="form-group">
-        <label>Gender</label>
-        <div className="checkbox">
-          <label><input type="checkbox" value="0" />
-            Female
-          </label>
+          <label>Gender</label>
+          <div className="checkbox">
+            <label><input type="checkbox" value="0" />
+              Female
+            </label>
+          </div>
+          <div className="checkbox">
+            <label><input type="checkbox" value="1" />
+              Male
+            </label>
+          </div>
         </div>
-        <div className="checkbox">
-          <label><input type="checkbox" value="1" />
-            Male
-          </label>
-        </div>
-      </div></form>
+      </form>
     </div>
     );
   }
