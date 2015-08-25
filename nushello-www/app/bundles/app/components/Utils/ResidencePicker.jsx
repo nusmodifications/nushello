@@ -15,6 +15,7 @@ export default class ResidencePicker extends React.Component {
           { this.props.residences.map(function(residence) {
             return <option value={ residence.id } key={ residence.id }>{ residence.name }</option>;
           })}
+          <option key='-1'>None</option>
         </select>
       </div>
     );
