@@ -1,9 +1,20 @@
 import React  from 'react';
+import $ from 'jquery';
+import ResidencePicker from 'app/bundles/app/components/Utils/ResidencePicker'
 
 export default class RegisterPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+  }
+
+  componentDidMount() {
+    var self = this;
+    $.get('http://api.nushello.com/residences', function(data) {
+      if (data.type === "residences") {
+        self.setState({ residences: data.data });
+      }
+    });
   }
 
   render() {
@@ -12,14 +23,7 @@ export default class RegisterPage extends React.Component {
         <h1>Register</h1>
         <hr/>
         <form>
-        <div className="form-group">
-          <label htmlFor="residence">Residence</label>
-          <select id="residence" className="form-control">
-            <option>ABA</option>
-            <option>CDC</option>
-            <option>DDD</option>
-          </select>
-        </div>
+        <ResidencePicker residences={ this.state ? this.state.residences : [] }/>
       </form>
       </div>
     );
