@@ -1,0 +1,12 @@
+#messageField {
+  display: block;
+  width: 100%;
+  border: none;
+  height: 2em;
+  background: #eee;
+  font-size: 1em;
+  margin-top: 1em;
+}
+#messageField:focus {
+  outline: 0;
+}
