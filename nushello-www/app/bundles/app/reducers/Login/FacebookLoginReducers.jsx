@@ -5,7 +5,8 @@ const initialState = {
   type: null,
   errors: null,
   requesting: false,
-  data: null
+  data: null,
+  auth: undefined
 };
 
 export default function facebookLogin(state = initialState, action) {
@@ -29,7 +30,10 @@ export default function facebookLogin(state = initialState, action) {
         type, 
         error: null,
         requesting: false,
-        data: data
+        auth: {
+          accessToken: data.data.accessToken,
+          type: data.type
+        }
       };
 
     case actions.AUTH_FAILED:

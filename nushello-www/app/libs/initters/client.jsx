@@ -15,7 +15,7 @@ export default (params) => {
   const { routes } = params;
 
   const history = new BrowserHistory();
-
+  
   const AppContainer = (
     <Provider store={store}>
       {() => <Router history={history} children={routes} />}
