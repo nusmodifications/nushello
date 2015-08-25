@@ -29,7 +29,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user.assign_attributes(residence_id: params[:residenceId]) if params[:residenceId].present?
+    @user.bio = params[:bio] if params[:bio].present?
+    @user.residence_id = params[:residenceId] if params[:residenceId].present?
 
     %i(personality preference).each do |setting|
       next unless params[setting].present?
