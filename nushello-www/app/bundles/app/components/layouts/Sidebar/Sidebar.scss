@@ -17,8 +17,8 @@
       top: -78px;
       background-size: cover;
       background-position: center;
-      -webkit-filter: blur(6px);
-      opacity:1;
+      -webkit-filter: blur(6px) grayscale(.2);
+      opacity: .8;
       height: 100%;
     }
   }
