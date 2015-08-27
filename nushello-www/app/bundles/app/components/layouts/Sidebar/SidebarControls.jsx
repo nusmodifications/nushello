@@ -12,11 +12,9 @@ export default class SidebarControls extends React.Component {
     return (
       <div className="sidebar-controls">
         <div className="sidebar-nav">
-          <ul>
-            <li><Link to="prefs"><img src="/images/prefs.png" /></Link></li>
-            <li><Link to="matches"><img src="/images/users.png" /></Link></li>
-            <li><Link to="profile"><img src="/images/user.png" /></Link></li>
-          </ul>
+            <div><Link to="prefs"><img src="/images/pref.png" /></Link></div>
+            <div><Link to="matches"><img src="/images/matches.png" /></Link></div>
+            <div><Link to="profile"><img src="/images/userprofile.png" /></Link></div>
         </div>
       </div>
     );
