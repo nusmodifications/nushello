@@ -10,7 +10,7 @@ class AuthAPI extends BaseAPI {
 
   init() {
     // var authenticate = this.get('/me');
-    var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
+    var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 0);
     authenticate
       .then((res)=> {
         if (res.user) {

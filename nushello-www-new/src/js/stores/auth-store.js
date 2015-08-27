@@ -42,12 +42,10 @@ var AuthStore = Reflux.createStore({
       if (currentUser.city_latitude) {
         currentUser.latitude = currentUser.city_latitude;
         currentUser.longitude = currentUser.city_longitude;
-      }
-      else if (currentUser.country_hq_city_latitude) {
+      } else if (currentUser.country_hq_city_latitude) {
         currentUser.latitude = currentUser.country_hq_city_latitude;
         currentUser.longitude = currentUser.country_hq_city_longitude;
-      }
-      else {
+      } else {
         currentUser.latitude = 3.10820;
         currentUser.longitude = 101.64012;
       }
