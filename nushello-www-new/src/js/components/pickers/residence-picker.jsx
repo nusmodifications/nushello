@@ -1,4 +1,5 @@
-import React  from 'react';
+'use strict';
+import React from 'react';
 
 export default class ResidencePicker extends React.Component {
 

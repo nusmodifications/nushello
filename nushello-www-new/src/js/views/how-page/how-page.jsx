@@ -1,4 +1,5 @@
-import React  from 'react';
+'use strict';
+import React from 'react';
 
 import Footer from 'components/layout/footer/footer.jsx';
 

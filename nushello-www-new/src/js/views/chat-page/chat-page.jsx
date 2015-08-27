@@ -1,6 +1,7 @@
-import React      from 'react';
+'use strict';
+import React from 'react';
 
-import Chatbox    from './chat-box.jsx';
+import Chatbox from './chat-box.jsx';
 
 export default class ChatPage extends React.Component {
 

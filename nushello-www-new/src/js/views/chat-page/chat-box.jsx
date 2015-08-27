@@ -1,7 +1,8 @@
-import React           from 'react';
+'use strict';
+import React from 'react';
 
-import ConvoControls   from './convo-controls.jsx';
-import Messages        from './messages.jsx';
+import ConvoControls from './convo-controls.jsx';
+import Messages from './messages.jsx';
 
 require('./chat-box.scss');
 

@@ -1,6 +1,7 @@
-import React           from 'react';
+'use strict';
+import React from 'react';
 
-import Message         from './message.jsx';
+import Message from './message.jsx';
 
 require('./messages.scss');
 

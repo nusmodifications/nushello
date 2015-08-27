@@ -1,5 +1,6 @@
-import React           from 'react';
-import { Link }        from 'react-router';
+'use strict';
+import React from 'react';
+import { Link } from 'react-router';
 
 require('./sidebar-controls.scss');
 

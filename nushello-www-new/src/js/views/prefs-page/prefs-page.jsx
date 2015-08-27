@@ -1,6 +1,7 @@
-import React       from 'react';
+'use strict';
+import React from 'react';
 
-import PrefsForm   from './prefs-form.jsx';
+import PrefsForm from './prefs-form.jsx';
 
 require('./prefs.scss');
 

@@ -1,4 +1,5 @@
-import React  from 'react';
+'use strict';
+import React from 'react';
 import $ from 'jquery';
 
 import ResidencePicker from 'components/pickers/residence-picker.jsx';

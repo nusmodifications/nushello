@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "NUSHello",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:xinan/nushello.git"
+  },
   "scripts": {
     "test": "karma start"
   },

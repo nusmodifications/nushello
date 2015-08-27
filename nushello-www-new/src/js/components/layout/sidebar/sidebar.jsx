@@ -1,7 +1,8 @@
-import React            from 'react';
+'use strict';
+import React from 'react';
 
-import SidebarControls  from './sidebar-controls.jsx';
-import ChatList         from 'components/chat-list/chat-list.jsx';
+import SidebarControls from './sidebar-controls.jsx';
+import ChatList from 'components/chat-list/chat-list.jsx';
 
 require('./sidebar.scss');
 

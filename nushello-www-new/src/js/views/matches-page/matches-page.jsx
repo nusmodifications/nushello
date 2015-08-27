@@ -1,4 +1,5 @@
-import React      from 'react';
+'use strict';
+import React from 'react';
 
 require('./matches-page.scss');
 

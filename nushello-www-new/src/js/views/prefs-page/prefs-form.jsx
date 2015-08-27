@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import $ from 'jquery';
 import FacultyPicker from 'components/pickers/faculty-picker.jsx';

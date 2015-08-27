@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 
 import ChatItem  from './chat-item.jsx';
