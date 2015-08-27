@@ -3,10 +3,13 @@
   width: 100%;
   border: none;
   height: 2em;
-  background: #eee;
   font-size: 1em;
-  margin-top: 1em;
+  opacity: 0.2;
+  transition: opacity 1s;
 }
 #messageField:focus {
   outline: 0;
+  color: $green;
+  background-color: #d1d1d1;
+  opacity: 1.0;
 }

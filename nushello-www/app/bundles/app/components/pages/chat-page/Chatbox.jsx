@@ -12,10 +12,12 @@ export default class Chatbox extends React.Component {
 
   render() {
     return (
-      <div className="chatbox">
-        <Messages />
-        <div className="input">
-        <ConvoControls />
+      <div className="chat-wrapper">
+        <div className="chatbox">
+          <Messages />
+          <div className="input">
+          <ConvoControls />
+          </div>
         </div>
       </div>
     );

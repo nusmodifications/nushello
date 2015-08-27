@@ -2,16 +2,23 @@
   position: absolute;
   top: 0;
   left: 0;
+  padding: 1em;
   margin-top: 5em;
   z-index: 1;
-  ul {
-    margin: 0;
-    list-style: none;
+  .match {
+    font-size: 1.3em;
     color: #fff;
-
-    li {
-      font-size: 1.5em;
-      margin-bottom: .5em;
+    a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 1.0;
+      transition: opacity 0.5s;
+    }
+    a:visited {
+      color: #fff;
+    }
+    a:hover {
+      opacity: 0.4;
     }
   }
 }
