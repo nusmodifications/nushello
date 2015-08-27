@@ -4,6 +4,7 @@ import React from 'react';
 import Router from 'react-router';
 
 import Footer from 'components/layout/footer/footer.jsx';
+import FacebookLogin from 'components/login/FacebookLogin.jsx';
 
 require('./login.scss');
 
@@ -42,6 +43,9 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    // const isLogin = typeof this.state.auth !== 'undefined';
+    const isLogin = false;
+    const loginButton = (<FacebookLogin appId="1467581460234203" />);
 
     return (
       <div>
@@ -53,7 +57,7 @@ class LoginPage extends React.Component {
               <h1>NUSHello</h1>
               <h2>Say hello to a new NUS experience</h2>
               <h3><p>Get matched. Chat anonymously. Mutually reveal identities.</p>The best part? No strings attached.</h3>
-              <button className="btn btn-info">Facebook Login</button>
+              { isLogin ? null : loginButton }
             </div>
           </div>
         </div>

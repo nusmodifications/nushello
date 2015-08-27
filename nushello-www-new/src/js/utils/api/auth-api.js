@@ -1,16 +1,16 @@
 'use strict';
 
 import BaseAPI from './base-api';
+var APIEndPoints = require('constants/api-end-points');
 
 class AuthAPI extends BaseAPI {
   constructor() {
     super();
-    this.model = 'auth';
   }
 
   init() {
     // var authenticate = this.get('/me');
-    var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 0);
+    var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
     authenticate
       .then((res)=> {
         if (res.user) {
@@ -32,7 +32,27 @@ class AuthAPI extends BaseAPI {
   register() {
   }
 
-  login() {
+  login(userInfo) {
+    console.log(userInfo);
+    var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.accessToken));
+
+    login
+      .then((res)=> {
+        // if (res.user) {
+        //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
+        // }
+        console.log(res);
+      })
+      .catch((error)=> {
+        if (error.status === 401) {
+          if ('API_HOST'['API_HOST'.length - 1] === '/') {
+            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+          } else {
+            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+          }
+        }
+      });
+    return login;
   }
 
   logout() {

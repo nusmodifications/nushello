@@ -8,8 +8,8 @@ class BaseAPI {
     // The API server info
     this.host = 'API_HOST'; // This will be replaced by gulp workflow for different environment
     this.port = 'API_PORT';
-    this.apiVersion = 'v1';
-    this.appType = 'frontend';
+    // this.apiVersion = 'v1';
+    // this.appType = 'frontend';
 
     // This will be use as the key for current user data in window.localStorage
     this.currentUserKey = 'current_user';
@@ -31,7 +31,7 @@ class BaseAPI {
       }
     }
 
-    baseUrl += '/api';
+    // baseUrl += '/api';
 
     if (this.appType) {
       baseUrl += '/' + this.appType;
