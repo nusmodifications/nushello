@@ -1,5 +1,5 @@
-# react-webpack
-A single page application for GrabTaxi's operators that uses:
+# NUSHello
+A single page application for NUS students that uses:
 
 <div>
     <a href="https://facebook.github.io/react" target="_blank">
