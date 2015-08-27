@@ -31,6 +31,7 @@
     "browser": true
   },
   "globals": {
-    "IS_SERVER": true
+    "IS_SERVER": true,
+    "FB": false
   }
 }
