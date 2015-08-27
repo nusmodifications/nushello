@@ -13,15 +13,19 @@ export default class PrefsPage extends React.Component {
 
   render() {
     return (
-      <div className="container prefs">
-      <Sidebar />
-        <div className="row">
-          <div className="col-sm-6 col-sm-offset-3">
-            <h1>Enter your preferences</h1>
-          </div>
+      <div>
+        <div className="sidebar-wrapper">
+          <Sidebar />
         </div>
-        <div className="row">
-          <PrefsForm hah="aa"/>
+        <div className="container prefs">
+          <div className="row">
+            <div className="col-sm-7 col-sm-offset-1">
+              <h1>I'm looking for a friend whose...</h1>
+            </div>
+          </div>
+          <div className="row">
+            <PrefsForm hah="aa"/>
+          </div>
         </div>
       </div>
     );

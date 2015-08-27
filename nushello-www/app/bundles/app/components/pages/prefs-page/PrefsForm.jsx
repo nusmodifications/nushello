@@ -20,12 +20,12 @@ export default class PrefsForm extends React.Component {
 
   render() {
     return (
-    <div className="col-sm-6 col-sm-offset-3">
+    <div className="col-sm-4 col-sm-offset-1">
       <form>
         <FacultyPicker faculties={ this.state ? this.state.faculties : [] }/>
 
         <div className="form-group">
-          <label htmlFor="major">Major</label>
+          <label htmlFor="major">major is:</label>
           <select id="faculty" className="form-control">
           <option>Test Major</option>
           <option>Major 2</option>
@@ -34,12 +34,7 @@ export default class PrefsForm extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="modules">Modules</label>
-          <input type="text" className="form-control" id="modules" />
-        </div>
-
-        <div className="form-group">
-          <label>Gender</label>
+          <label>and gender is:</label>
           <div className="checkbox">
             <label><input type="checkbox" value="0" />
               Female
@@ -51,6 +46,8 @@ export default class PrefsForm extends React.Component {
             </label>
           </div>
         </div>
+
+        <input className="btn btn-default" type="submit" value="Alright, let's go!" />
       </form>
     </div>
     );

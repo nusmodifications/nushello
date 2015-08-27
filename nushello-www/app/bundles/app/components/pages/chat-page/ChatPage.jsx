@@ -13,7 +13,9 @@ export default class ChatPage extends React.Component {
   render() {
     return (
       <div>
-        <Sidebar />
+        <div className="sidebar-wrapper">
+          <Sidebar />
+        </div>
         <Chatbox />
       </div>
     );

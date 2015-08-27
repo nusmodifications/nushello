@@ -10,7 +10,7 @@ export default class FacultyPicker extends React.Component {
   render() {
     return (
       <div className="form-group">
-        <label htmlFor="faculty">Faculty</label>
+        <label htmlFor="faculty">faculty is:</label>
         <select id="faculty" className="form-control">
           { this.props.faculties.map(function(faculty) {
             console.log(faculty);

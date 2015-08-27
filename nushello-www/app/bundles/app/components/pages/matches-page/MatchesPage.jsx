@@ -11,13 +11,17 @@ export default class MatchesPage extends React.Component {
 
   render() {
     return (
+      <div>
+        <div className="sidebar-wrapper">
+          <Sidebar />
+        </div>
       <div className="container matches">
-        <Sidebar />
           <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
+            <div className="col-sm-6 col-sm-offset-1">
               <h1>All Friend Matches</h1>
             </div>
           </div>
+        </div>
       </div>
     );
   }
