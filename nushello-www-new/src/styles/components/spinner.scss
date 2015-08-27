@@ -1,0 +1,27 @@
+.spinner {
+  $spinner-size-normal: 48px;
+  $spinner-size-small: 32px;
+
+  height: $spinner-size-normal;
+  margin: auto;
+  width: $spinner-size-normal;
+
+  &.small {
+    height: $spinner-size-small;
+    width: $spinner-size-small;
+  }
+
+  &.grey,
+  &.white,
+  &.black,
+  &.none {
+    svg {
+      fill: grey
+    }
+  }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}

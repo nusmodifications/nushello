@@ -1,0 +1,18 @@
+@import "light-bootstrap-dashboard.css";
+
+$theme: #09c;
+
+body {
+  color: #000;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $theme;
+
+  &:hover {
+    color: darken($theme, 10%);
+    text-decoration: none;
+  }
+}

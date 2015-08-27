@@ -1,0 +1,78 @@
+
+@mixin font-default {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+@mixin sprites-common {
+  background: image-url("sprites-common.png") no-repeat;
+  display: block;
+  overflow: hidden;
+  text-indent: -9999px;
+}
+
+@mixin micro-clearfix {
+  //http://nicolasgallagher.com/micro-clearfix-hack/
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin old-clearfix {
+  clear: both;
+  display: block;
+  overflow: hidden;
+}
+
+@mixin margins-in-child-elements($top, $right, $bottom, $left) {
+  & > * {
+    margin: $top $right $bottom $left;
+  }
+  & > *:first-child {
+    margin-top: $top;
+  }
+  & > *:last-child {
+    margin-bottom: $bottom;
+  }
+}
+
+@mixin padding-in-child-elements($top, $right, $bottom, $left) {
+  & > * {
+    margin: $top $right $bottom $left;
+  }
+  & > *:first-child {
+    margin-top: $top;
+  }
+  & > *:last-child {
+    margin-bottom: $bottom;
+  }
+}
+
+@mixin at-breakpoint($media-layout) {
+  $min: nth($media-layout, 1);
+  $max: nth($media-layout, 2);
+  @if $min and $max {
+    // Both $min and $max
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @if $min {
+      // Min only:
+      @media (min-width: $min) {
+        @content;
+      }
+    } @else {
+      // Max only:
+      @media (max-width: $max) {
+        @content;
+      }
+    }
+  }
+}
+
+

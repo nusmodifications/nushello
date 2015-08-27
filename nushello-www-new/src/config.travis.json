@@ -1,0 +1,5 @@
+{
+  "API_HOST": "http://sandbox.example.com/",
+  "API_PORT": 80,
+  "APP_ROOT": "/v2"
+}

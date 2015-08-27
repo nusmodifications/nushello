@@ -1,0 +1,26 @@
+.sidebar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  .sidebar {
+    position: absolute;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    .sidebar-background {
+      position: relative;
+      top: -78px;
+      background-size: cover;
+      background-position: center;
+      -webkit-filter: blur(6px);
+      opacity:1;
+      height: 100%;
+    }
+  }
+}
+

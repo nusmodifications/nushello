@@ -1,0 +1,103 @@
+// Colors
+$gray-base: #000;
+$gray-darkerer: #111;
+$gray-darker: #222;
+$gray-dark: #333;
+$gray: #555;
+$gray-light: #777;
+$gray-lighter: #999;
+$gray-lighterer: #aaa;
+$gray-lightest: #eee;
+
+$black: #000;
+$blue: #0072c6;
+$blue-dark: #43484d;
+$blue-light: #5bc0de;
+$brown: #570000;
+$green: #39b54a;
+$green-light: #82ba00;
+$green-confirm: #92d343;
+$green-primary: #5cb85c;
+$green-darker: darken($green-primary, 10%);
+$orange: #f0bb4e;
+$pink: #dc4fad;
+$purple: #8c0095;
+$red: #d9534f;
+$turqoise: #2abf9e;
+$white: #fff;
+$yellow: #f1c40f;
+
+$darker-bg: rgba(0, 0, 0, 0.1);
+
+$base-color: #eeeff2;
+$base-color-lighter: lighten($base-color, 20%);
+$base-color-temporary: #383838;
+$text-color: #444;
+$text-color-darker: darken($text-color, 40%);
+$hot: #8cc540;
+$hot-alternate: #399;
+$success-color: #468847;
+$error-color: #b94a48;
+$bstates: #ffcc33;
+
+// Typography
+$font-size-small: 11px;
+$font-size-base: 13px;
+$font-size-medium: 15px;
+$font-size-large: 18px;
+$font-size-larger: 24px;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+$font-color-muted: #999;
+
+// Media
+// The number is taken from bootstrap to sync with them
+// Small screen / tablet
+$screen-sm-min: 768px !default;
+// Medium screen / desktop
+$screen-md-min: 992px !default;
+// Large screen / wide desktop
+$screen-lg-min: 1200px !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+
+$phone: (null, $screen-xs-max);
+$tablet: ($screen-sm-min, $screen-sm-max);
+$laptop: ($screen-md-min, $screen-md-max);
+$widescreen: ($screen-lg-min, null);
+
+$larger-than-phone: ($screen-sm-min, null);
+$larger-than-tablet: ($screen-md-min, null);
+$larger-than-laptop: $widescreen;
+
+$smaller-than-tablet: $phone;
+$smaller-than-laptop: (null, $screen-sm-max);
+$smaller-than-widescreen: (null, $screen-md-max);
+
+$phone-and-tablet: $smaller-than-laptop;
+
+// Sitewide
+$main-background: #eeeff2;
+$main-font-color: $gray;
+$sidebar-width: 180px;
+
+$theme: #8cc540;
+$theme-gray: #4c4a56;
+$theme-gray-lighter: #636270;
+$theme-white: #ddd;
+$theme-green: #8cc540;
+$theme-black: #111;
+
+// Table
+$table-header-background-color: #626263;
+$table-row-color: #f2f4f8;
+$table-row-color-alt: #ddd;
+
+// List
+$list-border: #c5c9d3;
