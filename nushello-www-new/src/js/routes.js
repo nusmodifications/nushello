@@ -2,22 +2,20 @@ import React from 'react';
 import { Route, Redirect, DefaultRoute, NotFoundRoute } from 'react-router';
 
 // Pages
-import AppContainer       from 'views/app-container.jsx';
+import AppContainer from 'views/app-container.jsx';
 
-import NotFoundPage       from 'views/not-found-page.jsx';
-import NotImplementPage   from 'views/not-implement-page.jsx';
+import NotFoundPage from 'views/not-found-page.jsx';
+import NotImplementPage from 'views/not-implement-page.jsx';
 
-import LoginPage          from 'views/login-page/login-page.jsx';
-
-import ChatPage           from 'views/chat-page/chat-page.jsx';
-import MatchesPage        from 'views/matches-page/matches-page.jsx';
-import PrefsPage          from 'views/prefs-page/prefs-page.jsx';
-import ProfilePage        from 'views/profile-page/profile-page.jsx';
-import RegisterPage       from 'views/register-page/register-page.jsx';
-
-import AboutPage          from 'views/about-page/about-page.jsx';
-import PrivacyPage        from 'views/privacy-page/privacy-page.jsx';
-import HowPage            from 'views/how-page/how-page.jsx';
+import LoginPage from 'views/login-page/login-page.jsx';
+import ChatPage from 'views/chat-page/chat-page.jsx';
+import MatchesPage from 'views/matches-page/matches-page.jsx';
+import PrefsPage from 'views/prefs-page/prefs-page.jsx';
+import ProfilePage from 'views/profile-page/profile-page.jsx';
+import RegisterPage from 'views/register-page/register-page.jsx';
+import AboutPage from 'views/about-page/about-page.jsx';
+import PrivacyPage from 'views/privacy-page/privacy-page.jsx';
+import HowPage from 'views/how-page/how-page.jsx';
 
 var routes = (
   <Route name="home" path="APP_ROOT" handler={AppContainer}>

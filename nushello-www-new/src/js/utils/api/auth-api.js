@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseAPI from './base-api';
+import cookie from 'react-cookie';
 var APIEndPoints = require('constants/api-end-points');
 
 class AuthAPI extends BaseAPI {
@@ -10,12 +11,13 @@ class AuthAPI extends BaseAPI {
 
   init() {
     // var authenticate = this.get('/me');
-    var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
+    // var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
+    var authenticate = this.ajaxFake(cookie.load(this.currentUserKey));
     authenticate
       .then((res)=> {
-        if (res.user) {
-          localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
-        }
+        // if (res.user) {
+        //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
+        // }
       })
       .catch((error)=> {
         if (error.status === 401) {
@@ -33,14 +35,15 @@ class AuthAPI extends BaseAPI {
   }
 
   login(userInfo) {
-    var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.accessToken));
+    var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.facebookToken));
 
     login
       .then((res)=> {
-        // if (res.user) {
-        //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
-        // }
-        console.log(res);
+        if (res.data) {
+          const { type, data } = res;
+          let currentUser = { type, ...data };
+          cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo }));
+        }
       })
       .catch((error)=> {
         if (error.status === 401) {
