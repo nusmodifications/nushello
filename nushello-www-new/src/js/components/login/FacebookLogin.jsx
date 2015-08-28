@@ -8,46 +8,46 @@ import AuthStore from 'stores/auth-store';
 var FacebookLogin = React.createClass({
   mixins: [Reflux.connect(AuthStore, 'authStore')],
 
-  // componentDidMount: function() {
-  //   if (!this.props.appId) {
-  //     throw 'app ID please!';
-  //   }
+  componentDidMount: function() {
+    if (!this.props.appId) {
+      throw 'app ID please!';
+    }
 
-  //   window.fbAsyncInit = function() {
-  //     FB.init({
-  //       appId: this.props.appId,
-  //       xfbml: true,
-  //       version: 'v2.4'
-  //     });
-  //   }.bind(this);
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: this.props.appId,
+        xfbml: true,
+        version: 'v2.4'
+      });
+    }.bind(this);
 
-  //   (function(d, s, id){
-  //     var js, fjs = d.getElementsByTagName(s)[0];
-  //     if (d.getElementById(id)) {return; }
-  //     js = d.createElement(s); js.id = id;
-  //     js.src = '//connect.facebook.net/en_US/sdk.js';
-  //     fjs.parentNode.insertBefore(js, fjs);
-  //   }(document, 'script', 'facebook-jssdk'));
-  // },
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return; }
+      js = d.createElement(s); js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  },
 
-  // handleClick: function() {
-  //   FB.login(function(response) {
-  //     if (response.status === 'connected') {
-  //       let facebookToken = response.authResponse.accessToken;
-  //       let userID = response.authResponse.userID;
+  handleClick: function() {
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        let facebookToken = response.authResponse.accessToken;
+        let userID = response.authResponse.userID;
 
-  //       // cookie.save('facebookUid', userID);
+        // cookie.save('facebookUid', userID);
 
-  //       AuthAction.login({
-  //         'userID': userID,
-  //         'facebookToken': facebookToken
-  //       });
+        AuthAction.login({
+          'userID': userID,
+          'facebookToken': facebookToken
+        });
 
-  //     } else {
-  //       // error message here
-  //     }
-  //   });
-  // },
+      } else {
+        // error message here
+      }
+    });
+  },
 
   render: function() {
     console.log(this.state);
