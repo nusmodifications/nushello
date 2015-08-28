@@ -1,6 +1,9 @@
 'use strict';
 import React from 'react';
 import Avatar from '../../components/avatar/avatar.jsx';
+import ProfileEdit from '../../components/edit/profile-edit.jsx';
+import ProfileAction from '../../actions/profile-action';
+import ProfileStore from '../../stores/profile-store';
 
 require('./profile-page.scss');
 
@@ -8,6 +11,19 @@ export default class ProfilePage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      currentUser: {}
+    };
+  }
+
+  componentWillMount() {
+    ProfileAction.init()
+    .then(res => {
+      console.log(res);
+      this.setState({
+        currentUser: res
+      });
+    });
   }
 
   render() {
@@ -18,11 +34,8 @@ export default class ProfilePage extends React.Component {
 
             <div className="col-md-3 text-center">
               <Avatar />
-              <h2>Xu Bili</h2>
-              <p><em>I love my life</em></p>
-              <button className="btn btn-default">
-                Edit Bio
-              </button>
+              <h2>{ this.state.currentUser.name }</h2>
+              <ProfileEdit />
             </div>
 
             <div className="col-md-9">
