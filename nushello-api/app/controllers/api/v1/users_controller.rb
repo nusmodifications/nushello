@@ -28,27 +28,6 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  def update
-    @user.bio = params[:bio] if params[:bio].present?
-    @user.residence_id = params[:residenceId] if params[:residenceId].present?
-
-    %i(personality preference).each do |setting|
-      next unless params[setting].present?
-
-      if @user.send(setting).present?
-        @user.send(setting).assign_attributes(self.send(:"#{setting}_params"))
-      else
-        @user.send(:"build_#{setting}", self.send(:"#{setting}_params"))
-      end
-    end
-
-    if @user.save
-      generate_api_payload('userUpdated', UserSerializer.new(@user))
-    else
-      generate_error_payload('Bad Request', 400, @user.errors.messages)
-    end
-  end
-
   def random_name
     @user.update_attribute(:fake_name, NameGenerator.random)
     generate_api_payload('newName', { fake_name: @user.fake_name })
@@ -65,16 +44,5 @@ class Api::V1::UsersController < ApplicationController
   def show
     generate_api_payload('userProfile', UserSerializer.new(@user))
   end
-
-  private
-
-    def personality_params
-      params.require(:personality).permit(:party, :sports, :mugger, :introvert)
-    end
-
-    def preference_params
-      preference = params.require(:preference).permit(:gender, :facultyId, :majorId, :residenceId,
-          :year, :filterFacebookFriends, :party, :sports, :mugger, :introvert)
-      Hash[preference.map { |k, v| [k.underscore.intern, v] }]
-    end
+  
 end
