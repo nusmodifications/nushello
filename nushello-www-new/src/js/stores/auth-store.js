@@ -65,6 +65,9 @@ var AuthStore = Reflux.createStore({
     currentUser = {
       facebookID
     };
+    this.trigger({
+      currentUser: currentUser
+    });
   },
 
   onLoginCompleted: function(response) {
@@ -75,10 +78,16 @@ var AuthStore = Reflux.createStore({
       type,
       accessToken
     };
+    this.trigger({
+      currentUser: currentUser
+    });
   },
 
   onLoginFailed: function() {
     currentUser = null;
+    this.trigger({
+      currentUser: currentUser
+    });
   }
 
 });
