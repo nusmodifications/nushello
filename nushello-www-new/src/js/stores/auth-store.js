@@ -58,7 +58,29 @@ var AuthStore = Reflux.createStore({
 
   onInitFailed: function (response) {
     this.trigger(response);
+  },
+
+  onLogin: function(response) {
+    let facebookID = response.userID;
+    currentUser = {
+      facebookID
+    };
+  },
+
+  onLoginCompleted: function(response) {
+    const { type, data } = response;
+    let accessToken = data.accessToken;
+    currentUser = {
+      ...currentUser,
+      type,
+      accessToken
+    };
+  },
+
+  onLoginFailed: function() {
+    currentUser = null;
   }
+
 });
 
 export default AuthStore;

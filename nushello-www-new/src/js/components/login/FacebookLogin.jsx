@@ -40,10 +40,7 @@ export default class FacebookLogin extends React.Component {
         let accessToken = response.authResponse.accessToken;
         let userID = response.authResponse.userID;
 
-        // Had to be done this way because cookies messes things up for now
-        // TODO: Switch all to cookies
-        // ^ from Bili
-        // localStorage.setItem('facebookUid', userID);
+        // cookie.save('facebookUid', userID);
 
         AuthAction.login({
           'userID': userID,

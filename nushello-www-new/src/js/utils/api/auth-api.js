@@ -33,7 +33,6 @@ class AuthAPI extends BaseAPI {
   }
 
   login(userInfo) {
-    console.log(userInfo);
     var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.accessToken));
 
     login
