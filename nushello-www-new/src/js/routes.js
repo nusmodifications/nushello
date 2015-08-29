@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect, DefaultRoute, NotFoundRoute } from 'react-router';
 
 // Pages
+import MainContainer from 'views/main-container.jsx';
 import AppContainer from 'views/app-container.jsx';
 
 import NotFoundPage from 'views/not-found-page.jsx';
@@ -18,16 +19,19 @@ import PrivacyPage from 'views/privacy-page/privacy-page.jsx';
 import HowPage from 'views/how-page/how-page.jsx';
 
 var routes = (
-  <Route name="home" path="APP_ROOT" handler={AppContainer}>
+  <Route name="home" path="APP_ROOT" handler={MainContainer}>
     <DefaultRoute handler={LoginPage}/>
 
     <Route name="ivle" path="/ivle" handler={NotImplementPage} />
 
     <Route name="profile" path="/profile" handler={ProfilePage} />
     <Route name="register" path="/register" handler={RegisterPage} />
-    <Route name="prefs" path="/prefs" handler={PrefsPage} />
-    <Route name="matches" path="/matches" handler={MatchesPage} />
-    <Route name="chat" path="/chat" handler={ChatPage} />
+
+    <Route name="app" path="APP_ROOT" handler={AppContainer}>
+      <DefaultRoute handler={ChatPage}/>
+      <Route name="prefs" path="/prefs" handler={PrefsPage} />
+      <Route name="matches" path="/matches" handler={MatchesPage} />
+    </Route>
 
     <Route name="about" path="/about" handler={AboutPage}/>
     <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
