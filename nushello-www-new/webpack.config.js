@@ -78,6 +78,12 @@ module.exports = {
       },
 
       {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: 'style-loader!css-loader!raw-loader'
+      },
+
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
         loader: 'style-loader!css-loader!sass-loader!compass-loader'
@@ -91,6 +97,11 @@ module.exports = {
       {
         test: /\.(svg)$/,
         loader: 'raw-loader'
+      },
+
+      {
+        test: /\.woff$/,
+        loader: 'file-loader'
       },
 
       {

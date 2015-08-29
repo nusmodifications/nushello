@@ -13,6 +13,7 @@
   "author": "NUSHello",
   "license": "MIT",
   "dependencies": {
+    "animate.css": "^3.4.0",
     "axios": "^0.5.4",
     "classnames": "^2.1.1",
     "i18n-js": "^1.0.0",

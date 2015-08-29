@@ -37,16 +37,14 @@ export default class PrefsForm extends React.Component {
 
         <div className="form-group">
           <label>and gender is:</label>
-          <div className="checkbox">
-            <label><input type="checkbox" value="0" />
-              Female
-            </label>
-          </div>
-          <div className="checkbox">
-            <label><input type="checkbox" value="1" />
-              Male
-            </label>
-          </div>
+          <label className="checkbox">
+            <input type="checkbox" value="0" data-toggle="checkbox" />
+            Female
+          </label>
+          <label className="checkbox">
+            <input type="checkbox" value="1" data-toggle="checkbox" />
+            Male
+          </label>
         </div>
 
         <input className="btn btn-default" type="submit" value="Alright, let's go!" />

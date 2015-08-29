@@ -1,6 +1,7 @@
 'use strict';
 
 require('styles/app.scss');
+require('styles/pe-icon-7-stroke.css');
 
 import _ from 'lodash';
 import axios from 'axios';
