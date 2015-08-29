@@ -2,7 +2,8 @@
 @import "light-bootstrap-dashboard.css";
 @import "../../node_modules/animate.css/animate.min.css";
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,100);
+@import url('https://fonts.googleapis.com/css?family=Happy+Monkey');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,500,100');
 
 body {
   color: $main-font-color;
@@ -19,7 +20,7 @@ a {
   color: $theme-green;
 
   &:hover {
-    color: darken($theme-green, 10%);
+    color: $theme-green-secondary;
     text-decoration: none;
   }
 }

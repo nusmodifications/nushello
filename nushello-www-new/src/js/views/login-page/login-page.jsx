@@ -49,15 +49,24 @@ class LoginPage extends React.Component {
 
     return (
       <div className="login-container">
-        <div className="row login-wrapper">
-          <div className="col-sm-6 col-sm-offset-3">
-            <img className="main-icon" src={require('images/nushello-main-icon-s.png')}/>
-            <div className="intro">
-              <h1>NUSHello</h1>
-              <h2>Say hello to a new NUS experience</h2>
-              <h3><p>Get matched. Chat anonymously. Mutually reveal identities.</p>The best part? No strings attached.</h3>
-              { isLogin ? null : loginButton }
+        <div className="login-wrapper">
+          <div className="logo-banner">
+            <img className="main-icon" src={require('images/nushello-icon-white.png')}/>
+            <h1 className="app-title">NUSHello</h1>
+          </div>
+          <div className="hero-banner container-fluid" style={{backgroundImage: 'url(' + require('images/background.jpg') + ')'}}>
+            <div className="row">
+              <div className="col-md-6 col-md-offset-3">
+                <h2>Say "Hello!" to a new NUS experience</h2>
+              </div>
             </div>
+          </div>
+          <div className="intro">
+            <br/>
+            { isLogin ? null : loginButton }
+            <br/>
+            <p>Get matched. Chat anonymously. Mutually reveal identities.</p>
+            <p>The best part? No strings attached.</p>
           </div>
         </div>
         <Footer/>

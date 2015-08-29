@@ -1,6 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .login-container {
+  background-color: $theme-green;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -10,33 +11,45 @@
     flex: 1;
   }
 
-  .main-icon {
-    width: 400px;
-    height: auto;
-    margin-bottom: -20px;
+  .logo-banner {
+    margin: 20px 0;
+
+    .main-icon {
+      width: 64px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+
+    .app-title {
+      color: #fff;
+      font-family: 'Happy Monkey', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+      font-size: 1.5em;
+      margin: 0;
+    }
+  }
+
+  .hero-banner {
+    filter: grayscale(100%);
+    background-position: center;
+    background-size: cover;
+    padding: 50px 0;
+
+    h2 {
+      color: #fff;
+      font-size: 5em;
+      margin: 0;
+      line-height: 1.5em;
+    }
   }
 
   .intro {
     position: static;
     text-align: center;
 
-    h1 {
-      font-size: 7em;
-      letter-spacing: -.08em;
-      font-weight: 100;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 2em;
-      color: $theme-green;
-      margin: 0px;
-    }
-
-    h3 {
-      font-size: 1em;
-      color: inherit;
-      line-height: 1.5em;
+    p {
+      color: $theme-gray;
+      font-size: 1.5em;
+      line-height: 2em;
     }
   }
 }
