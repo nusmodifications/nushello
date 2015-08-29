@@ -1,17 +1,20 @@
 'use strict';
 
-import _ from 'lodash';
 import Reflux from 'reflux';
 import ProfileAction from 'actions/profile-action';
 
 var ProfileStore = Reflux.createStore({
-  listenables: ProfileAction,
+  listenables: [ProfileAction],
 
-  getInitialState: function(url) {
-    ProfileAction.init()
-      .then(res => {
-        this.trigger(res);
-      });
+  onInit: function(res) {
+  },
+
+  onInitCompleted: function(res) {
+    this.trigger(res);
+  },
+
+  onInitFailed: function(msg) {
+    this.trigger(msg);
   }
 
 });

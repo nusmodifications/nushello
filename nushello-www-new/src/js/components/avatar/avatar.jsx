@@ -10,7 +10,7 @@ export default class Avatar extends React.Component {
 
   render() {
     return (
-      <span><img className="img-responsive img-circle center-block profile-pic" src="http://lorempixel.com/200/200" /></span>
+      <span><img className="img-responsive img-circle center-block profile-pic" src={ this.props.picUrl } /></span>
     );
   }
 }

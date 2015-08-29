@@ -8,22 +8,40 @@ import ProfileStore from '../../stores/profile-store';
 
 require('./profile-page.scss');
 
-var ProfilePage = React.createClass({
-  mixins: [Reflux.connect(ProfileStore, 'currentUser')],
+export default class ProfilePage extends React.Component {
 
-  getInitialState: function() {
-    return { currentUser: {} };
-  },
+  constructor(props, context) {
+    super(props, context);
+    this.state = { currentUser: {} };
+  }
 
-  render: function() {
+  componentWillMount() {
+    ProfileAction.init();
+  }
+
+  componentDidMount() {
+    this.unsubscribe = ProfileStore.listen(this.onStatusChange.bind(this));
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  onStatusChange(res) {
+    console.log('status changed');
+    this.setState({ currentUser: res.data });
+  }
+
+  render() {
+    let user = this.state.currentUser;
     return (
       <div>
         <div className="container-fluid profile">
           <div className="row">
 
             <div className="col-md-3 text-center">
-              <Avatar />
-              <h2>{ this.state.currentUser.name }</h2>
+              <Avatar picUrl={ user.profilePictureUrl } />
+              <h2>{ user.name }</h2>
               <ProfileEdit />
             </div>
 
@@ -33,10 +51,6 @@ var ProfilePage = React.createClass({
                   <h2>Notifications</h2>
                   <hr/>
                   <ul>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
                   </ul>
                 </div>
               </div>
@@ -46,11 +60,7 @@ var ProfilePage = React.createClass({
                   <h2>Latest Activites</h2>
                   <hr/>
                   <ul>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
-                    <li>Fanli liked you!</li>
-                  </ul>
+                 </ul>
                 </div>
               </div>
             </div>
@@ -60,7 +70,4 @@ var ProfilePage = React.createClass({
       </div>
     );
   }
-});
-
-export default ProfilePage;
-
+}
