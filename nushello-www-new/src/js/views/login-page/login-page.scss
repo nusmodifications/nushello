@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .login-container {
   display: flex;
   min-height: 100vh;
@@ -27,7 +29,7 @@
 
     h2 {
       font-size: 2em;
-      color: green;
+      color: $theme-green;
       margin: 0px;
     }
 

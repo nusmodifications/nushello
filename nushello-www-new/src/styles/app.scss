@@ -3,17 +3,12 @@
 @import "../../node_modules/animate.css/animate.min.css";
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,100);
-$theme: #09c;
 
 body {
-  color: #222;
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+  color: $main-font-color;
+  font-family: $main-font-family;
+  background-color: $main-background;
   -webkit-font-smoothing: antialiased;
-  background-color: #f1f1f1;
-
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
 }
 
 .app-container {
@@ -21,10 +16,10 @@ body {
 }
 
 a {
-  color: $green;
+  color: $theme-green;
 
   &:hover {
-    color: darken($green, 10%);
+    color: darken($theme-green, 10%);
     text-decoration: none;
   }
 }
