@@ -25,6 +25,10 @@ class Preference < ActiveRecord::Base
     errors.add(:year, 'invalid range') if year.present? && year[0] > year[1]
   end
 
+  def get_filters
+    [faculty_id, major_id, gender]
+  end
+
   def get_desired_personality
     [party, sports, mugger, introvert]
   end
