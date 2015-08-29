@@ -27,7 +27,6 @@ class AuthAPI extends BaseAPI {
         // if (res.user) {
         //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
         // }
-        console.log(res);
       })
       .catch((error)=> {
         if (error.status === 401) {

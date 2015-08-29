@@ -6,7 +6,11 @@ import AuthAction from 'actions/auth-action';
 import AuthStore from 'stores/auth-store';
 
 var FacebookLogin = React.createClass({
-  mixins: [Reflux.connect(AuthStore, 'authStore')],
+  mixins: [Reflux.connect(AuthStore)],
+
+  componentWillMount: function() {
+    AuthAction.init();
+  },
 
   componentDidMount: function() {
     if (!this.props.appId) {

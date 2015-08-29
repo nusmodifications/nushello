@@ -50,13 +50,14 @@ var AuthStore = Reflux.createStore({
       //   currentUser.longitude = 101.64012;
       // }
 
+
       this.trigger({
         currentUser: currentUser
       });
     }
   },
 
-  onInitFailed: function (response) {
+  onInitFailed: function(response) {
     this.trigger(response);
   },
 
