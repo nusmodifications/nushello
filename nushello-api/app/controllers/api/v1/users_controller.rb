@@ -62,11 +62,6 @@ class Api::V1::UsersController < ApplicationController
   def destroy
   end
 
-  def matches
-    users = ActiveModel::ArraySerializer.new(User.where.not(id: @user), each_serializer: MatchSerializer)
-    generate_api_payload('matches', users)
-  end
-
   def show
     generate_api_payload('userProfile', UserSerializer.new(@user))
   end
