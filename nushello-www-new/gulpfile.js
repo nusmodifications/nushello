@@ -115,13 +115,13 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('build', function() {
-  runSequence('clean', ['build:webpack', 'html', 'vendor'], 'copy');
+  runSequence('clean', ['build:webpack', 'html'], 'copy');
 });
 
 gulp.task('deploy', function() {
-  runSequence('clean', [ 'build:webpack', 'html' ], 'copy', 'rsync');
+  runSequence('clean', [ 'build:webpack', 'html'], 'copy', 'rsync');
 });
 
 gulp.task('default', function() {
-  runSequence('clean', 'html', 'vendor', 'watch', 'serve');
+  runSequence('clean', 'html', 'watch', 'serve');
 });

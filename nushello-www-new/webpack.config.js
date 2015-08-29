@@ -36,11 +36,13 @@ module.exports = {
       'react-router-bootstrap',
       'axios',
       'lodash',
-      'moment',
-      'leaflet',
-      'leaflet.markercluster',
       'jquery',
-      'numeral'
+      'moment',
+      'numeral',
+      './src/js/vendor/bootstrap-checkbox-radio-switch.js',
+      './src/js/vendor/bootstrap-notify.js',
+      './src/js/vendor/bootstrap-select.js',
+      './src/js/vendor/light-bootstrap-dashboard.js',
     ]
   },
 
