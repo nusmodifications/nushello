@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import IvleLogin from 'app/bundles/app/components/login/IvleLogin';
+import IvleLogin from 'components/login/IvleLogin.jsx';
 
 export default class Ivle extends React.Component {
 

@@ -15,6 +15,7 @@ import MatchesPage from 'views/matches-page/matches-page.jsx';
 import PrefsPage from 'views/prefs-page/prefs-page.jsx';
 import ProfilePage from 'views/profile-page/profile-page.jsx';
 import RegisterPage from 'views/register-page/register-page.jsx';
+import IvlePage from 'views/ivle-page/ivle-page.jsx';
 
 import AboutPage from 'views/about-page/about-page.jsx';
 import PrivacyPage from 'views/privacy-page/privacy-page.jsx';
@@ -24,7 +25,7 @@ var routes = (
   <Route name="home" path="APP_ROOT" handler={MainContainer}>
     <DefaultRoute handler={LoginPage}/>
 
-    <Route name="ivle" path="/ivle" handler={NotImplementPage} />
+    <Route name="ivle" path="/ivle" handler={IvlePage} />
 
     <Route name="profile" path="/profile" handler={ProfilePage} />
     <Route name="register" path="/register" handler={RegisterPage} />
