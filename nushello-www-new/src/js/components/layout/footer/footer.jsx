@@ -13,19 +13,19 @@ export default class Footer extends React.Component {
   render() {
 
     return (
-    <section id="footer">
+    <footer className="footer">
       <div className="row">
         <div className="col-sm-6 col-sm-offset-3">
-          <div className="footer">
+          <div className="footer-content">
           <ul>
             <li><Link to="about">About</Link></li>
             <li><Link to="privacy">Privacy Policy</Link></li>
-            <li><Link to="how">How It Works</Link></li>
+            <li><a href="mailto:nushello@gmail.com">Talk to us</a></li>
           </ul>
           </div>
         </div>
       </div>
-      </section>
+      </footer>
     );
   }
 }

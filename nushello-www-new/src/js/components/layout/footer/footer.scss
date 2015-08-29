@@ -1,27 +1,15 @@
 .footer {
-  padding: 15px 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
+  padding: 1em;
+  .footer-content {
+      ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-      display: inline-block;
-      margin: 0 2rem 0 0;
+      li {
+        display: inline-block;
+        margin: 0 2rem 0 0;
+      }
     }
-  }
-
-  a:link {
-    color:inherit;
-  }
-
-  a:visited {
-    color: inherit;
-  }
+  } 
 }
