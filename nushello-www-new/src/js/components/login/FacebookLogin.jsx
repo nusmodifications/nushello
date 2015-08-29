@@ -40,8 +40,6 @@ var FacebookLogin = React.createClass({
         let facebookToken = response.authResponse.accessToken;
         let userID = response.authResponse.userID;
 
-        // cookie.save('facebookUid', userID);
-
         AuthAction.login({
           'userID': userID,
           'facebookToken': facebookToken
@@ -54,9 +52,12 @@ var FacebookLogin = React.createClass({
   },
 
   render: function() {
-    console.log(this.state);
-    // var isLogin = this.props.auth;
     var isLogin = false;
+
+    if (this.state.currentUser) {
+      isLogin = true;
+    }
+
     var button = <button onClick={ this.handleClick } className="btn btn-info">Facebook Login</button>;
     return (
       <div>{ isLogin ? null : button }</div>
