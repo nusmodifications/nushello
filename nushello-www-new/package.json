@@ -49,6 +49,7 @@
     "gulp-open": "^0.3.2",
     "gulp-plumber": "^1.0.0",
     "gulp-replace": "^0.5.3",
+    "gulp-rsync": "0.0.5",
     "json-loader": "^0.5.1",
     "karma": "^0.12.28",
     "karma-chrome-launcher": "^0.1.7",

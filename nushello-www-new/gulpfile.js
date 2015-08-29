@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var path = require('path');
+var rsync = require('gulp-rsync');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
@@ -97,8 +98,22 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(pub));
 });
 
+gulp.task('rsync', function() {
+  gulp.src('dist')
+    .pipe(rsync({
+      root: 'dist',
+      destination: 'public',
+      recursive: true,
+      clean: true
+    }));
+});
+
 gulp.task('build', function() {
   runSequence('clean', [ 'build:webpack', 'html' ], 'copy');
+});
+
+gulp.task('deploy', function() {
+  runSequence('clean', [ 'build:webpack', 'html' ], 'copy', 'rsync');
 });
 
 gulp.task('default', function() {
