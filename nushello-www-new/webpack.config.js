@@ -67,13 +67,13 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|vendor)/,
         loaders: ['babel-loader?stage=0&optional=runtime']
       },
 
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|vendor)/,
         loader: 'eslint-loader'
       },
 

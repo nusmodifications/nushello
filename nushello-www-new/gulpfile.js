@@ -97,10 +97,15 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(pub));
 });
 
+gulp.task('vendor', function() {
+  gulp.src(src + 'js/vendor/*.js')
+    .pipe(gulp.dest(dist));
+});
+
 gulp.task('build', function() {
   runSequence('clean', [ 'build:webpack', 'html' ], 'copy');
 });
 
 gulp.task('default', function() {
-  runSequence('clean', 'html', 'watch', 'serve');
+  runSequence('clean', 'html', 'vendor', 'watch', 'serve');
 });
