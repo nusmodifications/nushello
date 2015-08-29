@@ -103,7 +103,7 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('build', function() {
-  runSequence('clean', [ 'build:webpack', 'html' ], 'copy');
+  runSequence('clean', ['build:webpack', 'html', 'vendor'], 'copy');
 });
 
 gulp.task('default', function() {
