@@ -28,7 +28,7 @@ export default class Footer extends React.Component {
             </ul>
           </nav>
           <p className="copyright pull-right">
-            © 2015 NUSHello Team, made with love for CS3216
+            © 2015 NUSHello Team, made <s>with</s> for love
           </p>
         </div>
       </footer>
