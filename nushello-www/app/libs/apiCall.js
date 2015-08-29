@@ -1,6 +1,6 @@
 import request  from 'axios';
 
-import config   from 'config/server';
+import config   from 'config/api.config';
 
 
 export default (params) => {

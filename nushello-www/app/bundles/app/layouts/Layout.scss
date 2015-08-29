@@ -1,7 +1,7 @@
-$icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstrap";
+$icon-font-path: "/node_modules/bootstrap-sass/assets/fonts/bootstrap";
 
-@import "../../../../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-@import "../../../../node_modules/normalize.scss/normalize";
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "~normalize.scss/normalize";
 @import "./variables";
 
 // Google Fonts
