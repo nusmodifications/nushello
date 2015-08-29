@@ -15,11 +15,10 @@
   "dependencies": {
     "animate.css": "^3.4.0",
     "axios": "^0.5.4",
+    "bootstrap": "^3.3.5",
     "classnames": "^2.1.1",
     "i18n-js": "^1.0.0",
     "jquery": "^2.1.4",
-    "leaflet": "^0.7.3",
-    "leaflet.markercluster": "^0.4.0",
     "lodash": "^3.8.0",
     "moment": "^2.10.3",
     "numeral": "^1.5.3",

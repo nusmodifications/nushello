@@ -98,6 +98,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(pub));
 });
 
+
 gulp.task('rsync', function() {
   gulp.src('dist')
     .pipe(rsync({
@@ -108,8 +109,13 @@ gulp.task('rsync', function() {
     }));
 });
 
+gulp.task('vendor', function() {
+  gulp.src(src + 'js/vendor/*.js')
+    .pipe(gulp.dest(dist));
+});
+
 gulp.task('build', function() {
-  runSequence('clean', [ 'build:webpack', 'html' ], 'copy');
+  runSequence('clean', ['build:webpack', 'html', 'vendor'], 'copy');
 });
 
 gulp.task('deploy', function() {
@@ -117,5 +123,5 @@ gulp.task('deploy', function() {
 });
 
 gulp.task('default', function() {
-  runSequence('clean', 'html', 'watch', 'serve');
+  runSequence('clean', 'html', 'vendor', 'watch', 'serve');
 });

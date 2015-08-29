@@ -4,6 +4,12 @@ import React from 'react';
 import { RouteHandler } from 'react-router';
 import classnames from 'classnames';
 
+// import ChartList from 'vendor/chartist.min.js';
+// import BootstrapSwitch from 'vendor/bootstrap-checkbox-radio-switch.js';
+// import BootstrapSelect from 'vendor/bootstrap-select.js';
+// import BootstrapNotify from 'vendor/bootstrap-notify.js';
+// import BootstrapTheme from 'vendor/light-bootstrap-dashboard.js';
+
 import Sidebar from 'components/layout/sidebar/sidebar.jsx';
 import Spinner from 'components/spinner.jsx';
 
