@@ -45,7 +45,7 @@ class StaticPage extends React.Component {
   render() {
     return (
       <div className="static-container">
-        <div className="static-inner">
+        <div className="static-wrapper">
           <div className="static-page-banner">
             <div className="static-page-icon-container">
               <Link to="home">
