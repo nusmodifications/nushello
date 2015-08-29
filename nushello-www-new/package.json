@@ -19,8 +19,6 @@
     "classnames": "^2.1.1",
     "i18n-js": "^1.0.0",
     "jquery": "^2.1.4",
-    "leaflet": "^0.7.3",
-    "leaflet.markercluster": "^0.4.0",
     "lodash": "^3.8.0",
     "moment": "^2.10.3",
     "numeral": "^1.5.3",
