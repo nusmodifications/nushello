@@ -9,11 +9,11 @@ var currentUser = null;
 var AuthStore = Reflux.createStore({
   listenables: AuthAction,
 
-  getCurrentUser: function () {
+  getCurrentUser: function() {
     return currentUser;
   },
 
-  onInitCompleted: function (response) {
+  onInitCompleted: function(response) {
     if (response) {
       currentUser = response;
 

@@ -12,12 +12,22 @@ class AuthAPI extends BaseAPI {
   init() {
     // var authenticate = this.get('/me');
     // var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
-    var authenticate = this.ajaxFake(cookie.load(this.currentUserKey));
+    var authenticate;
+    var currentUser = cookie.load(this.currentUserKey);
+    if (!currentUser) {
+      currentUser = {};
+    }
+
+    authenticate = new Promise(function (resolve, reject) {
+      resolve(currentUser);
+    });
+
     authenticate
       .then((res)=> {
         // if (res.user) {
         //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
         // }
+        console.log(res);
       })
       .catch((error)=> {
         if (error.status === 401) {
