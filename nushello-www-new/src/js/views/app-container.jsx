@@ -55,7 +55,7 @@ class AppContainer extends React.Component {
 
   render() {
     return (
-      <div class="wrapper">
+      <div className="wrapper">
         <Sidebar/>
         <div className="main-panel">
           <RouteHandler />

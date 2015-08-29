@@ -27,8 +27,9 @@ var routes = (
     <Route name="profile" path="/profile" handler={ProfilePage} />
     <Route name="register" path="/register" handler={RegisterPage} />
 
-    <Route name="app" path="APP_ROOT" handler={AppContainer}>
+    <Route name="app" path="/app" handler={AppContainer}>
       <DefaultRoute handler={ChatPage}/>
+      <Route name="chat" path="/chat" handler={ChatPage} />
       <Route name="prefs" path="/prefs" handler={PrefsPage} />
       <Route name="matches" path="/matches" handler={MatchesPage} />
     </Route>
