@@ -26,12 +26,12 @@ class AboutPage extends React.Component {
           NUS community to discover and make new friends.
           <h2>Why NUSHello?</h2>
             You might find it difficult to make new friends (platonic or not) without joining
-             numerous CCAs and attending orientation camps. In lectures and tutorials, you 
+             numerous CCAs and attending orientation camps. In lectures and tutorials, you
              find a convenient seat at the corner, or otherwise leave the appropriate
              one-chair-away-distance from strangers you do not know. Other social networking
-             apps either consist of people you already know (bah, the same old stories) or 
-             are too full of noise (Tinder? NOPE!). So you go instead to NUSWhispers, 
-             anonymously seeking some solution. NUSHello is that solution you have been 
+             apps either consist of people you already know (bah, the same old stories) or
+             are too full of noise (Tinder? NOPE!). So you go instead to NUSWhispers,
+             anonymously seeking some solution. NUSHello is that solution you have been
              searching for.
         <Footer/>
       </section>
