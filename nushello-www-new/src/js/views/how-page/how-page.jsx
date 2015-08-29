@@ -1,8 +1,6 @@
 'use strict';
 import React from 'react';
 
-import Footer from 'components/layout/footer/footer.jsx';
-
 require('./how.scss');
 
 export default class How extends React.Component {
@@ -14,8 +12,9 @@ export default class How extends React.Component {
   render() {
     return (
       <div>
-        <strong>How</strong> page here!
-        <Footer/>
+        <h1>How It Works</h1>
+        <hr/>
+        <p>WIP</p>
       </div>
     );
   }

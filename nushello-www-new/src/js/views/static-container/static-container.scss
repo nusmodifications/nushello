@@ -1,6 +1,15 @@
 @import '../../../styles/variables.scss';
 
 .static-container {
+
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    .static-inner {
+        flex: 1;
+    }
+
     .static-page-banner {
         background-color: $theme;
     }
@@ -13,5 +22,17 @@
             margin: 0 auto;
             width: 256px;
         }
+    }
+
+    .static-page-content {
+        padding: 30px 0;
+    }
+
+    h2 {
+        color: $green;
+    }
+
+    h3 {
+        color: $gray-dark;
     }
 }

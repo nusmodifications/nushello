@@ -2,6 +2,9 @@
 
 import React from 'react';
 import { RouteHandler } from 'react-router';
+import { Link } from 'react-router';
+
+import Footer from 'components/layout/footer/footer.jsx';
 
 require('./static-container.scss');
 
@@ -42,16 +45,21 @@ class StaticPage extends React.Component {
   render() {
     return (
       <div className="static-container">
-        <div className="static-page-banner">
-          <div className="static-page-icon-container">
-            <img className="static-page-icon" src={require('images/nushello-logo-words-white.png')}/>
+        <div className="static-inner">
+          <div className="static-page-banner">
+            <div className="static-page-icon-container">
+              <Link to="home">
+                <img className="static-page-icon" src={require('images/nushello-logo-words-white.png')}/>
+              </Link>
+            </div>
+          </div>
+          <div className="container">
+            <div className="col-md-8 col-md-offset-2 static-page-content">
+              <RouteHandler/>
+            </div>
           </div>
         </div>
-        <div className="container">
-          <div className="col-md-8 col-md-offset-2">
-            <RouteHandler/>
-          </div>
-        </div>
+        <Footer/>
       </div>
     );
   }
