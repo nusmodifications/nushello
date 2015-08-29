@@ -24,4 +24,8 @@ class Preference < ActiveRecord::Base
   def year_must_be_in_range
     errors.add(:year, 'invalid range') if year.present? && year[0] > year[1]
   end
+
+  def get_desired_personality
+    [party, sports, mugger, introvert]
+  end
 end
