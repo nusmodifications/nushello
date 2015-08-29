@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import Reflux from 'reflux';
 import Avatar from '../../components/avatar/avatar.jsx';
 import ProfileEdit from '../../components/edit/profile-edit.jsx';
 import ProfileAction from '../../actions/profile-action';
@@ -7,26 +8,14 @@ import ProfileStore from '../../stores/profile-store';
 
 require('./profile-page.scss');
 
-export default class ProfilePage extends React.Component {
+var ProfilePage = React.createClass({
+  mixins: [Reflux.connect(ProfileStore, 'currentUser')],
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      currentUser: {}
-    };
-  }
+  getInitialState: function() {
+    return { currentUser: {} };
+  },
 
-  componentWillMount() {
-    ProfileAction.init()
-    .then(res => {
-      console.log(res);
-      this.setState({
-        currentUser: res
-      });
-    });
-  }
-
-  render() {
+  render: function() {
     return (
       <div>
         <div className="container-fluid profile">
@@ -71,4 +60,7 @@ export default class ProfilePage extends React.Component {
       </div>
     );
   }
-}
+});
+
+export default ProfilePage;
+

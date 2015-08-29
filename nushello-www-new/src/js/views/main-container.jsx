@@ -10,7 +10,7 @@ import Spinner from 'components/spinner.jsx';
 import AuthAction from 'actions/auth-action';
 import AuthStore from 'stores/auth-store';
 
-class AppContainer extends React.Component {
+class MainContainer extends React.Component {
   static willTransitionTo(transition, params, query) {
   }
 
@@ -54,21 +54,30 @@ class AppContainer extends React.Component {
   }
 
   render() {
+    var spinner = (
+      <div className={ classnames('spinner-wrapper', { hidden: !this.state.isInitializing }) }>
+        <Spinner kind="puff"/>
+      </div>
+    );
+
+    var mainContainer = (
+      <div className={ classnames({ hidden: this.state.isInitializing, wrapper: true }) }>
+        <RouteHandler />
+      </div>
+    );
+
     return (
-      <div className="wrapper">
-        <Sidebar/>
-        <div className="main-panel">
-          <RouteHandler />
-        </div>
+      <div className="app-container">
+        {(this.state.isInitializing) ? spinner : mainContainer }
       </div>
     );
   }
 }
 
-AppContainer.propTypes = {};
-AppContainer.defaultProps = {};
-AppContainer.contextTypes = {
+MainContainer.propTypes = {};
+MainContainer.defaultProps = {};
+MainContainer.contextTypes = {
   router: React.PropTypes.func
 };
 
-export default AppContainer;
+export default MainContainer;

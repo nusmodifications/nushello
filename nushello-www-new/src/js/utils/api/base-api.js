@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import axios from 'axios';
+import cookie from 'react-cookie';
 
 class BaseAPI {
   constructor() {
@@ -53,12 +54,12 @@ class BaseAPI {
     var currentUser;
 
     try {
-      currentUser = JSON.parse(localStorage.getItem(this.currentUserKey));
+      currentUser = cookie.load('current_user');
     } catch (err) {
       throw 'Get AccessToken Err';
     }
 
-    return currentUser && currentUser.access_token ? currentUser.access_token : '';
+    return currentUser && currentUser.accessToken ? currentUser.accessToken : '';
   }
 
   // Return the headers that can be used to send over to the server

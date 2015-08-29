@@ -1,4 +1,5 @@
 'use strict';
+import _ from 'lodash';
 import React  from 'react';
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
@@ -54,7 +55,7 @@ var FacebookLogin = React.createClass({
   render: function() {
     var isLogin = false;
 
-    if (this.state.currentUser) {
+    if (!_.isEmpty(this.state.currentUser)) {
       isLogin = true;
     }
 
