@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.static-container {
+    .static-page-banner {
+        background-color: $theme;
+    }
+
+    .static-page-icon-container {
+        padding: 50px 0;
+
+        .static-page-icon {
+            display: block;
+            margin: 0 auto;
+            width: 256px;
+        }
+    }
+}

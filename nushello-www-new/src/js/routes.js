@@ -4,6 +4,7 @@ import { Route, Redirect, DefaultRoute, NotFoundRoute } from 'react-router';
 // Pages
 import MainContainer from 'views/main-container.jsx';
 import AppContainer from 'views/app-container.jsx';
+import StaticContainer from 'views/static-container/static-container.jsx';
 
 import NotFoundPage from 'views/not-found-page.jsx';
 import NotImplementPage from 'views/not-implement-page.jsx';
@@ -14,6 +15,7 @@ import MatchesPage from 'views/matches-page/matches-page.jsx';
 import PrefsPage from 'views/prefs-page/prefs-page.jsx';
 import ProfilePage from 'views/profile-page/profile-page.jsx';
 import RegisterPage from 'views/register-page/register-page.jsx';
+
 import AboutPage from 'views/about-page/about-page.jsx';
 import PrivacyPage from 'views/privacy-page/privacy-page.jsx';
 import HowPage from 'views/how-page/how-page.jsx';
@@ -34,9 +36,11 @@ var routes = (
       <Route name="matches" path="/matches" handler={MatchesPage} />
     </Route>
 
-    <Route name="about" path="/about" handler={AboutPage}/>
-    <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
-    <Route name="how" path="/how" handler={HowPage}/>
+    <Route name="static" path="/static" handler={StaticContainer}>
+      <Route name="about" path="/about" handler={AboutPage}/>
+      <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
+      <Route name="how" path="/how" handler={HowPage}/>
+    </Route>
 
     <NotFoundRoute handler={NotFoundPage}/>
   </Route>
