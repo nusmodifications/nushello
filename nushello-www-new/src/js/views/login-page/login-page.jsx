@@ -6,7 +6,7 @@ import Router from 'react-router';
 import Footer from 'components/layout/footer/footer.jsx';
 import FacebookLogin from 'components/login/FacebookLogin.jsx';
 
-require('./login.scss');
+require('./login-page.scss');
 
 class LoginPage extends React.Component {
   static willTransitionTo(transition, params, query) {
@@ -48,10 +48,9 @@ class LoginPage extends React.Component {
     const loginButton = (<FacebookLogin appId="1467581460234203" />);
 
     return (
-      <div>
+      <div className="login-container">
         <div className="row login-wrapper">
           <div className="col-sm-6 col-sm-offset-3">
-
             <img className="main-icon" src={require('images/nushello-main-icon-s.png')}/>
             <div className="intro">
               <h1>NUSHello</h1>

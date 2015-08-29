@@ -62,7 +62,7 @@ class MainContainer extends React.Component {
 
     var mainContainer = (
       <div className={ classnames({ hidden: this.state.isInitializing, wrapper: true }) }>
-        <RouteHandler />
+        <RouteHandler/>
       </div>
     );
 
