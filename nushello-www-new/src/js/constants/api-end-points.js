@@ -10,3 +10,15 @@ export const IVLE_AUTH_API = function(facebookId){
 export const USER_PROFILE_API = function(facebookId) {
   return `/users/${facebookId}`;
 };
+
+export const FACULTIES_LIST_API = function() {
+  return `/faculties`;
+};
+
+export const FACULTY_INFO_API = function(facultyId) {
+  return `/faculties/${facultyId}`;
+};
+
+export const RESIDENCES_LIST_API = function() {
+  return `/residences`;
+};
