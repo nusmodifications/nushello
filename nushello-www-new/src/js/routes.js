@@ -34,10 +34,10 @@ var routes = (
       <Route name="chat" path="/chat" handler={ChatPage} />
       <Route name="prefs" path="/prefs" handler={PrefsPage} />
       <Route name="matches" path="/matches" handler={MatchesPage} />
+      <Route name="profile" path="/profile" handler={ProfilePage} />
     </Route>
 
     <Route name="static" path="/static" handler={StaticContainer}>
-      <Route name="profile" path="/profile" handler={ProfilePage} />
       <Route name="about" path="/about" handler={AboutPage}/>
       <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
       <Route name="how" path="/how" handler={HowPage}/>
