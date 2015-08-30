@@ -1,33 +1,37 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
-import $ from 'jquery';
-
+import Reflux from 'reflux';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
+import PickersAction from 'actions/pickers-action';
+import PickersStore from 'stores/pickers-store';
 
-export default class RegisterPage extends React.Component {
+require('./register-page.scss');
 
-  constructor(props, context) {
-    super(props, context);
-  }
+var RegisterPage = React.createClass({
+  mixins: [Reflux.connect(PickersStore)],
 
-  componentDidMount() {
-    var self = this;
-    $.get('http://api.nushello.com/residences', function(data) {
-      if (data.type === 'residences') {
-        self.setState({ residences: data.data });
-      }
-    });
-  }
+  componentWillMount: function() {
+    PickersAction.fetchResidences();
+  },
 
-  render() {
+  render: function() {
+    console.log(this.state);
+    var isResidencesFatched = false;
+    if (!_.isEmpty(this.state.residences)) {
+      isResidencesFatched = true;
+    }
+
     return (
       <div className="col-sm-6 col-sm-offset-3">
         <h1>Register</h1>
         <hr/>
         <form>
-          <ResidencePicker residences={ this.state ? this.state.residences : [] }/>
+          <ResidencePicker residences={ isResidencesFatched ? this.state.residences : [] }/>
         </form>
       </div>
     );
   }
-}
+});
+
+module.exports = RegisterPage;

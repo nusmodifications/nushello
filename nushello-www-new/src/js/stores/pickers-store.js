@@ -18,10 +18,6 @@ var PickersStore = Reflux.createStore({
     return residences;
   },
 
-  onFetchFaculties: function(response) {
-    // loading animation?
-  },
-
   onFetchFacultiesCompleted: function(response) {
     if (response.type === 'faculties') {
       faculties = response.data;
@@ -36,6 +32,23 @@ var PickersStore = Reflux.createStore({
     faculties = null;
     this.trigger({
       faculties: faculties
+    });
+  },
+
+  onFetchResidencesCompleted: function(response) {
+    if (response.type === 'residences') {
+      residences = response.data;
+    }
+
+    this.trigger({
+      residences: residences
+    });
+  },
+
+  onFetchResidencesFailed: function() {
+    residences = null;
+    this.trigger({
+      residences: residences
     });
   }
 

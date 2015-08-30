@@ -17,10 +17,6 @@ class PickersAPI extends BaseAPI {
 
     faculties
       .then((res)=> {
-        // console.log(res);
-        // if (res.data) {
-
-        // }
       })
       .catch((error)=> {
         if (error.status === 401) {
@@ -39,10 +35,6 @@ class PickersAPI extends BaseAPI {
 
     residences
       .then((res)=> {
-        console.log(res);
-        if (res.data) {
-
-        }
       })
       .catch((error)=> {
         if (error.status === 401) {

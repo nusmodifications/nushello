@@ -1,14 +1,8 @@
 'use strict';
 import React from 'react';
 
-export default class ResidencePicker extends React.Component {
-
-
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  render() {
+var ResidencePicker = React.createClass({
+  render: function() {
     return (
       <div className="form-group">
         <label htmlFor="residence">Residence</label>
@@ -21,4 +15,6 @@ export default class ResidencePicker extends React.Component {
       </div>
     );
   }
-}
+});
+
+module.exports = ResidencePicker;
