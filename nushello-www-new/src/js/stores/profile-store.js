@@ -15,6 +15,18 @@ var ProfileStore = Reflux.createStore({
 
   onInitFailed: function(msg) {
     this.trigger(msg);
+  },
+
+  onEdit: function(res) {
+
+  },
+
+  onEditCompleted: function(res) {
+    this.trigger(res);
+  },
+
+  onEditFailed: function(res) {
+    this.trigger(res);
   }
 
 });

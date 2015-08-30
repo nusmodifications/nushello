@@ -14,6 +14,9 @@ class ProfileAPI extends BaseAPI {
     let facebookId = cookie.load('current_user').userID;
     return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
   }
+
+  edit() {
+  }
 }
 
 export default new ProfileAPI();

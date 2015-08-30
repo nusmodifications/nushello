@@ -11,6 +11,7 @@ export default class ProfileEdit extends React.Component {
     super(props, context);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -19,12 +20,31 @@ export default class ProfileEdit extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.unsubscribe = '';
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  onStatusChange(res) {
+
+  }
+
   handleClick() {
     let mode = 'edit';
     if (this.state.mode === 'edit') {
       mode = 'view';
     }
     this.setState({ mode: mode });
+  }
+
+  handleSubmit(e) {
+    // Prevents the page from submitting request to server
+    e.preventDefault();
+    let newBio = React.findDOMNode(this.refs.newBio);
+    this.handleClick();
   }
 
   render() {
@@ -36,10 +56,10 @@ export default class ProfileEdit extends React.Component {
 
     if (this.state.mode === 'edit') {
       bio =
-        <div className="profile-edit">
-          <input className="form-control" type="text" />
-          <button className="btn btn-default" onClick={ this.handleClick }>Save</button>
-        </div>;
+        <form className="profile-edit" onSubmit={ this.handleSubmit }>
+          <input className="form-control" type="text" ref="newBio" />
+          <input type="submit" value="Save" className="btn btn-default" />
+        </form>;
     }
 
     return (
