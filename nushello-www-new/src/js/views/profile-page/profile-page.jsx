@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import { Link } from 'react-router';
 import Reflux from 'reflux';
 import Avatar from '../../components/avatar/avatar.jsx';
 import ProfileEdit from '../../components/edit/profile-edit.jsx';
@@ -38,33 +39,14 @@ export default class ProfilePage extends React.Component {
       <div>
         <div className="container-fluid profile">
           <div className="row">
-
             <div className="col-md-3 text-center">
               <Avatar picUrl={ user.profilePictureUrl } />
               <h2>{ user.name }</h2>
               <ProfileEdit />
+              <Link to="/prefs">
+                <button className="btn btn-default">Edit Preferences</button>
+              </Link>
             </div>
-
-            <div className="col-md-9">
-              <div className="col-md-12">
-                <div className="notifications">
-                  <h2>Notifications</h2>
-                  <hr/>
-                  <ul>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="activities">
-                  <h2>Latest Activites</h2>
-                  <hr/>
-                  <ul>
-                 </ul>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
