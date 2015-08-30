@@ -10,9 +10,9 @@ class Api::V1::ConversationsController < ApplicationController
   end
 
   def create
-    generate_error_payload('Not Found', 404, 'User not found') unless User.exists?(facebook_id: params[:friendFacebookId])
+    generate_error_payload('Not Found', 404, 'User not found') unless User.exists?(id: params[:friendId])
 
-    friend = User.find_by_facebook_id(params[:friendFacebookId])
+    friend = User.find_by_id(params[:friendId])
     conversation = Conversation.between(@user, friend)
     return generate_api_payload('conversationExists', ConversationSerializer.new(conversation, context: @user.id)) if conversation.present?
 
@@ -42,14 +42,14 @@ class Api::V1::ConversationsController < ApplicationController
 
   def token
     generator = Firebase::FirebaseTokenGenerator.new(ENV['FIREBASE_SECRET'])
-    generate_api_payload('firebaseToken', { firebaseToken: generator.create_token({ uid: @user.facebook_id }) })
+    generate_api_payload('firebaseToken', { firebaseToken: generator.create_token({ uid: @user.id }) })
   end
 
   private
 
     def create_firebase_room(conversation, user, friend)
       client = Firebase::Client.new('https://nushello.firebaseio.com/conversations', ENV['FIREBASE_SECRET'])
-      response = client.set(conversation.id, { user_1_id: user.facebook_id, user_2_id: friend.facebook_id })
+      response = client.set(conversation.id, { user_1_id: user.id, user_2_id: friend.id })
       response.success?
     end
 end
