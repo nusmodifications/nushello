@@ -42,14 +42,14 @@ class Api::V1::ConversationsController < ApplicationController
 
   def token
     generator = Firebase::FirebaseTokenGenerator.new(ENV['FIREBASE_SECRET'])
-    generate_api_payload('firebaseToken', { firebaseToken: generator.create_token({ uid: @user.id }) })
+    generate_api_payload('firebaseToken', { firebaseToken: generator.create_token({ uid: @user.id.to_s }) })
   end
 
   private
 
     def create_firebase_room(conversation, user, friend)
       client = Firebase::Client.new('https://nushello.firebaseio.com/conversations', ENV['FIREBASE_SECRET'])
-      response = client.set(conversation.id, { user_1_id: user.id, user_2_id: friend.id })
+      response = client.set(conversation.id, { user_1_id: user.id.to_s, user_2_id: friend.id.to_s })
       response.success?
     end
 end
