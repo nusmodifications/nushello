@@ -13,7 +13,7 @@ import FacebookLogin from 'components/login/FacebookLogin.jsx';
 require('./login-page.scss');
 
 var LoginPage = React.createClass({
-  mixins: [Reflux.connect(AuthStore)],
+  mixins: [Reflux.connect(AuthStore), Router.Navigation],
 
   statics: {
     willTransitionTo: function(transition, params, query) {
@@ -47,13 +47,19 @@ var LoginPage = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
+    if (!_.isEmpty(this.state.currentUser)) {
+      if (this.state.currentUser.type === 'newUser') {
+        this.transitionTo('register');
+      } else {
+        this.transitionTo('chat');
+      }
+    }
   },
 
   componentWillUnmount: function() {
   },
 
   handleClick: function() {
-    console.log('a');
     FB.login(function(response) {
       if (response.status === 'connected') {
         let facebookToken = response.authResponse.accessToken;

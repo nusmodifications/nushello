@@ -33,7 +33,6 @@ var FacebookLogin = React.createClass({
   },
 
   render: function() {
-    console.log(this.props);
     var isLogin = false;
     if (!_.isEmpty(this.props.currentUser)) {
       isLogin = true;
