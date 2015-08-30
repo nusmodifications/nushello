@@ -20,6 +20,10 @@ var PrefsForm = React.createClass({
   componentDidMount: function() {
   },
 
+  handleFacultyChange: function(event) {
+    this.setState({ selectedFacultyId: event.target.value });
+  },
+
   render: function() {
     // need to figure out a better api response structure for the faculties list,
     // now just assume the faculty array is sorted according to faculty id.
@@ -31,7 +35,7 @@ var PrefsForm = React.createClass({
     return (
       <div className="col-sm-4 col-sm-offset-1">
         <form>
-          <FacultyPicker faculties={ isFacultiesFatched ? this.state.faculties : [] }/>
+          <FacultyPicker faculties={ isFacultiesFatched ? this.state.faculties : [] } onChange={ this.handleFacultyChange } />
 
           <MajorPicker majors={ isFacultiesFatched ? this.state.faculties[this.state.selectedFacultyId - 1].majors : [] }/>
 

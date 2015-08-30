@@ -3,7 +3,6 @@ import React from 'react';
 
 var MajorPicker = React.createClass({
   render: function() {
-    console.log(this.props);
     return (
       <div className="form-group">
         <label htmlFor="major">major is:</label>
