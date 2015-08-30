@@ -6,6 +6,8 @@ import cookie from 'react-cookie';
 import AuthAction from 'actions/auth-action';
 import AuthStore from 'stores/auth-store';
 
+require('./FacebookLogin.scss');
+
 var FacebookLogin = React.createClass({
   mixins: [Reflux.connect(AuthStore)],
 
@@ -59,7 +61,7 @@ var FacebookLogin = React.createClass({
       isLogin = true;
     }
 
-    var button = <button onClick={ this.handleClick } className="btn btn-default btn-lg">Login with Facebook</button>;
+    var button = <button onClick={ this.handleClick } className="btn btn-default btn-lg facebook-login">Login with Facebook</button>;
     return (
       <div>{ isLogin ? null : button }</div>
     );
