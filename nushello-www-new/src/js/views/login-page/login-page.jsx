@@ -1,52 +1,80 @@
 'use strict';
 
+import _ from 'lodash';
 import React from 'react';
+import Reflux from 'reflux';
 import Router from 'react-router';
 
 import Footer from 'components/layout/footer/footer.jsx';
+import AuthAction from 'actions/auth-action';
+import AuthStore from 'stores/auth-store';
 import FacebookLogin from 'components/login/FacebookLogin.jsx';
 
 require('./login-page.scss');
 
-class LoginPage extends React.Component {
-  static willTransitionTo(transition, params, query) {
-  }
+var LoginPage = React.createClass({
+  mixins: [Reflux.connect(AuthStore)],
 
-  static willTransitionFrom(transition, component) {
-  }
+  statics: {
+    willTransitionTo: function(transition, params, query) {
+    },
 
-  constructor(props, ctx) {
-    super(props);
-    this.state = {};
-  }
+    willTransitionFrom: function(transition, component) {
+    }
+  },
 
-  componentWillMount() {
-  }
+  propTypes: {},
+  defaultProps: {},
+  contextTypes: {
+    router: React.PropTypes.func
+  },
 
-  componentDidMount() {
-  }
+  componentWillMount: function() {
+    AuthAction.init();
+  },
 
-  componentWillReceiveProps(nextProps) {
-  }
+  componentDidMount: function() {
+  },
 
-  shouldComponentUpdate(nextProps, nextState) {
+  componentWillReceiveProps: function(nextProps) {
+  },
+
+  shouldComponentUpdate: function(nextProps, nextState) {
     return true;
-  }
+  },
 
-  componentWillUpdate(nextProps, nextState) {
-  }
+  componentWillUpdate: function(nextProps, nextState) {
+  },
 
-  componentDidUpdate(prevProps, prevState) {
-  }
+  componentDidUpdate: function(prevProps, prevState) {
+  },
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount: function() {
+  },
 
-  render() {
-    // const isLogin = typeof this.state.auth !== 'undefined';
-    const isLogin = false;
-    const loginButton = (<FacebookLogin appId="1467581460234203" />);
+  handleClick: function() {
+    console.log('a');
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        let facebookToken = response.authResponse.accessToken;
+        let userID = response.authResponse.userID;
 
+        AuthAction.login({
+          'userID': userID,
+          'facebookToken': facebookToken
+        });
+
+      } else {
+        // error message here
+      }
+    });
+  },
+
+  render: function() {
+    var currentUser = {};
+    if (!_.isEmpty(this.state.currentUser)) {
+      currentUser = this.state.currentUser;
+    }
     return (
       <div className="login-container">
         <div className="login-wrapper">
@@ -63,7 +91,7 @@ class LoginPage extends React.Component {
           </div>
           <div className="intro">
             <br/>
-            { isLogin ? null : loginButton }
+            <FacebookLogin appId="1467581460234203" onClick={ this.handleClick } currentUser={ currentUser }/>
             <br/>
             <p>Get matched. Chat anonymously. Mutually reveal identities.</p>
             <p>The best part? No strings attached.</p>
@@ -73,12 +101,6 @@ class LoginPage extends React.Component {
       </div>
     );
   }
-}
+});
 
-LoginPage.propTypes = {};
-LoginPage.defaultProps = {};
-LoginPage.contextTypes = {
-  router: React.PropTypes.func
-};
-
-export default LoginPage;
+module.exports = LoginPage;
