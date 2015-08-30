@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'users/:facebookId', to: 'users#show'
       get 'users/:facebookId/randomName', to: 'users#random_name'
       get 'users/:facebookId/matches', to: 'users#matches'
-      get 'users/:facebookId/matches/:id', to: 'matches#show'
+      get 'users/:facebookId/matches/:Id', to: 'matches#show'
 
       get 'users/:facebookId/conversations', to: 'conversations#index'
       get 'users/:facebookId/conversations/token', to: 'conversations#token'

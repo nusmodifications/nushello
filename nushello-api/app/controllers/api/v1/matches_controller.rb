@@ -1,6 +1,6 @@
 class Api::V1::MatchesController < ApplicationController
   def show
-    friend = User.find_by_id(params[:id])
+    friend = User.find_by_id(params[:Id])
     return generate_error_payload('Not Found', 404, 'Who are you looking for?') unless friend.present?
 
     conversation = Conversation.between(@user, friend)
