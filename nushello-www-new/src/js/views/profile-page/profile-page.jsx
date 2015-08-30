@@ -39,7 +39,7 @@ export default class ProfilePage extends React.Component {
       <div>
         <div className="container-fluid profile">
           <div className="row">
-            <div className="col-md-3 text-center">
+            <div className="col-md-offset-4 col-md-4 text-center">
               <Avatar picUrl={ user.profilePictureUrl } />
               <h2>{ user.name }</h2>
               <ProfileEdit />

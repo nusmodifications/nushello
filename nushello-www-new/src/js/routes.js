@@ -27,7 +27,6 @@ var routes = (
 
     <Route name="ivle" path="/ivle" handler={IvlePage} />
 
-    <Route name="profile" path="/profile" handler={ProfilePage} />
     <Route name="register" path="/register" handler={RegisterPage} />
 
     <Route name="app" path="/app" handler={AppContainer}>
@@ -38,6 +37,7 @@ var routes = (
     </Route>
 
     <Route name="static" path="/static" handler={StaticContainer}>
+      <Route name="profile" path="/profile" handler={ProfilePage} />
       <Route name="about" path="/about" handler={AboutPage}/>
       <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
       <Route name="how" path="/how" handler={HowPage}/>

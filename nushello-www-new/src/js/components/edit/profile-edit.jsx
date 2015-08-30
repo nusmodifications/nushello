@@ -14,7 +14,9 @@ export default class ProfileEdit extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({ mode: 'view' });
+    this.setState({
+      mode: 'view'
+    });
   }
 
   handleClick() {
