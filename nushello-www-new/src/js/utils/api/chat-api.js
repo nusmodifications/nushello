@@ -15,7 +15,11 @@ class ChatAPI extends BaseAPI {
     return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
   }
 
-  startConvo() {
-    // var convo = this.get(APIEndPoints.CHAT_API(userInfo.userID, otherUserInfo.userID));
+  startChat() {
+    // var convo = this.post(APIEndPoints.START_CHAT_API(userInfo.userID, otherUserInfo.userID));
+  }
+
+  chatList() {
+    // var list = this.get(APIEndPoints.CHAT_LIST_API(userInfo.userID))
   }
 }

@@ -6,11 +6,11 @@ import Reflux from 'reflux';
 import ChatAction from 'actions/chat-action';
 import ChatStore from 'stores/chat-store';
 
-var StartConvo = React.createClass({
+var StartChat = React.createClass({
   mixins: [Reflux.connect(ChatStore)],
 
   handleClick: function() {
-    ChatAction.startConvo();
+    ChatAction.startChat();
   },
 
   render: function() {
@@ -20,4 +20,4 @@ var StartConvo = React.createClass({
   }
 });
 
-module.exports = StartConvo;
+module.exports = StartChat;

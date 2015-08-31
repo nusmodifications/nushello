@@ -4,7 +4,7 @@ import _ from 'lodash';
 import Reflux from 'reflux';
 
 import Avatar from '../avatar/avatar.jsx';
-import StartConvo from './StartConvo.jsx';
+import StartChat from './StartChat.jsx';
 
 require('./Match.scss');
 
@@ -21,8 +21,8 @@ var Match = React.createClass({
           </div>
           <div className="row">
             <div className="col-sm-12">
-              <div className="start-convo pull-right">
-                <StartConvo name={this.props.name}/>
+              <div className="start-chat pull-right">
+                <StartChat name={this.props.name} userId={this.props.key}/>
               </div>
             </div>
           </div>
