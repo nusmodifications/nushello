@@ -3,6 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import Reflux from 'reflux';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
+import RegisterQuestion from 'components/register-question/register-question.jsx';
 import PickersAction from 'actions/pickers-action';
 import PickersStore from 'stores/pickers-store';
 
@@ -28,6 +29,7 @@ var RegisterPage = React.createClass({
         <hr/>
         <form>
           <ResidencePicker residences={ isResidencesFatched ? this.state.residences : [] }/>
+          <RegisterQuestion text="This is a test" />
         </form>
       </div>
     );
