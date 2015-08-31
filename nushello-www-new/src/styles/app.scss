@@ -10,6 +10,7 @@ body {
   font-family: $main-font-family;
   background-color: $main-background;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 .app-container {
