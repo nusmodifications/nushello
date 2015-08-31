@@ -14,7 +14,7 @@ var RegisterPage = React.createClass({
 
   getInitialState: function() {
     return {
-      answer: [undefined, undefined, undefined, undefined], // need to figure this out
+      answers: [undefined, undefined, undefined, undefined], // need to figure this out
       residenceId: -1
     };
   },
@@ -24,16 +24,11 @@ var RegisterPage = React.createClass({
   },
 
   handleQuestion: function(id, answer) {
-    var self = this;
-    return function() {
-      var newAnswer = self.state.answer;
-      newAnswer[id] = answer;
-      self.setState({
-        answer: newAnswer
-      });
-
-      console.log(self.state);
-    };
+    var newAnswers = this.state.answers;
+    newAnswers[id] = answer;
+    this.setState({
+      answer: newAnswers
+    });
   },
 
   render: function() {
@@ -51,19 +46,27 @@ var RegisterPage = React.createClass({
           <RegisterQuestion
             handler={ this.handleQuestion }
             questionId={ 0 }
-            text="It's a Friday night, would you stay home or head out for a drink?" />
+            text="It's a Friday night, would you stay home or head out for a drink?"
+            yesText="Party"
+            noText="Stay home"
+          />
           <RegisterQuestion
             handler={ this.handleQuestion }
             questionId={ 1 }
-            text="Do you play any sports?" />
+            text="Do you play any sports?"
+          />
           <RegisterQuestion
             handler={ this.handleQuestion }
             questionId={ 2 }
-            text="It’s the finals period and your friend’s birthday party is here, what would you do?" />
+            text="It’s the finals period and your friend’s birthday party is here, what would you do?"
+            yesText="Party"
+            noText="Stay of course"
+          />
           <RegisterQuestion
             handler={ this.handleQuestion }
             questionId={ 3 }
-            text="Are you an introvert or extrovert?" />
+            text="Are you an introvert or extrovert?"
+          />
         </form>
       </div>
     );

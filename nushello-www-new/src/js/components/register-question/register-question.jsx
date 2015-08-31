@@ -8,7 +8,7 @@ require('./register-question.scss');
 var RegisterQuestion = React.createClass({
   getInitialState: function() {
     return {
-      active: true
+      active: undefined
     };
   },
 
@@ -37,7 +37,7 @@ var RegisterQuestion = React.createClass({
   handleClick: function(answer) {
     var self = this;
     return function() {
-      self.props.handler(self.props.questionId, true);
+      self.props.handler(self.props.questionId, answer);
       self.setState({
         active: answer
       });
@@ -47,9 +47,9 @@ var RegisterQuestion = React.createClass({
   render: function() {
     var yesClass = 'btn btn-default';
     var noClass = 'btn btn-default';
-    if (this.state && this.state.active) {
+    if (this.state && this.state.active === true) {
       yesClass = `${yesClass} selected`;
-    } else {
+    } else if (this.state && this.state.active === false) {
       noClass = `${noClass} selected`;
     }
 
