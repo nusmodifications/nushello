@@ -1,7 +1,7 @@
 'use strict';
 
 import Reflux from 'reflux';
-// import ChatAPI from 'utils/api/chat-api';
+import ChatAPI from 'utils/api/chat-api';
 
 var ChatAction = Reflux.createActions({
 	'startChat': {asyncResult: true},
@@ -9,9 +9,12 @@ var ChatAction = Reflux.createActions({
 });
 
 ChatAction.startChat.listenAndPromise( function() {
-	// return ChatAPI.startChat();
+	return ChatAPI.startChat();
 });
 
 ChatAction.chatList.listenAndPromise( function() {
-	// return ChatAPI.chatList();
+	return ChatAPI.chatList();
 });
+
+export default ChatAction;
+
