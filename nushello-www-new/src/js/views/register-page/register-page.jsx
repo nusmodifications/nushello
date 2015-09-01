@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import React from 'react';
 import Reflux from 'reflux';
+import IvleLogin from 'components/login/IvleLogin.jsx';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
 import RegisterQuestion from 'components/register-question/register-question.jsx';
 import PickersAction from 'actions/pickers-action';
@@ -31,11 +32,19 @@ var RegisterPage = React.createClass({
     });
   },
 
+  handleToken: function(token) {
+    console.log(token);
+  },
+
   render: function() {
     var isResidencesFatched = false;
     if (!_.isEmpty(this.state.residences)) {
       isResidencesFatched = true;
     }
+
+    var ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
+    var ivlePassed = <div>OK</div>;
+    var isIvleLoggedIn = false;
 
     return (
       <div className="col-sm-6 col-sm-offset-3">
@@ -69,6 +78,10 @@ var RegisterPage = React.createClass({
             yesText="Introvert"
             noText="Extrovert"
           />
+          <div>
+            Please login via IVLE
+          </div>
+          { isIvleLoggedIn ? ivlePassed : ivleLogin }
         </form>
       </div>
     );
