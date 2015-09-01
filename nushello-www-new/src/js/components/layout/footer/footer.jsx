@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import { Link } from 'react-router';
+import FacebookLike from '../../buttons/facebook-like.jsx';
 
 require('./footer.scss');
 
@@ -24,6 +25,9 @@ export default class Footer extends React.Component {
               </li>
               <li>
                 <li><a href="mailto:nushello@gmail.com">Talk to us</a></li>
+              </li>
+              <li>
+                <FacebookLike />
               </li>
             </ul>
           </nav>
