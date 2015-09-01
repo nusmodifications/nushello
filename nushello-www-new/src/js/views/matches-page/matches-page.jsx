@@ -37,7 +37,6 @@ var MatchesPage = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.matches);
     let matches = this.state.matches.map(function(match) {
       return (
         <Match key={match.userId} fakeName={match.fakeName} bio={match.bio} />
