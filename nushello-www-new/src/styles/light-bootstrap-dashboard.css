@@ -297,8 +297,8 @@ input:focus {
 .sidebar .nav p {
   margin: 0;
   line-height: 30px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 1.3em;
+  font-weight: 400;
   text-transform: uppercase;
 }
 .sidebar .nav i {
@@ -1849,11 +1849,10 @@ body > .navbar-collapse[data-color="purple"]:after {
   font-weight: 300;
 }
 .card .avatar {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   border-radius: 50%;
-  margin-right: 5px;
 }
 .card .description {
   font-size: 14px;
