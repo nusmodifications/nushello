@@ -21,7 +21,7 @@ export default class ProfileEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = '';
+    this.unsubscribe = function() { return; };
   }
 
   componentWillUnmount() {
@@ -44,6 +44,7 @@ export default class ProfileEdit extends React.Component {
     // Prevents the page from submitting request to server
     e.preventDefault();
     let newBio = React.findDOMNode(this.refs.newBio);
+    ProfileAction.edit(newBio);
     this.handleClick();
   }
 

@@ -14,8 +14,8 @@ ProfileAction.init.listen(function() {
     .catch(this.failed);
 });
 
-ProfileAction.edit.listen(function() {
-  return ProfileAPI.edit()
+ProfileAction.edit.listen(function(bio) {
+  return ProfileAPI.edit(bio)
     .then(this.completed)
     .catch(this.failed);
 });

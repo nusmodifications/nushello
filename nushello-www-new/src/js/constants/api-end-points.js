@@ -30,3 +30,4 @@ export const START_CHAT_API = function(thisFacebookId, otherFacebookId) {
 export const CHAT_LIST_API = function(facebookId) {
 	return `/users/$(facebookId)/conversations`;
 };
+

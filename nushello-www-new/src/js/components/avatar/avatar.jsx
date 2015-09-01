@@ -14,7 +14,7 @@ export default class Avatar extends React.Component {
     var profileBg = {
       backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)
     };
-    var classString = 'img-responsive img-circle profile-pic';
+    var classString = 'img-responsive img-circle avatar';
     if (this.props.shouldCenter) {
       classString += ' center-block';
     }
