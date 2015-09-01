@@ -9,29 +9,35 @@ class IvleAuthAPI extends BaseAPI {
     super();
   }
 
-  auth(ivleToken) {
+  auth(nusnetId, ivleToken) {
     var currentUser = cookie.load(this.currentUserKey);
+    var ivleData = {
+      nusnetId: nusnetId,
+      ivleToken: ivleToken
+    };
     console.log(currentUser);
-    // var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.facebookToken));
+    console.log(ivleData);
+    console.log(APIEndPoints.IVLE_AUTH_API(currentUser.userID));
 
-    // login
-    //   .then((res)=> {
-    //     if (res.data) {
-    //       const { type, data } = res;
-    //       let currentUser = { type, ...data };
-    //       cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo }));
-    //     }
-    //   })
-    //   .catch((error)=> {
-    //     if (error.status === 401) {
-    //       if ('API_HOST'['API_HOST'.length - 1] === '/') {
-    //         window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
-    //       } else {
-    //         window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
-    //       }
-    //     }
-    //   });
-    // return login;
+    var authentication = this.put(APIEndPoints.IVLE_AUTH_API(currentUser.userID), ivleData);
+
+    authentication
+      .then((res)=> {
+        console.log(res);
+        if (res.data) {
+        }
+      })
+      .catch((error)=> {
+        console.log(error);
+        if (error.status === 401) {
+          // if ('API_HOST'['API_HOST'.length - 1] === '/') {
+          //   window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+          // } else {
+          //   window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+          // }
+        }
+      });
+    return authentication;
   }
 }
 

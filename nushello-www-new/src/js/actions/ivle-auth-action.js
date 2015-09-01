@@ -7,8 +7,8 @@ var IvleAuthAction = Reflux.createActions({
   'auth': {asyncResult: true}
 });
 
-IvleAuthAction.auth.listenAndPromise( function() {
-  return IvleAuthAPI.auth();
+IvleAuthAction.auth.listenAndPromise( function(nusnetId, ivleToken) {
+  return IvleAuthAPI.auth(nusnetId, ivleToken);
 });
 
 export default IvleAuthAction;

@@ -5,6 +5,8 @@ import Reflux from 'reflux';
 import IvleLogin from 'components/login/IvleLogin.jsx';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
 import RegisterQuestion from 'components/register-question/register-question.jsx';
+import IvleAuthAction from 'actions/ivle-auth-action';
+import IvleAuthStore from 'stores/ivle-auth-store';
 import PickersAction from 'actions/pickers-action';
 import PickersStore from 'stores/pickers-store';
 
@@ -32,8 +34,8 @@ var RegisterPage = React.createClass({
     });
   },
 
-  handleToken: function(token) {
-    console.log(token);
+  handleToken: function(nusnetId, token) {
+    IvleAuthAction.auth(nusnetId, token);
   },
 
   render: function() {

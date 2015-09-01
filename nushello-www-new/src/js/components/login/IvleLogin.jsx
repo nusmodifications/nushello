@@ -2,6 +2,7 @@
 
 import React  from 'react';
 import cookie from 'react-cookie';
+import $ from 'jquery';
 import APIEndPoints from 'constants/api-end-points';
 
 export default class IvleLogin extends React.Component {
@@ -36,7 +37,12 @@ export default class IvleLogin extends React.Component {
         window.ivleLoginSuccessful = function (ivleToken) {
           // Send this token to back-end to activate IVLE profile.
           if (self.props.tokenHandler) {
-            self.props.tokenHandler(ivleToken);
+            $.ajax({
+              url: 'https://ivle.nus.edu.sg/api/Lapi.svc/UserID_Get?APIKey=' + IVLE_LAPI_KEY + '&token=' + ivleToken,
+              dataType: 'jsonp'
+            }).done(function(nusnetId) {
+              self.props.tokenHandler(nusnetId, ivleToken);
+            });
           }
         };
 
