@@ -13,9 +13,7 @@ export default class Messages extends React.Component {
 
   componentDidMount() {
     var node = React.findDOMNode(this);
-    console.log(node.scrollTop, node.scrollHeight);
     setTimeout(function () {
-      console.log(node.scrollTop, node.scrollHeight);
       node.scrollTop = node.scrollHeight;
     }, 0);
   }
