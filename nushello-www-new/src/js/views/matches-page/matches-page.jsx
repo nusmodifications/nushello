@@ -1,26 +1,46 @@
 'use strict';
 import React from 'react';
+import Reflux from 'reflux';
 import Router from 'react-router';
 
 import Match from '../../components/matches/Match.jsx';
+import MatchesStore from '../../stores/matches-store';
+import MatchesAction from '../../actions/matches-action';
 
 require('./matches-page.scss');
 
-export default class MatchesPage extends React.Component {
+var MatchesPage = React.createClass({
+  mixins: [Reflux.connect(MatchesStore, 'matches'), Router.Navigation],
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = { matches: [ {userId: 1, name: 'hot_guy', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
-    {userId: 2, name: 'super_hot', bio: ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
-    {userId: 3, name: 'a_guy', bio: 'Just a guy'},
-    {userId: 4, name: 'another_guy', bio: 'Just a guy'},
-    {userId: 5, name: 'lol', bio: 'Just a guy'} ]};
-  }
+  statics: {
+    willTransitionTo: function(transition, params, query) {
 
-  render() {
+    },
+
+    willTransitionFrom: function(transition, component) {
+
+    }
+  },
+
+  getInitialState: function() {
+    return {matches: [{userId: 1, fakeName: 'johndoh!', bio: 'fake guy 5eva'}] };
+  },
+
+  componentWillMount: function() {
+    MatchesAction.init();
+  },
+
+  componentDidMount: function() {
+  },
+
+  componentWillUnmount: function() {
+  },
+
+  render: function() {
+    console.log(this.state.matches);
     let matches = this.state.matches.map(function(match) {
       return (
-        <Match key={match.userId} name={match.name} bio={match.bio} picUrl={match.profilePictureUrl} />
+        <Match key={match.userId} fakeName={match.fakeName} bio={match.bio} />
         );
     });
     return (
@@ -38,4 +58,6 @@ export default class MatchesPage extends React.Component {
       </div>
     );
   }
-}
+});
+
+module.exports = MatchesPage;

@@ -27,11 +27,15 @@ export const RESIDENCES_LIST_API = function() {
   return `/residences`;
 };
 
-export const START_CHAT_API = function(thisFacebookId, otherFacebookId) {
+export const CHAT_API = function(facebookId) {
 	return `/users/$(facebookId)/conversations`;
 };
 
-export const CHAT_LIST_API = function(facebookId) {
-	return `/users/$(facebookId)/conversations`;
+export const UPDATE_CHAT_API = function(facebookId, otherFacebookId) {
+  return `/users/$(facebookId)/conversations/$(otherFacebookId)`;
+};
+
+export const MATCHES_API = function(facebookId, userId) {
+  return `/users/$(facebookId)/matches/$(userId)`;
 };
 
