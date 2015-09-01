@@ -22,3 +22,11 @@ export const FACULTY_INFO_API = function(facultyId) {
 export const RESIDENCES_LIST_API = function() {
   return `/residences`;
 };
+
+export const START_CHAT_API = function(thisFacebookId, otherFacebookId) {
+	return `/users/$(facebookId)/conversations`;
+};
+
+export const CHAT_LIST_API = function(facebookId) {
+	return `/users/$(facebookId)/conversations`;
+};

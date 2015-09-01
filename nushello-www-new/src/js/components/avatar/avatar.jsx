@@ -1,6 +1,8 @@
 'use strict';
 import React  from 'react';
 
+require('./avatar.scss');
+
 export default class Avatar extends React.Component {
 
 
@@ -9,8 +11,15 @@ export default class Avatar extends React.Component {
   }
 
   render() {
+    var profileBg = {
+      backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)
+    };
+    var classString = 'img-responsive img-circle profile-pic';
+    if (this.props.shouldCenter) {
+      classString += ' center-block';
+    }
     return (
-      <span><img className="img-responsive img-circle center-block profile-pic" src={ this.props.picUrl } /></span>
+      <span className={classString} style={profileBg}>{this.props.letter}</span>
     );
   }
 }
