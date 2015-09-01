@@ -15,7 +15,7 @@ var StartChat = React.createClass({
 
   render: function() {
     return (
-      <button className="btn btn-primary btn-sm" onClick={this.handleClick}>Start chatting with {this.props.name}</button>
+      <button className="btn btn-primary btn-sm" onClick={this.handleClick}>Chat with {this.props.name}</button>
     );
   }
 });

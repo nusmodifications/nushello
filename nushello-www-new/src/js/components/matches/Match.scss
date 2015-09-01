@@ -1,3 +1,12 @@
-.start-chat {
-  padding-right: 1em;
+.match-card {
+  min-height: 360px;
+  margin-bottom: -4%;
+  .match-profile-pic {
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: -20px;
+  }
+  .match-detail {
+    text-align: center;
+  }
 }
