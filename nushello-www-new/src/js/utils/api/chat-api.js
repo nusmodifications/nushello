@@ -23,3 +23,5 @@ class ChatAPI extends BaseAPI {
     // var list = this.get(APIEndPoints.CHAT_LIST_API(userInfo.userID))
   }
 }
+
+export default new ChatAPI();
