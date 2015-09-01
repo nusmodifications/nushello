@@ -29,7 +29,6 @@ export default class ProfilePage extends React.Component {
   }
 
   onStatusChange(res) {
-    console.log('status changed');
     this.setState({ currentUser: res.data });
   }
 

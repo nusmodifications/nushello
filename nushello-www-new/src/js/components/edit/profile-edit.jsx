@@ -1,6 +1,7 @@
 'use strict';
 import React  from 'react';
 import ProfileAction from 'actions/profile-action';
+import ProfileStore from 'stores/profile-store';
 
 require('./profile-edit.scss');
 
@@ -21,7 +22,7 @@ export default class ProfileEdit extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = function() { return; };
+    this.unsubscribe = ProfileStore.listen(this.onStatusChange.bind(this));
   }
 
   componentWillUnmount() {
@@ -29,7 +30,7 @@ export default class ProfileEdit extends React.Component {
   }
 
   onStatusChange(res) {
-
+    this.setState({ bio: res.data.bio });
   }
 
   handleClick() {
@@ -43,7 +44,7 @@ export default class ProfileEdit extends React.Component {
   handleSubmit(e) {
     // Prevents the page from submitting request to server
     e.preventDefault();
-    let newBio = React.findDOMNode(this.refs.newBio);
+    let newBio = React.findDOMNode(this.refs.newBio).value;
     ProfileAction.edit(newBio);
     this.handleClick();
   }
@@ -51,7 +52,7 @@ export default class ProfileEdit extends React.Component {
   render() {
     let bio =
       <div className="profile-edit">
-        <p><em>I love my life</em></p>
+        <p><em>{ this.state.bio }</em></p>
         <button onClick={ this.handleClick } className="btn btn-default">Edit Bio</button>
       </div>;
 

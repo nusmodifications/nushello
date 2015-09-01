@@ -11,6 +11,10 @@ export const USER_PROFILE_API = function(facebookId) {
   return `/users/${facebookId}`;
 };
 
+export const USER_UPDATE_API = function(facebookId) {
+  return `/users/${facebookId}`;
+};
+
 export const FACULTIES_LIST_API = function() {
   return `/faculties`;
 };

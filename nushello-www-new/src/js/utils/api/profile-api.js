@@ -17,7 +17,10 @@ class ProfileAPI extends BaseAPI {
 
   edit(bio) {
     let facebookId = cookie.load('current_user').userID;
-    return this.put(APIEndPoints.USER_UPDATE_API(facebookId));
+    let data = {
+      'bio': bio
+    };
+    return this.put(APIEndPoints.USER_UPDATE_API(facebookId), data);
   }
 }
 
