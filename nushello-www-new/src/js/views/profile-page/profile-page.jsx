@@ -42,10 +42,10 @@ export default class ProfilePage extends React.Component {
               <ProfilePic picUrl={ user.profilePictureUrl } />
               <h2>{ user.name }</h2>
               <ProfileEdit />
-              <Link to="/prefs">
+              <Link to="prefs">
                 <button className="btn btn-default">Edit Preferences</button>
               </Link>
-              <Link to="/match">
+              <Link to="matches">
                 <button className="btn btn-default">Match Me</button>
               </Link>
             </div>
