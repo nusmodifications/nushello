@@ -65,7 +65,9 @@ var RegisterPage = React.createClass({
           <RegisterQuestion
             handler={ this.handleQuestion }
             questionId={ 3 }
-            text="Are you an introvert or extrovert?"
+            text="Do you find that you are more of an introvert or more of an extrovert?"
+            yesText="Introvert"
+            noText="Extrovert"
           />
         </form>
       </div>
