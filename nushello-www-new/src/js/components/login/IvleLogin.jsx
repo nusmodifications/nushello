@@ -45,7 +45,6 @@ export default class IvleLogin extends React.Component {
             });
           }
         };
-
       } else {
         this.ivleDialog.focus();
       }

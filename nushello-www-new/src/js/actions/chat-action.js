@@ -17,4 +17,3 @@ ChatAction.chatList.listenAndPromise( function() {
 });
 
 export default ChatAction;
-

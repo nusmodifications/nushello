@@ -9,11 +9,13 @@ import IvleAuthAction from 'actions/ivle-auth-action';
 import IvleAuthStore from 'stores/ivle-auth-store';
 import PickersAction from 'actions/pickers-action';
 import PickersStore from 'stores/pickers-store';
+import RegisterAction from 'actions/register-action';
+import RegisterStore from 'stores/register-store';
 
 require('./register-page.scss');
 
 var RegisterPage = React.createClass({
-  mixins: [Reflux.connect(PickersStore), Reflux.connect(IvleAuthStore)],
+  mixins: [Reflux.connect(PickersStore), Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore)],
 
   getInitialState: function() {
     return {
@@ -39,8 +41,8 @@ var RegisterPage = React.createClass({
   },
 
   validateForm: function() {
-    var isIvleAuthenticated = this.state.ivleAuthenticated;
-    var isPersonalityFilled = true;
+    let isIvleAuthenticated = this.state.ivleAuthenticated;
+    let isPersonalityFilled = true;
 
     for (let [index, elem] of this.state.answers.entries()) {
       if (typeof elem === 'undefined') {
@@ -51,18 +53,32 @@ var RegisterPage = React.createClass({
     return isIvleAuthenticated && isPersonalityFilled;
   },
 
+  register: function(e) {
+    e.preventDefault();
+    const { residenceId, answers } = this.state;
+    RegisterAction.register({
+      residenceId: residenceId,
+      presonality: {
+        party: answers[0],
+        sports: answers[1],
+        mugger: answers[2],
+        introvert: answers[3]
+      }
+    });
+  },
+
   render: function() {
-    var isResidencesFatched = false;
+    let isResidencesFatched = false;
     if (!_.isEmpty(this.state.residences)) {
       isResidencesFatched = true;
     }
 
-    var ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
-    var ivlePassed = <div>OK</div>;
-    var isIvleLoggedIn = this.state.ivleAuthenticated;
+    let ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
+    let ivlePassed = <div>OK</div>;
+    let isIvleLoggedIn = this.state.ivleAuthenticated;
 
-    var proceedButton = <button className="btn btn-default">Register</button>;
-    var isFormValidated = this.validateForm();
+    let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
+    let isFormValidated = this.validateForm();
 
     return (
       <div className="col-sm-6 col-sm-offset-3">
