@@ -1,6 +1,10 @@
 .nh-nav {
+  display: flex;
+  justify-content: space-between;
   > li {
     display: inline-block;
+    text-align: center;
+    font-weight: 300;
 
     a {
       padding: 0;
