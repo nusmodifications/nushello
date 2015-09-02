@@ -12,16 +12,9 @@ class ChatAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load('current_user').userID;
-    return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
+    return this.get(APIEndPoints.CHAT_API_TOKEN(facebookId));
   }
 
-  startChat() {
-    // var convo = this.post(APIEndPoints.START_CHAT_API(userInfo.userID, otherUserInfo.userID));
-  }
-
-  chatList() {
-    // var list = this.get(APIEndPoints.CHAT_LIST_API(userInfo.userID))
-  }
 }
 
 export default new ChatAPI();

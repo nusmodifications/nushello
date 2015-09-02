@@ -4,7 +4,7 @@ import React  from 'react';
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
 
-require('./FacebookLogin.scss');
+require('./facebook-login.scss');
 
 var FacebookLogin = React.createClass({
   componentWillMount: function() {

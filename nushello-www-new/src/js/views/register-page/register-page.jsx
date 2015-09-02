@@ -2,15 +2,20 @@
 import _ from 'lodash';
 import React from 'react';
 import Reflux from 'reflux';
+import IvleLogin from 'components/login/ivle-login.jsx';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
 import RegisterQuestion from 'components/register-question/register-question.jsx';
+import IvleAuthAction from 'actions/ivle-auth-action';
+import IvleAuthStore from 'stores/ivle-auth-store';
 import PickersAction from 'actions/pickers-action';
 import PickersStore from 'stores/pickers-store';
+import RegisterAction from 'actions/register-action';
+import RegisterStore from 'stores/register-store';
 
 require('./register-page.scss');
 
 var RegisterPage = React.createClass({
-  mixins: [Reflux.connect(PickersStore)],
+  mixins: [Reflux.connect(PickersStore), Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore)],
 
   getInitialState: function() {
     return {
@@ -31,11 +36,49 @@ var RegisterPage = React.createClass({
     });
   },
 
+  handleToken: function(nusnetId, token) {
+    IvleAuthAction.auth(nusnetId, token);
+  },
+
+  validateForm: function() {
+    let isIvleAuthenticated = this.state.ivleAuthenticated;
+    let isPersonalityFilled = true;
+
+    for (let [index, elem] of this.state.answers.entries()) {
+      if (typeof elem === 'undefined') {
+        isPersonalityFilled = false;
+      }
+    }
+
+    return isIvleAuthenticated && isPersonalityFilled;
+  },
+
+  register: function(e) {
+    e.preventDefault();
+    const { residenceId, answers } = this.state;
+    RegisterAction.register({
+      residenceId: residenceId,
+      presonality: {
+        party: answers[0],
+        sports: answers[1],
+        mugger: answers[2],
+        introvert: answers[3]
+      }
+    });
+  },
+
   render: function() {
-    var isResidencesFatched = false;
+    let isResidencesFatched = false;
     if (!_.isEmpty(this.state.residences)) {
       isResidencesFatched = true;
     }
+
+    let ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
+    let ivlePassed = <div>OK</div>;
+    let isIvleLoggedIn = this.state.ivleAuthenticated;
+
+    let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
+    let isFormValidated = this.validateForm();
 
     return (
       <div className="col-sm-6 col-sm-offset-3">
@@ -69,6 +112,11 @@ var RegisterPage = React.createClass({
             yesText="Introvert"
             noText="Extrovert"
           />
+          <div>
+            Please login via IVLE
+          </div>
+          { isIvleLoggedIn ? ivlePassed : ivleLogin }
+          { isFormValidated ? proceedButton : null}
         </form>
       </div>
     );

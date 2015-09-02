@@ -8,7 +8,7 @@ import Router from 'react-router';
 import Footer from 'components/layout/footer/footer.jsx';
 import AuthAction from 'actions/auth-action';
 import AuthStore from 'stores/auth-store';
-import FacebookLogin from 'components/login/FacebookLogin.jsx';
+import FacebookLogin from 'components/login/facebook-login.jsx';
 
 require('./login-page.scss');
 

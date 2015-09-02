@@ -27,8 +27,8 @@ export const RESIDENCES_LIST_API = function() {
   return `/residences`;
 };
 
-export const CHAT_API = function(facebookId) {
-	return `/users/$(facebookId)/conversations`;
+export const CHAT_API_TOKEN = function(facebookId) {
+	return `/users/${facebookId}/conversations/token`;
 };
 
 export const UPDATE_CHAT_API = function(facebookId, otherFacebookId) {

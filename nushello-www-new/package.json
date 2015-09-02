@@ -16,6 +16,7 @@
     "animate.css": "^3.4.0",
     "axios": "^0.5.4",
     "classnames": "^2.1.1",
+    "firebase": "^2.2.9",
     "jquery": "^2.1.4",
     "lodash": "^3.8.0",
     "moment": "^2.10.3",

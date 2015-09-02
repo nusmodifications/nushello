@@ -11,15 +11,19 @@ class ProfileAPI extends BaseAPI {
   }
 
   init() {
-    let facebookId = cookie.load('current_user').userID;
+    let facebookId = cookie.load(this.currentUserKey).userID;
     return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
   }
 
   edit(bio) {
-    let facebookId = cookie.load('current_user').userID;
     let data = {
       'bio': bio
     };
+    return this.editAll(data);
+  }
+
+  editAll(data) {
+    let facebookId = cookie.load(this.currentUserKey).userID;
     return this.put(APIEndPoints.USER_UPDATE_API(facebookId), data);
   }
 }
