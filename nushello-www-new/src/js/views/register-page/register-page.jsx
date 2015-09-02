@@ -59,7 +59,7 @@ var RegisterPage = React.createClass({
 
   componentDidUpdate: function(prevProps, prevState) {
     if (this.state.isRegisterd) {
-      this.transitionTo('chat');
+      this.transitionTo('matches');
     }
   },
 
