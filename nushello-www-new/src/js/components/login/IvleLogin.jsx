@@ -2,6 +2,7 @@
 
 import React  from 'react';
 import cookie from 'react-cookie';
+import $ from 'jquery';
 import APIEndPoints from 'constants/api-end-points';
 
 export default class IvleLogin extends React.Component {
@@ -13,8 +14,10 @@ export default class IvleLogin extends React.Component {
     this.ivleLogin = this.ivleLogin.bind(this);
   }
 
-  ivleLogin() {
+  ivleLogin(event) {
+    event.preventDefault();
     this.ivleDialog = null;
+    var self = this;
     if (this.ivleDialog === null || this.ivleDialog.closed) {
         var width = 255;
         var height = 210;
@@ -33,7 +36,14 @@ export default class IvleLogin extends React.Component {
 
         window.ivleLoginSuccessful = function (ivleToken) {
           // Send this token to back-end to activate IVLE profile.
-          console.log(ivleToken);
+          if (self.props.tokenHandler) {
+            $.ajax({
+              url: 'https://ivle.nus.edu.sg/api/Lapi.svc/UserID_Get?APIKey=' + IVLE_LAPI_KEY + '&token=' + ivleToken,
+              dataType: 'jsonp'
+            }).done(function(nusnetId) {
+              self.props.tokenHandler(nusnetId, ivleToken);
+            });
+          }
         };
 
       } else {
@@ -43,7 +53,7 @@ export default class IvleLogin extends React.Component {
 
   render() {
     return (
-      <button className="btn btn-primary" onClick={this.ivleLogin}>
+      <button className="btn btn-primary" onClick={ this.ivleLogin }>
         IVLE Login
       </button>
     );
