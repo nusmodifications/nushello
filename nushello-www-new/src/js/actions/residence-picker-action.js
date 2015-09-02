@@ -3,12 +3,12 @@
 import Reflux from 'reflux';
 import PickersAPI from 'utils/api/pickers-api';
 
-var PickerAction = Reflux.createActions({
+var ResidencePickerAction = Reflux.createActions({
   'fetchResidences': {asyncResult: true}
 });
 
-PickerAction.fetchResidences.listenAndPromise(function(){
+ResidencePickerAction.fetchResidences.listenAndPromise(function(){
   return PickersAPI.fetchResidences();
 });
 
-export default PickerAction;
+export default ResidencePickerAction;
