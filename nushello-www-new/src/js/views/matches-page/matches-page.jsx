@@ -38,7 +38,7 @@ export default class MatchesPage extends React.Component {
     if (!_.isEmpty(this.state.matches)) {
       matches = this.state.matches.map(function(match) {
         return (
-          <Match key={match.userId} fakeName={match.fakeName} bio={match.bio} />
+          <Match key={match.id} fakeName={match.fakeName} bio={match.bio} />
         );
       });
     }
