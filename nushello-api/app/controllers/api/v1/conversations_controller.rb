@@ -13,6 +13,7 @@ class Api::V1::ConversationsController < ApplicationController
     generate_error_payload('Not Found', 404, 'User not found') unless User.exists?(id: params[:friendId])
 
     friend = User.find_by_id(params[:friendId])
+    return generate_error_payload('Not Found', 404, 'Your friend disappeared') unless friend.present?
     conversation = Conversation.between(@user, friend).first
     return generate_api_payload('conversationExists', ConversationSerializer.new(conversation, context: @user.id)) if conversation.present?
 
