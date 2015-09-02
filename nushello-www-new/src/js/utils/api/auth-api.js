@@ -14,7 +14,6 @@ class AuthAPI extends BaseAPI {
     // var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
     var authenticate;
     var currentUser = cookie.load(this.currentUserKey);
-    console.log(currentUser);
     if (!currentUser) {
       currentUser = {};
     }
