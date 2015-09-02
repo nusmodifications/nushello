@@ -2,16 +2,19 @@
 
 import Reflux from 'reflux';
 import RegisterAction from 'actions/register-action';
+import ResidencePickerStore from 'stores/residence-picker-store';
 import RegisterQuestionsStore from 'stores/register-questions-store';
 
 let isRegistered = false;
 let answers = null;
+let residenceId = -1;
 
 var RegisterStore = Reflux.createStore({
   listenables: [RegisterAction],
 
   init: function() {
     this.listenTo(RegisterQuestionsStore, this.updateAnswer);
+    this.listenTo(ResidencePickerStore, this.updateResidence);
   },
 
   onRegister: function(res) {
@@ -19,23 +22,32 @@ var RegisterStore = Reflux.createStore({
 
   onRegisterCompleted: function(res) {
     this.trigger({
-      isRegisterd: true,
-      answers: answers
+      isRegisterd: true
     });
   },
 
   onRegisterFailed: function(res) {
     this.trigger({
-      isRegisterd: false,
-      answers: answers
+      isRegisterd: false
     });
   },
 
-  updateAnswer: function(newAnswers) {
-    answers = newAnswers.answers;
-    this.trigger({
-      answers: answers
-    });
+  updateAnswer: function(res) {
+    if (res.answers) {
+      answers = res.answers;
+      this.trigger({
+        answers: answers
+      });
+    }
+  },
+
+  updateResidence: function(res) {
+    if (res.selectedResidence) {
+      residenceId = res.selectedResidence;
+      this.trigger({
+        residenceId: residenceId
+      });
+    }
   }
 
 });

@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import React from 'react';
 import Reflux from 'reflux';
+import Router from 'react-router';
+
 import IvleLogin from 'components/login/ivle-login.jsx';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
 import RegisterQuestion from 'components/register-question/register-question.jsx';
@@ -14,13 +16,7 @@ import RegisterStore from 'stores/register-store';
 require('./register-page.scss');
 
 var RegisterPage = React.createClass({
-  mixins: [Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore)],
-
-  getInitialState: function() {
-    return {
-      residenceId: -1
-    };
-  },
+  mixins: [Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore), Router.Navigation],
 
   handleToken: function(nusnetId, token) {
     IvleAuthAction.auth(nusnetId, token);
@@ -44,15 +40,27 @@ var RegisterPage = React.createClass({
   register: function(e) {
     e.preventDefault();
     const { residenceId, answers } = this.state;
-    RegisterAction.register({
-      residenceId: residenceId,
-      presonality: {
+    let data = {
+      personality: {
         party: answers[0],
         sports: answers[1],
         mugger: answers[2],
         introvert: answers[3]
       }
-    });
+    };
+
+    if (!residenceId || residenceId !== -1) {
+      // need to config this
+      data.residenceId = residenceId;
+    }
+
+    RegisterAction.register(data);
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (this.state.isRegisterd) {
+      this.transitionTo('chat');
+    }
   },
 
   render: function() {

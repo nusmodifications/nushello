@@ -4,8 +4,8 @@ import _ from 'lodash';
 import Reflux from 'reflux';
 import ResidencePickerAction from 'actions/residence-picker-action';
 
-var faculties = null;
-var residences = null;
+let residences = null;
+let selectedResidence = -1;
 
 var ResidencePickerStore = Reflux.createStore({
   listenables: ResidencePickerAction,
@@ -24,6 +24,13 @@ var ResidencePickerStore = Reflux.createStore({
     residences = null;
     this.trigger({
       residences: residences
+    });
+  },
+
+  onSelectResidence: function(residenceId) {
+    selectedResidence = residenceId;
+    this.trigger({
+      selectedResidence: selectedResidence
     });
   }
 

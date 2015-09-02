@@ -12,6 +12,10 @@ var ResidencePicker = React.createClass({
     ResidencePickerAction.fetchResidences();
   },
 
+  handleResidenceChange: function(event) {
+    ResidencePickerAction.selectResidence(event.target.value);
+  },
+
   render: function() {
     let residences = [];
     if (!_.isEmpty(this.state.residences)) {
@@ -21,7 +25,7 @@ var ResidencePicker = React.createClass({
     return (
       <div className="form-group">
         <label htmlFor="residence">Residence</label>
-        <select id="residence" className="form-control">
+        <select id="residence" onChange={ this.handleResidenceChange } className="form-control">
           <option key='-1'>None</option>
           { residences.map(function(residence) {
             return <option value={ residence.id } key={ residence.id }>{ residence.name }</option>;
