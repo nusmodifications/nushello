@@ -2,7 +2,9 @@
 
 import BaseAPI from './base-api';
 import cookie from 'react-cookie';
-var APIEndPoints = require('constants/api-end-points');
+
+let APIEndPoints = require('constants/api-end-points');
+let UserPermission = require('constants/user-permission');
 
 class AuthAPI extends BaseAPI {
   constructor() {
@@ -10,10 +12,8 @@ class AuthAPI extends BaseAPI {
   }
 
   init() {
-    // var authenticate = this.get('/me');
-    // var authenticate = this.ajaxFake(require('json!../../mocks/auth/me'), 1500);
-    var authenticate;
-    var currentUser = cookie.load(this.currentUserKey);
+    let authenticate;
+    let currentUser = cookie.load(this.currentUserKey);
     if (!currentUser) {
       currentUser = {};
     }
@@ -24,16 +24,13 @@ class AuthAPI extends BaseAPI {
 
     authenticate
       .then((res)=> {
-        // if (res.user) {
-        //   localStorage.setItem(this.currentUserKey, JSON.stringify(res.user));
-        // }
       })
       .catch((error)=> {
         if (error.status === 401) {
           if ('API_HOST'['API_HOST'.length - 1] === '/') {
-            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST';
           } else {
-            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST/';
           }
         }
       });
@@ -44,7 +41,7 @@ class AuthAPI extends BaseAPI {
   }
 
   login(userInfo) {
-    var login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.facebookToken));
+    let login = this.get(APIEndPoints.FACEBOOK_AUTH_API(userInfo.userID, userInfo.facebookToken));
 
     login
       .then((res)=> {
@@ -57,26 +54,55 @@ class AuthAPI extends BaseAPI {
       .catch((error)=> {
         if (error.status === 401) {
           if ('API_HOST'['API_HOST'.length - 1] === '/') {
-            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST';
           } else {
-            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST/';
           }
         }
       });
     return login;
   }
 
-  logout() {
-    var logout = this.del('/logout');
-    logout.then((res)=> {
-      localStorage.removeItem(this.currentUserKey);
-      if ('API_HOST'['API_HOST'.length - 1] === '/') {
-        window.location.href = 'API_HOST';
-      } else {
-        window.location.href = 'API_HOST/';
-      }
-    });
-    return logout;
+  authenticate(permission) {
+    let authResult = false;
+    let currentUser = cookie.load(this.currentUserKey);
+    switch (permission) {
+      case UserPermission.ALL:
+        authResult = true;
+        break;
+
+      case UserPermission.ALL_USER:
+        authResult = (typeof currentUser !== 'undefined');
+        break;
+
+      case UserPermission.ALL_USER_STRICT:
+        authResult = true;
+        break;
+
+      case UserPermission.NEW_USER_ONLY:
+        authResult = (currentUser && (currentUser.type === 'new_user'));
+        break;
+
+      case UserPermission.NEW_USER_ONLY_STRICT:
+        authResult = true;
+        break;
+
+      case UserPermission.EXISTING_USER_ONLY:
+        authResult = (currentUser && (currentUser.type === 'existing_user'));
+        break;
+
+      case UserPermission.EXISTING_USER_ONLY_STRICT:
+        authResult = true;
+        break;
+
+      case UserPermission.YOU_SHALL_NOT_PASS:
+        break;
+
+      default:
+        break;
+    }
+
+    return authResult;
   }
 }
 
