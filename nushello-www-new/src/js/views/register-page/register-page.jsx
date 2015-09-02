@@ -38,6 +38,19 @@ var RegisterPage = React.createClass({
     IvleAuthAction.auth(nusnetId, token);
   },
 
+  validateForm: function() {
+    var isIvleAuthenticated = this.state.ivleAuthenticated;
+    var isPersonalityFilled = true;
+
+    for (let [index, elem] of this.state.answers.entries()) {
+      if (typeof elem === 'undefined') {
+        isPersonalityFilled = false;
+      }
+    }
+
+    return isIvleAuthenticated && isPersonalityFilled;
+  },
+
   render: function() {
     var isResidencesFatched = false;
     if (!_.isEmpty(this.state.residences)) {
@@ -47,6 +60,9 @@ var RegisterPage = React.createClass({
     var ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
     var ivlePassed = <div>OK</div>;
     var isIvleLoggedIn = this.state.ivleAuthenticated;
+
+    var proceedButton = <button className="btn btn-default">Register</button>;
+    var isFormValidated = this.validateForm();
 
     return (
       <div className="col-sm-6 col-sm-offset-3">
@@ -84,6 +100,7 @@ var RegisterPage = React.createClass({
             Please login via IVLE
           </div>
           { isIvleLoggedIn ? ivlePassed : ivleLogin }
+          { isFormValidated ? proceedButton : null}
         </form>
       </div>
     );
