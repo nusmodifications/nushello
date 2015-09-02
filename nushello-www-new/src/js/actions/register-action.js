@@ -7,7 +7,7 @@ var RegisterAction = Reflux.createActions({
   'register': {asyncResult: true}
 });
 
-RegisterAction.register.listenAndPromise( function(data) {
+RegisterAction.register.listenAndPromise(function(data) {
   return ProfileAPI.editAll(data);
 });
 

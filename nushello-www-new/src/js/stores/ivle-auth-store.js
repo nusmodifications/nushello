@@ -4,12 +4,13 @@ import _ from 'lodash';
 import Reflux from 'reflux';
 import IvleAuthAction from 'actions/ivle-auth-action';
 
-var ivleAuthenticated = false;
+let ivleAuthenticated = false;
 
 var IvleAuthStore = Reflux.createStore({
   listenables: IvleAuthAction,
 
   onAuthCompleted: function(response) {
+    console.log(response);
     if (response.type === 'ivleAuthenticated') {
       this.trigger({
         ivleAuthenticated: true
