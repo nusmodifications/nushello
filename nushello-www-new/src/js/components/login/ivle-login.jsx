@@ -7,7 +7,6 @@ import APIEndPoints from 'constants/api-end-points';
 
 export default class IvleLogin extends React.Component {
 
-
   constructor(props, context) {
     super(props, context);
 
