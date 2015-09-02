@@ -15,6 +15,21 @@ class ChatAPI extends BaseAPI {
     return this.get(APIEndPoints.CHAT_API_TOKEN(facebookId));
   }
 
+  fetchConvo() {
+    let facebookId = cookie.load('current_user').userID;
+    return this.get(APIEndPoints.CHAT_API_FETCH(facebookId));
+  }
+
+  newConvo(friendId) {
+    // Note: friendId is NOT facebookId
+    let facebookId = cookie.load('current_user').userID;
+    let data = {
+      friendId: friendId
+    };
+
+    return this.post(APIEndPoints.CHAT_API_NEW(facebookId), data);
+  }
+
 }
 
 export default new ChatAPI();

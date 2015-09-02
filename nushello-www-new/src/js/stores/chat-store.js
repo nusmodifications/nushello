@@ -8,8 +8,6 @@ import ChatAction from 'actions/chat-action';
 let ChatStore = Reflux.createStore({
   listenables: [ChatAction],
 
-  onInit: function(res) {},
-
   onInitCompleted: function(res) {
     let firebase = new Firebase('https://nushello.firebaseio.com/conversations');
     let authToken = res.data.firebaseToken;
@@ -27,6 +25,22 @@ let ChatStore = Reflux.createStore({
   },
 
   onInitFailed: function(msg) {
+    console.log(msg);
+  },
+
+  onFetchConvoCompleted: function(res) {
+    this.trigger(res);
+  },
+
+  onFetchConvoFailed: function(msg) {
+    console.log(msg);
+  },
+
+  onNewConvoCompleted: function(res) {
+    this.trigger(res);
+  },
+
+  onNewConvoFailed: function(msg) {
     console.log(msg);
   }
 

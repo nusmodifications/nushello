@@ -17,17 +17,26 @@ export default class ChatPage extends React.Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = ChatStore.listen(this.onStatusChange.bind(this));
+    ChatAction.fetchConvo();
+    this.unsubscribe = ChatStore.listen(this.onInitChange.bind(this), ChatStore.oninitCompleted);
+    this.unsubscribe = ChatStore.listen(this.onFetchConvoChange.bind(this), ChatStore.onFetchConvoCompleted);
+    this.unsubscribe = ChatStore.listen(this.onNewConvoChange.bind(this), ChatStore.onNewConvoCompleted);
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  onStatusChange(res) {
+  onInitChange(res) {
     this.setState({
       data: res
     });
+  }
+
+  onFetchConvoChange(res) {
+  }
+
+  onNewConvoChange(res) {
   }
 
   render() {
