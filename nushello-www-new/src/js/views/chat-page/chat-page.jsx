@@ -28,7 +28,6 @@ export default class ChatPage extends React.Component {
     this.setState({
       data: res
     });
-    console.log(res);
   }
 
   render() {
