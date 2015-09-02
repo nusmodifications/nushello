@@ -23,18 +23,20 @@ class IvleAuthAPI extends BaseAPI {
 
     authentication
       .then((res)=> {
-        console.log(res);
-        if (res.data) {
+        if (res.type === 'ivleAuthenticated') {
+          currentUser.type = 'existingUser';
+          cookie.save(this.currentUserKey, currentUser);
+          console.log(cookie.load(this.currentUserKey));
         }
       })
       .catch((error)=> {
         console.log(error);
         if (error.status === 401) {
-          // if ('API_HOST'['API_HOST'.length - 1] === '/') {
-          //   window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
-          // } else {
-          //   window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
-          // }
+          if ('API_HOST'['API_HOST'.length - 1] === '/') {
+            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+          } else {
+            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+          }
         }
       });
     return authentication;

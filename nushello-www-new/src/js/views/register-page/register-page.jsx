@@ -13,7 +13,7 @@ import PickersStore from 'stores/pickers-store';
 require('./register-page.scss');
 
 var RegisterPage = React.createClass({
-  mixins: [Reflux.connect(PickersStore)],
+  mixins: [Reflux.connect(PickersStore), Reflux.connect(IvleAuthStore)],
 
   getInitialState: function() {
     return {
@@ -46,7 +46,7 @@ var RegisterPage = React.createClass({
 
     var ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
     var ivlePassed = <div>OK</div>;
-    var isIvleLoggedIn = false;
+    var isIvleLoggedIn = this.state.ivleAuthenticated;
 
     return (
       <div className="col-sm-6 col-sm-offset-3">
