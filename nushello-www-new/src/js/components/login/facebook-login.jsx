@@ -38,7 +38,7 @@ var FacebookLogin = React.createClass({
       isLogin = true;
     }
 
-    var button = <button onClick={ this.props.onClick } className="btn btn-primary btn-lg facebook-login">Login with Facebook</button>;
+    var button = <button onClick={ this.props.onClick } className="btn btn-fill btn-primary btn-lg facebook-login">Login with Facebook</button>;
     return (
       <div>{ isLogin ? null : button }</div>
     );

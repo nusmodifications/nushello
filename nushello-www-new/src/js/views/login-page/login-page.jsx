@@ -94,8 +94,6 @@ var LoginPage = React.createClass({
                 <h2>Say "Hello!" to a new NUS experience</h2>
               </div>
             </div>
-          </div>
-          <div className="intro">
             <br/>
             <FacebookLogin appId="1467581460234203" onClick={ this.handleClick } currentUser={ currentUser }/>
             <br/>

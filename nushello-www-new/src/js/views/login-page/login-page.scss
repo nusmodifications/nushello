@@ -8,7 +8,7 @@
   text-align: center;
 
   .login-wrapper {
-    flex: 1;
+    flex: auto;
   }
 
   .logo-banner {
@@ -32,24 +32,21 @@
     filter: grayscale(100%);
     background-position: center;
     background-size: cover;
-    padding: 50px 0;
+    padding: 2vmin 0;
 
     h2 {
       color: #fff;
-      font-size: 5em;
-      margin: 0;
-      line-height: 1.5em;
+      font-size: 7em;
+      margin: 0 0 .3em 0;
+      line-height: 1.2em;
+      font-weight: 300;
     }
-  }
-
-  .intro {
-    position: static;
-    text-align: center;
 
     p {
-      color: $theme-green-secondary;
-      font-size: 1.5em;
-      line-height: 2em;
+      color: #fff;
+      font-size: 2em;
+      line-height: 1.6em;
+      font-variant: small-caps;
     }
   }
 }
