@@ -3,17 +3,13 @@
 import Reflux from 'reflux';
 import MatchesAction from 'actions/matches-action';
 
-var matches;
-
 var MatchesStore = Reflux.createStore({
-  listenables: MatchesAction,
+  listenables: [MatchesAction],
 
-  onInitCompleted: function(response) {
-    if (response) {
-      matches = response;
-
+  onInitCompleted: function(res) {
+    if (res) {
       this.trigger({
-        matches: matches
+        matches: res
       });
     }
   },

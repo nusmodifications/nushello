@@ -11,8 +11,7 @@ class MatchesAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load('current_user').userID;
-    let user = this.get(APIEndPoints.USER_PROFILE_API(facebookId));
-    return this.get(APIEndPoints.MATCHES_API(user.facebookId, user.userId));
+    return this.get(APIEndPoints.MATCHES_GET_ALL(facebookId));
   }
 }
 

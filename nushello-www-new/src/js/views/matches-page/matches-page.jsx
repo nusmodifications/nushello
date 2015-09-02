@@ -1,62 +1,62 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
 import Reflux from 'reflux';
 import Router from 'react-router';
 
-import Match from '../../components/matches/Match.jsx';
-import MatchesStore from '../../stores/matches-store';
-import MatchesAction from '../../actions/matches-action';
+import Match from 'components/matches/Match.jsx';
+import MatchesStore from 'stores/matches-store';
+import MatchesAction from 'actions/matches-action';
 
 require('./matches-page.scss');
 
-var MatchesPage = React.createClass({
-  mixins: [Reflux.connect(MatchesStore, 'matches'), Router.Navigation],
+export default class MatchesPage extends React.Component {
 
-  statics: {
-    willTransitionTo: function(transition, params, query) {
+  constructor(props, context) {
+    super(props, context);
+    this.state = { matches: {} };
+  }
 
-    },
-
-    willTransitionFrom: function(transition, component) {
-
-    }
-  },
-
-  getInitialState: function() {
-    return {matches: [{userId: 1, fakeName: 'johndoh!', bio: 'fake guy 5eva'}] };
-  },
-
-  componentWillMount: function() {
+  componentWillMount() {
     MatchesAction.init();
-  },
+  }
 
-  componentDidMount: function() {
-  },
+  componentDidMount() {
+    this.unsubscribe = MatchesStore.listen(this.onStatusChange.bind(this), MatchesStore.onInitCompleted);
+  }
 
-  componentWillUnmount: function() {
-  },
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
 
-  render: function() {
-    let matches = this.state.matches.map(function(match) {
-      return (
-        <Match key={match.userId} fakeName={match.fakeName} bio={match.bio} />
+  onStatusChange(res) {
+    this.setState({ matches: res.matches.data });
+  }
+
+  render() {
+    let matches = [];
+    if (!_.isEmpty(this.state.matches)) {
+      matches = this.state.matches.map(function(match) {
+        return (
+          <Match key={match.userId} fakeName={match.fakeName} bio={match.bio} />
         );
-    });
+      });
+    }
+
     return (
       <div className="matches-wrapper">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-3 col-sm-6 col-md-9 col-sm-offset-1">
               <h1>All Friend Matches</h1>
-                <div className="row">
-                    {matches}
-                </div>
+              <div className="row">
+                {matches}
+              </div>
             </div>
           </div>
         </div>
       </div>
     );
   }
-});
+}
 
-module.exports = MatchesPage;
