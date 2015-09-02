@@ -35,7 +35,6 @@ export const UPDATE_CHAT_API = function(facebookId, otherFacebookId) {
   return `/users/$(facebookId)/conversations/$(otherFacebookId)`;
 };
 
-export const MATCHES_API = function(facebookId, userId) {
-  return `/users/$(facebookId)/matches/$(userId)`;
+export const MATCHES_API = function(facebookId) {
+  return `/users/$(facebookId)/matches`;
 };
-
