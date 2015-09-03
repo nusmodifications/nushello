@@ -12,7 +12,7 @@ AuthAction.init.listenAndPromise(function(){
   return AuthAPI.init();
 });
 
-AuthAction.login.listen(function(userInfo){
+AuthAction.login.listenAndPromise(function(userInfo){
   return AuthAPI.login(userInfo);
 });
 

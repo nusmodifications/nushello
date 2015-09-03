@@ -45,6 +45,7 @@ var LoginPage = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
+    console.log(this.state);
     if (!_.isEmpty(this.state.currentUser)) {
       if (this.state.currentUser.type === 'newUser') {
         this.transitionTo('/register');
