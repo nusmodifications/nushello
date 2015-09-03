@@ -3,6 +3,9 @@ var path = require('path');
 var rsync = require('gulp-rsync');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
+var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+var autoprefixer = require('gulp-autoprefixer');
 var runSequence = require('run-sequence');
 var argv = require('optimist').argv;
 var env = 'development';
@@ -114,14 +117,26 @@ gulp.task('vendor', function() {
     .pipe(gulp.dest(dist));
 });
 
+gulp.task('sass', function () {
+  gulp.src('src/**/*.scss')
+    .pipe(sass())
+    .pipe(concat('bundle.css'))
+    .pipe(autoprefixer())
+    .pipe(gulp.dest('dist/styles'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('src/**/*.scss', ['sass']);
+});
+
 gulp.task('build', function() {
-  runSequence('clean', ['build:webpack', 'html'], 'copy');
+  runSequence('clean', ['build:webpack', 'html', 'sass'], 'copy');
 });
 
 gulp.task('deploy', function() {
-  runSequence('clean', [ 'build:webpack', 'html'], 'copy', 'rsync');
+  runSequence('clean', [ 'build:webpack', 'html', 'sass'], 'copy', 'rsync');
 });
 
 gulp.task('default', function() {
-  runSequence('clean', 'html', 'watch', 'serve');
+  runSequence('clean', 'html', 'sass', 'sass:watch', 'watch', 'serve');
 });

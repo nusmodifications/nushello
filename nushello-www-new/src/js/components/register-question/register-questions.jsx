@@ -7,8 +7,6 @@ import RegisterQuestion from './register-question.jsx';
 import RegisterQuestionsAction from 'actions/register-questions-action';
 import RegisterQuestionsStore from 'stores/register-questions-store';
 
-require('./register-questions.scss');
-
 var RegisterQuestions = React.createClass({
   mixins: [Reflux.connect(RegisterQuestionsStore)],
 

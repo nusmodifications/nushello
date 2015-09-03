@@ -3,8 +3,6 @@
 import React from 'react';
 import cookie from 'react-cookie';
 
-require('./logout.scss');
-
 var Logout = React.createClass({
   statics: {
     willTransitionTo: function(transition, params, query) {

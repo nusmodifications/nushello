@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import Avatar from '../avatar/avatar.jsx';
 
-require('./chat-item.scss');
-
 export default class ChatItem extends React.Component {
 
   constructor(props, context) {

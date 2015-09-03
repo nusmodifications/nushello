@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import FacebookLike from '../../buttons/facebook-like.jsx';
 
-require('./footer.scss');
-
 export default class Footer extends React.Component {
 
   constructor(props, context) {

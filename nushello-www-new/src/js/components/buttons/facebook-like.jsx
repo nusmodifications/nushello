@@ -1,8 +1,6 @@
 'use strict';
 import React  from 'react';
 
-require('./facebook-like.scss');
-
 export default class FacebookLike extends React.Component {
 
   constructor(props, context) {

@@ -13,8 +13,6 @@ import IvleAuthStore from 'stores/ivle-auth-store';
 import RegisterAction from 'actions/register-action';
 import RegisterStore from 'stores/register-store';
 
-require('./register-page.scss');
-
 var RegisterPage = React.createClass({
   mixins: [Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore), Router.Navigation],
 

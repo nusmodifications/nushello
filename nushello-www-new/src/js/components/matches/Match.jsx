@@ -6,8 +6,6 @@ import Reflux from 'reflux';
 import Avatar from '../avatar/avatar.jsx';
 import StartChat from './StartChat.jsx';
 
-require('./Match.scss');
-
 var Match = React.createClass({
   render: function() {
     var initial = this.props.fakeName[0].toUpperCase();

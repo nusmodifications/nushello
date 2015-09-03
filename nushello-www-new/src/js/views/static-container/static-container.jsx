@@ -6,8 +6,6 @@ import { Link } from 'react-router';
 
 import Footer from 'components/layout/footer/footer.jsx';
 
-require('./static-container.scss');
-
 class StaticPage extends React.Component {
   static willTransitionTo(transition, params, query) {
   }

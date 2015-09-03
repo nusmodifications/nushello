@@ -7,8 +7,6 @@ import ProfileEdit from '../../components/edit/profile-edit.jsx';
 import ProfileAction from '../../actions/profile-action';
 import ProfileStore from '../../stores/profile-store';
 
-require('./profile-page.scss');
-
 export default class ProfilePage extends React.Component {
 
   constructor(props, context) {
