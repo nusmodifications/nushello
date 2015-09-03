@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       get 'users/auth/:facebookId/:facebookToken', to: 'users#fb_auth'
       put 'users/:facebookId/ivle', to: 'users#ivle_auth'
+      get 'users/:facebookId/auth', to: 'users#auth'
       put 'users/:facebookId', to: 'users#update'
       get 'users/:facebookId', to: 'users#show'
       get 'users/:facebookId/randomName', to: 'users#random_name'

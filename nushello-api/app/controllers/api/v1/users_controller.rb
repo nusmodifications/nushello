@@ -1,6 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   skip_before_filter :authenticate_user_from_token!, only: [:fb_auth]
 
+  def auth
+    head :no_content
+  end
+
   def fb_auth
     begin
       fb_user_object = Koala::Facebook::API.new(params[:facebookToken])
