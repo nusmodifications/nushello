@@ -57,6 +57,7 @@ class AuthAPI extends BaseAPI {
     let authResult = false;
     let authAsyncResult;
     let currentUser = cookie.load(this.currentUserKey);
+
     switch (permission) {
       case UserPermission.ALL:
         authResult = true;
@@ -108,7 +109,7 @@ class AuthAPI extends BaseAPI {
         break;
 
       case UserPermission.EXISTING_USER_ONLY:
-        authResult = (currentUser && (currentUser.type === UserType.EXISTING_USER));
+        authResult = ((typeof currentUser !== 'undefined') && (currentUser.type === UserType.EXISTING_USER));
         break;
 
       case UserPermission.EXISTING_USER_ONLY_STRICT:

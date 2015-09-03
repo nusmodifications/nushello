@@ -2,9 +2,14 @@
 
 import Reflux from 'reflux';
 import MatchesAction from 'actions/matches-action';
+import PermissionStore from 'stores/permission-store';
 
 var MatchesStore = Reflux.createStore({
   listenables: [MatchesAction],
+
+  init: function() {
+    this.listenTo(PermissionStore, this.updatePermission);
+  },
 
   onInitCompleted: function(res) {
     if (res) {
@@ -16,6 +21,14 @@ var MatchesStore = Reflux.createStore({
 
   onInitFailed: function(response) {
     this.trigger(response);
+  },
+
+  updatePermission: function(res) {
+    if (res.canGo) {
+      this.trigger({
+        canGo: res.canGo
+      });
+    }
   }
 
 });
