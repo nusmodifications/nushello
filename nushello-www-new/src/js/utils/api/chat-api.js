@@ -3,7 +3,7 @@
 import BaseAPI from './base-api';
 import cookie from 'react-cookie';
 
-var APIEndPoints = require('constants/api-end-points');
+let APIEndPoints = require('constants/api-end-points');
 
 class ChatAPI extends BaseAPI {
   constructor() {
@@ -29,7 +29,6 @@ class ChatAPI extends BaseAPI {
 
     return this.post(APIEndPoints.CHAT_API_NEW(facebookId), data);
   }
-
 }
 
 export default new ChatAPI();
