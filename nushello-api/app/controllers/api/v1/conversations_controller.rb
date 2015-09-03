@@ -10,7 +10,8 @@ class Api::V1::ConversationsController < ApplicationController
   end
 
   def create
-    generate_error_payload('Not Found', 404, 'User not found') unless User.exists?(id: params[:friendId])
+    return generate_error_payload('Bad Request', 400, 'Go talk to others') if params[:friendId] == @user.id
+    return generate_error_payload('Not Found', 404, 'User not found') unless User.exists?(id: params[:friendId])
 
     friend = User.find_by_id(params[:friendId])
     return generate_error_payload('Not Found', 404, 'Your friend disappeared') unless friend.present?
