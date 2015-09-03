@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
   skip_before_filter :authenticate_user_from_token!, only: [:fb_auth]
 
   def auth
-    head :no_content
+    user_type = @user.nusnet_id.present? ? 'existingUser' : 'newUser'
+    generate_api_payload(user_type)
   end
 
   def fb_auth
