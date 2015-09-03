@@ -1,5 +1,4 @@
 'use strict';
-console.log('app-c');
 import React from 'react';
 import { RouteHandler } from 'react-router';
 import classnames from 'classnames';

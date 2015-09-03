@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect, DefaultRoute, NotFoundRoute } from 'react-router';
-console.log('routes');
+
 // Pages
 import MainContainer from 'views/main-container.jsx';
 import AppContainer from 'views/app-container.jsx';

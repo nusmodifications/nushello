@@ -10,7 +10,6 @@ var IvleAuthStore = Reflux.createStore({
   listenables: IvleAuthAction,
 
   onAuthCompleted: function(response) {
-    console.log(response);
     if (response.type === 'ivleAuthenticated') {
       this.trigger({
         ivleAuthenticated: true
