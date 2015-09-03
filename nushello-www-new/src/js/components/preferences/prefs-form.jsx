@@ -5,8 +5,6 @@ import Reflux from 'reflux';
 import FacultyPicker from 'components/pickers/faculty-picker.jsx';
 import MajorPicker from 'components/pickers/major-picker.jsx';
 
-require('./prefs-form.scss');
-
 var PrefsForm = React.createClass({
   componentWillMount: function() {
   },

@@ -3,8 +3,6 @@ import React from 'react';
 
 const ENTER_KEY_CODE = 13;
 
-require('./message-composer.scss');
-
 export default class MessageComposer extends React.Component {
   constructor(props, context) {
     super(props, context);

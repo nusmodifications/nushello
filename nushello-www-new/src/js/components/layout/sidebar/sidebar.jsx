@@ -5,8 +5,6 @@ import SidebarControls from './sidebar-controls.jsx';
 import ChatList from 'components/chat-list/chat-list.jsx';
 import Logout from 'components/logout/logout.jsx';
 
-require('./sidebar.scss');
-
 export default class Sidebar extends React.Component {
 
   constructor(props, context) {

@@ -10,8 +10,6 @@ import AuthAction from 'actions/auth-action';
 import AuthStore from 'stores/auth-store';
 import FacebookLogin from 'components/login/facebook-login.jsx';
 
-require('./login-page.scss');
-
 var LoginPage = React.createClass({
   mixins: [Reflux.connect(AuthStore), Router.Navigation],
 

@@ -8,8 +8,6 @@ import Match from 'components/matches/Match.jsx';
 import MatchesStore from 'stores/matches-store';
 import MatchesAction from 'actions/matches-action';
 
-require('./matches-page.scss');
-
 export default class MatchesPage extends React.Component {
 
   constructor(props, context) {

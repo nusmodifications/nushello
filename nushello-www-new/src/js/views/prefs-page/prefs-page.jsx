@@ -3,8 +3,6 @@ import React from 'react';
 
 import PrefsForm from 'components/preferences/prefs-form.jsx';
 
-require('./prefs.scss');
-
 export default class PrefsPage extends React.Component {
 
   constructor(props, context) {

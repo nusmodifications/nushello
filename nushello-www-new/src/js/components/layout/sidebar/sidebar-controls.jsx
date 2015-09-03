@@ -2,8 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-require('./sidebar-controls.scss');
-
 export default class SidebarControls extends React.Component {
 
   constructor(props, context) {

@@ -3,8 +3,6 @@
 import _ from 'lodash';
 import React from 'react';
 
-require('./register-question.scss');
-
 var RegisterQuestion = React.createClass({
   getInitialState: function() {
     return {

@@ -1,8 +1,6 @@
 'use strict';
 import React from 'react';
 
-require('./how.scss');
-
 export default class How extends React.Component {
 
   constructor(props, context) {

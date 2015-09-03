@@ -3,8 +3,6 @@ import React from 'react';
 
 import Message from './message.jsx';
 
-require('./messages.scss');
-
 export default class Messages extends React.Component {
 
   constructor(props, context) {

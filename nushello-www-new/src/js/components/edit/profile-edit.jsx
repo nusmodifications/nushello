@@ -3,8 +3,6 @@ import React  from 'react';
 import ProfileAction from 'actions/profile-action';
 import ProfileStore from 'stores/profile-store';
 
-require('./profile-edit.scss');
-
 export default class ProfileEdit extends React.Component {
 
 

@@ -1,8 +1,6 @@
 'use strict';
 import React  from 'react';
 
-require('./profile-pic.scss');
-
 export default class Avatar extends React.Component {
 
 

@@ -3,8 +3,6 @@
 import React  from 'react';
 import Router from 'react-router';
 
-require('./about-page.scss');
-
 class AboutPage extends React.Component {
 
   constructor(props, context) {

@@ -3,8 +3,6 @@ import React from 'react';
 
 // import Avatar from '../../Utils/Avatar'
 
-require('./message.scss');
-
 export default class Message extends React.Component {
 
   constructor(props, context) {

@@ -82,7 +82,7 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        loader: 'style-loader!css-loader!raw-loader'
+        loader: 'style-loader!css-loader'
       },
 
       {
@@ -102,7 +102,7 @@ module.exports = {
       },
 
       {
-        test: /\.woff$/,
+        test: /\.(ttf|eot|woff)$/,
         loader: 'file-loader'
       },
 

@@ -3,8 +3,6 @@ import React from 'react';
 
 import ChatItem  from './chat-item.jsx';
 
-require('./chat-list.scss');
-
 export default class MatchList extends React.Component {
 
   constructor(props, context) {
