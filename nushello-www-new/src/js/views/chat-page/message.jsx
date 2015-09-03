@@ -12,8 +12,8 @@ export default class Message extends React.Component {
   render() {
     return (
       <div className="message-wrapper">
-        <div className="message-header">{this.props.id % 2 === 0 ? 'Mr. A' : 'Mr. B'}</div>
-        <div className="message-body">{this.props.id % 2 === 0 ? 'Hi' : 'Bye'}</div>
+        <div className="message-header">{this.props.header}</div>
+        <div className="message-body">{this.props.body}</div>
       </div>
     );
   }

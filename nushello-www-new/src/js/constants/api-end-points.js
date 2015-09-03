@@ -35,12 +35,12 @@ export const CHAT_API_TOKEN = function(facebookId) {
 	return `/users/${facebookId}/conversations/token`;
 };
 
-export const UPDATE_CHAT_API = function(facebookId, otherFacebookId) {
-  return `/users/$(facebookId)/conversations/$(otherFacebookId)`;
+export const CHAT_API_FETCH = function(facebookId) {
+	return `/users/${facebookId}/conversations/`;
 };
 
-export const MATCHES_API = function(facebookId) {
-  return `/users/$(facebookId)/matches`;
+export const CHAT_API_NEW = function(facebookId) {
+  return `/users/${facebookId}/conversations`;
 };
 
 export const MATCHES_GET_ALL = function(facebookId) {

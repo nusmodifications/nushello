@@ -33,7 +33,7 @@ var Match = React.createClass({
 
             <div className="row">
               <div className="col-sm-12 match-detail">
-                <StartChat name={this.props.fakeName} userId={this.props.key}/>
+                <StartChat name={this.props.fakeName} userId={this.props.userId}/>
               </div>
             </div>
 

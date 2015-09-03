@@ -1,6 +1,8 @@
 'use strict';
 import React from 'react';
 
+import ChatAction from 'actions/chat-action';
+
 const ENTER_KEY_CODE = 13;
 
 export default class MessageComposer extends React.Component {
@@ -26,6 +28,7 @@ export default class MessageComposer extends React.Component {
       var text = this.state.text.trim();
       if (text) {
         console.log('Found entered text' + text);
+        ChatAction.firebaseSendMessage(this.props.convoId, text);
       }
       this.setState({text: ''});
     }

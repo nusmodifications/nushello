@@ -14,9 +14,9 @@ export default class Chatbox extends React.Component {
     return (
       <div className="chat-wrapper">
         <div className="chatbox">
-          <Messages />
+          <Messages messages={this.props.messages} convoId={this.props.convoId} />
           <div className="input">
-          <ConvoControls />
+          <ConvoControls convoId={this.props.convoId} />
           </div>
         </div>
       </div>

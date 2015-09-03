@@ -117,12 +117,13 @@ gulp.task('vendor', function() {
     .pipe(gulp.dest(dist));
 });
 
-gulp.task('sass', function () {
+gulp.task('sass', function (done) {
   gulp.src('src/**/*.scss')
     .pipe(sass())
     .pipe(concat('bundle.css'))
     .pipe(autoprefixer())
-    .pipe(gulp.dest('dist/styles'));
+    .pipe(gulp.dest('dist/styles'))
+    .on('end', done);
 });
 
 gulp.task('sass:watch', function () {
@@ -130,11 +131,11 @@ gulp.task('sass:watch', function () {
 });
 
 gulp.task('build', function() {
-  runSequence('clean', ['build:webpack', 'html', 'sass'], 'copy');
+  runSequence('clean', ['build:webpack', 'html', 'sass']);
 });
 
 gulp.task('deploy', function() {
-  runSequence('clean', [ 'build:webpack', 'html', 'sass'], 'copy', 'rsync');
+  runSequence('clean', [ 'build:webpack', 'html', 'sass'], 'rsync');
 });
 
 gulp.task('default', function() {
