@@ -1,4 +1,5 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
 
 import Message from './message.jsx';
@@ -9,6 +10,7 @@ export default class Messages extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -19,9 +21,18 @@ export default class Messages extends React.Component {
     }, 0);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ messages: nextProps.messages });
+  }
+
   render() {
+    let messageItems = _.map(this.state.messages, (message) => {
+      return <Message body={message.content}/>;
+    });
+
     return (
       <div className="messages">
+        {messageItems}
       </div>
     );
   }
