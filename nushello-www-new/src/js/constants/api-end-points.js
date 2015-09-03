@@ -1,9 +1,13 @@
 'use strict';
-export const FACEBOOK_AUTH_API = function(facebookId, accessToken){
+export const TOKEN_VALIDATE_API = function(facebookId) {
+  return `/users/${facebookId}/auth`;
+};
+
+export const FACEBOOK_AUTH_API = function(facebookId, accessToken) {
   return `/users/auth/${facebookId}/${accessToken}`;
 };
 
-export const IVLE_AUTH_API = function(facebookId){
+export const IVLE_AUTH_API = function(facebookId) {
   return `/users/${facebookId}/ivle`;
 };
 

@@ -5,6 +5,7 @@ import cookie from 'react-cookie';
 
 let APIEndPoints = require('constants/api-end-points');
 let UserPermission = require('constants/user-permission');
+let UserType = require('constants/user-type');
 
 class AuthAPI extends BaseAPI {
   constructor() {
@@ -76,23 +77,69 @@ class AuthAPI extends BaseAPI {
         break;
 
       case UserPermission.ALL_USER_STRICT:
-        authResult = true;
+        if (typeof currentUser === 'undefined') {
+          authResult = false;
+        } else {
+          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+            .then((res)=> {
+              if (res.data) {
+                authResult = true;
+              }
+            })
+            .catch((error)=> {
+              if (error.status === 401) {
+                authResult = false;
+              }
+            });
+        }
         break;
 
       case UserPermission.NEW_USER_ONLY:
-        authResult = (currentUser && (currentUser.type === 'new_user'));
+        authResult = (currentUser && (currentUser.type === UserType.NEW_USER));
         break;
 
       case UserPermission.NEW_USER_ONLY_STRICT:
-        authResult = true;
+        if ((typeof currentUser === 'undefined') || (currentUser.type !== UserType.NEW_USER)) {
+          authResult = false;
+        } else {
+          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+            .then((res)=> {
+              if (res.data === UserType.NEW_USER) {
+                authResult = true;
+              } else {
+                authResult = false;
+              }
+            })
+            .catch((error)=> {
+              if (error.status === 401) {
+                authResult = false;
+              }
+            });
+        }
         break;
 
       case UserPermission.EXISTING_USER_ONLY:
-        authResult = (currentUser && (currentUser.type === 'existing_user'));
+        authResult = (currentUser && (currentUser.type === UserType.EXISTING_USER));
         break;
 
       case UserPermission.EXISTING_USER_ONLY_STRICT:
-        authResult = true;
+        if ((typeof currentUser === 'undefined') || (currentUser.type !== UserType.EXISTING_USER)) {
+          authResult = false;
+        } else {
+          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+            .then((res)=> {
+              if (res.data === UserType.EXISTING_USER) {
+                authResult = true;
+              } else {
+                authResult = false;
+              }
+            })
+            .catch((error)=> {
+              if (error.status === 401) {
+                authResult = false;
+              }
+            });
+        }
         break;
 
       case UserPermission.YOU_SHALL_NOT_PASS:
