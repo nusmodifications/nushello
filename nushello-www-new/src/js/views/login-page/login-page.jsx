@@ -47,9 +47,9 @@ var LoginPage = React.createClass({
   componentDidUpdate: function(prevProps, prevState) {
     if (!_.isEmpty(this.state.currentUser)) {
       if (this.state.currentUser.type === 'newUser') {
-        this.transitionTo('register');
+        this.transitionTo('/register');
       } else if (this.state.currentUser.type === 'existingUser') {
-        this.transitionTo('chat');
+        this.transitionTo('/chat');
       }
     }
   },
