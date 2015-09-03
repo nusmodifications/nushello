@@ -70,13 +70,13 @@ var RegisterPage = React.createClass({
     let isFormValidated = this.validateForm();
 
     return (
-      <div className="col-sm-6 col-sm-offset-3">
-        <h1>Register</h1>
+      <div className="col-sm-12">
+        <h2>Please answer some questions so we can match you up!</h2>
         <hr/>
           <ResidencePicker />
           <RegisterQuestions />
           <div>
-            Please login via IVLE
+            <p>NUSHello is built specially for NUS Students. Login via IVLE to verify your identity:</p>
           </div>
           { isIvleLoggedIn ? ivlePassed : ivleLogin }
           { isFormValidated ? proceedButton : null}

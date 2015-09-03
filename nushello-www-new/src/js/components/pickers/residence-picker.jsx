@@ -23,6 +23,9 @@ var ResidencePicker = React.createClass({
     }
 
     return (
+      <div>
+      <div className="row">
+      <div className="col-sm-6">
       <div className="form-group">
         <label htmlFor="residence">Residence</label>
         <select id="residence" onChange={ this.handleResidenceChange } className="form-control">
@@ -31,7 +34,7 @@ var ResidencePicker = React.createClass({
             return <option value={ residence.id } key={ residence.id }>{ residence.name }</option>;
           })}
         </select>
-      </div>
+      </div></div></div></div>
     );
   }
 });

@@ -26,7 +26,7 @@ var routes = (
     <DefaultRoute handler={LoginPage}/>
 
     <Route name="logout" path="/logout" handler={LogoutPage} />
-    <Route name="register" path="/register" handler={RegisterPage} />
+
 
     <Route name="app" path="/app" handler={AppContainer}>
       <DefaultRoute handler={ChatPage}/>
@@ -39,7 +39,7 @@ var routes = (
     <Route name="static" path="/static" handler={StaticContainer}>
       <Route name="about" path="/about" handler={AboutPage}/>
       <Route name="privacy" path="/privacy" handler={PrivacyPage}/>
-      <Route name="how" path="/how" handler={HowPage}/>
+      <Route name="register" path="/register" handler={RegisterPage} />
     </Route>
 
     <NotFoundRoute handler={NotFoundPage}/>

@@ -41,7 +41,7 @@ var RegisterQuestions = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
+      <div>
         <RegisterQuestion
           handler={ this.handleQuestion }
           questionId={ 0 }
