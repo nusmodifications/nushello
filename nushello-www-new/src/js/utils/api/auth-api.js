@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseAPI from './base-api';
+import ProfileAPI from './profile-api';
 import cookie from 'react-cookie';
 
 let APIEndPoints = require('constants/api-end-points');
@@ -49,6 +50,12 @@ class AuthAPI extends BaseAPI {
           const { type, data } = res;
           let currentUser = { type, ...data };
           cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo }));
+
+          // Get id from API
+          ProfileAPI.init()
+            .then((res) => {
+              cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo, id: res.data.id }));
+            });
         }
       })
       .catch((error)=> {

@@ -11,7 +11,7 @@ export default class ConvoControls extends React.Component {
   render() {
     return (
       <div className="convo-controls">
-        <MessageComposer/>
+        <MessageComposer convoId={this.props.convoId}/>
       </div>
     );
   }

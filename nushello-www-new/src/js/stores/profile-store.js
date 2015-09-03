@@ -1,6 +1,7 @@
 'use strict';
 
 import Reflux from 'reflux';
+import cookie from 'react-cookie';
 import ProfileAction from 'actions/profile-action';
 
 var ProfileStore = Reflux.createStore({

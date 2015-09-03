@@ -10,39 +10,57 @@ export default class ChatPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = { convoId: '' };
+
+    this.onFetchConvoChange.bind(this);
+    this.onNewConvoChange.bind(this);
   }
 
   componentWillMount() {
     ChatAction.init();
+    ChatAction.firebaseAuth();
+    ChatAction.fetchConvo();
   }
 
   componentDidMount() {
-    ChatAction.fetchConvo();
-    this.unsubscribe = ChatStore.listen(this.onInitChange.bind(this), ChatStore.oninitCompleted);
-    this.unsubscribe = ChatStore.listen(this.onFetchConvoChange.bind(this), ChatStore.onFetchConvoCompleted);
-    this.unsubscribe = ChatStore.listen(this.onNewConvoChange.bind(this), ChatStore.onNewConvoCompleted);
+    this.unsubscribe = ChatStore.listen((res) => {
+      if (res.type === 'messages') {
+        this.onGetAllMessages(res.data);
+      } else {
+        this.onFetchConvoChange(res);
+      }
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  onInitChange(res) {
-    this.setState({
-      data: res
-    });
-  }
-
   onFetchConvoChange(res) {
+    this.setState({
+      convoId: res.data[0].id
+    });
+    ChatAction.firebaseGetAll(this.state.convoId);
+    ChatAction.firebaseListen(this.state.convoId);
   }
 
   onNewConvoChange(res) {
+    this.setState({
+      convoId: res.data[0].id
+    });
+    ChatAction.firebaseListen(this.state.convoId);
+  }
+
+  onGetAllMessages(data) {
+    this.setState({
+      messages: data
+    });
   }
 
   render() {
     return (
       <div>
-        <Chatbox />
+        <Chatbox messages={this.state.messages} convoId={this.state.convoId} />
       </div>
     );
   }

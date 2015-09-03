@@ -2,26 +2,14 @@
 
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
-import Firebase from 'firebase';
 import ChatAction from 'actions/chat-action';
 
 let ChatStore = Reflux.createStore({
   listenables: [ChatAction],
 
   onInitCompleted: function(res) {
-    let firebase = new Firebase('https://nushello.firebaseio.com/conversations');
     let authToken = res.data.firebaseToken;
-
-    let token = '';
-    firebase.authWithCustomToken(authToken, function(err, authData) {
-      if (err) {
-        console.log('Firebase auth failed. Please contact developer.');
-      } else {
-        token = authData.token;
-        cookie.save('firebaseToken', token);
-      }
-    });
-
+    cookie.save('firebaseAuthToken', authToken);
   },
 
   onInitFailed: function(msg) {
@@ -42,8 +30,28 @@ let ChatStore = Reflux.createStore({
 
   onNewConvoFailed: function(msg) {
     console.log(msg);
+  },
+
+  onFirebaseListenCompleted: function(res) {
+    this.trigger(res);
+  },
+
+  onFirebaseGetAllCompleted: function(res) {
+    this.trigger({
+      type: 'messages',
+      data: res.val()
+    });
+  },
+
+  onFirebaseSendMessageCompleted: function() {
+    this.trigger('message sent');
+  },
+
+  onFirebaseSetReadCompleted: function() {
+    this.trigger('message read');
   }
 
 });
 
 export default ChatStore;
+
