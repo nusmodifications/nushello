@@ -3,9 +3,14 @@
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
 import ChatAction from 'actions/chat-action';
+import PermissionStore from 'stores/permission-store';
 
 let ChatStore = Reflux.createStore({
   listenables: [ChatAction],
+
+  init: function() {
+    this.listenTo(PermissionStore, this.updatePermission);
+  },
 
   onInitCompleted: function(res) {
     let authToken = res.data.firebaseToken;
@@ -49,6 +54,15 @@ let ChatStore = Reflux.createStore({
 
   onFirebaseSetReadCompleted: function() {
     this.trigger('message read');
+  },
+
+  updatePermission: function(res) {
+    if (res.canGo) {
+      this.trigger({
+        type: 'permission',
+        canGo: res.canGo
+      });
+    }
   }
 
 });

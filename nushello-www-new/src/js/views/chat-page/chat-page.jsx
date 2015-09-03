@@ -5,6 +5,9 @@ import cookie from 'react-cookie';
 import Chatbox from './chat-box.jsx';
 import ChatStore from 'stores/chat-store';
 import ChatAction from 'actions/chat-action';
+import Permission from 'components/permission/permission.jsx';
+
+let UserPermission = require('constants/user-permission.js');
 
 export default class ChatPage extends React.Component {
 
@@ -16,15 +19,18 @@ export default class ChatPage extends React.Component {
     this.onNewConvoChange.bind(this);
   }
 
-  componentWillMount() {
-    ChatAction.init();
-    ChatAction.firebaseAuth();
-    ChatAction.fetchConvo();
-  }
-
   componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
-      if (res.type === 'messages') {
+      if (res.type === 'permission') {
+          this.setState({
+          canGo: res.canGo
+        });
+
+        ChatAction.init();
+        ChatAction.firebaseAuth();
+        ChatAction.fetchConvo();
+
+      } else if (res.type === 'messages') {
         this.onGetAllMessages(res.data);
       } else {
         this.onFetchConvoChange(res);
@@ -58,10 +64,18 @@ export default class ChatPage extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Chatbox messages={this.state.messages} convoId={this.state.convoId} />
-      </div>
-    );
+    if ((typeof this.state.canGo === 'undefined') && (!this.state.canGo)) {
+      return (
+        <div>
+          <Permission permission={UserPermission.EXISTING_USER_ONLY} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Chatbox messages={this.state.messages} convoId={this.state.convoId} />
+        </div>
+      );
+    }
   }
 }
