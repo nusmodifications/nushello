@@ -7,12 +7,15 @@ import Router from 'react-router';
 import Match from 'components/matches/Match.jsx';
 import MatchesStore from 'stores/matches-store';
 import MatchesAction from 'actions/matches-action';
+import FacebookShare from 'components/share/facebook-share.jsx';
 
 export default class MatchesPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { matches: {} };
+    this.state = { matches: [{userID: 1, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '},
+  {userID: 2, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '},
+{userID: 3, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '}] };
   }
 
   componentWillMount() {
@@ -50,6 +53,9 @@ export default class MatchesPage extends React.Component {
               <div className="row">
                 {matches}
               </div>
+              <div className="row">
+                <FacebookShare appId="1467581460234203"/>
+              </div>
             </div>
           </div>
         </div>
@@ -57,4 +63,3 @@ export default class MatchesPage extends React.Component {
     );
   }
 }
-
