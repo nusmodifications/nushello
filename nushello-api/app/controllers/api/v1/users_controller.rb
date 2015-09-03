@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
   def fb_auth
     begin
       fb_user_object = Koala::Facebook::API.new(params[:facebookToken])
-          .get_object('me?fields=id,name,last_name,email,picture.type(large){url}&redirect=false')
+          .get_object('me?fields=id,name,last_name,email,picture.width(240).height(240){url}&redirect=false')
       fb_long_live_token_info = Koala::Facebook::OAuth.new.exchange_access_token_info(params['facebookToken'])
     rescue Koala::Facebook::AuthenticationError, Koala::Facebook::OAuthTokenRequestError => e
       return generate_error_payload('Bad Request', 400, 'Bad Token')
