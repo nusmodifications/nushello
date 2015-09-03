@@ -27,10 +27,11 @@ class IvleAuthAPI extends BaseAPI {
       })
       .catch((error)=> {
         if (error.status === 401) {
+          this.clean();
           if ('API_HOST'['API_HOST'.length - 1] === '/') {
-            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST';
           } else {
-            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
+            window.location.href = 'API_HOST/';
           }
         }
       });

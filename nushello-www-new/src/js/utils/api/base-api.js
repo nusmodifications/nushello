@@ -16,6 +16,11 @@ class BaseAPI {
     this.currentUserKey = 'current_user';
   }
 
+  clean() {
+    // for quick logout
+    cookie.remove(this.currentUserKey);
+  }
+
   // Return the base url for API calls
   getBaseUrl() {
     var baseUrl = '';

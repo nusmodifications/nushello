@@ -12,12 +12,40 @@ class ChatAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load('current_user').userID;
-    return this.get(APIEndPoints.CHAT_API_TOKEN(facebookId));
+    let request = this.get(APIEndPoints.CHAT_API_TOKEN(facebookId));
+    request.then((res)=> {
+    })
+    .catch((error)=> {
+      if (error.status === 401) {
+        this.clean();
+        if ('API_HOST'['API_HOST'.length - 1] === '/') {
+          window.location.href = 'API_HOST';
+        } else {
+          window.location.href = 'API_HOST/';
+        }
+      }
+    });
+
+    return request;
   }
 
   fetchConvo() {
     let facebookId = cookie.load('current_user').userID;
-    return this.get(APIEndPoints.CHAT_API_FETCH(facebookId));
+    let request = this.get(APIEndPoints.CHAT_API_FETCH(facebookId));
+    request.then((res)=> {
+    })
+    .catch((error)=> {
+      if (error.status === 401) {
+        this.clean();
+        if ('API_HOST'['API_HOST'.length - 1] === '/') {
+          window.location.href = 'API_HOST';
+        } else {
+          window.location.href = 'API_HOST/';
+        }
+      }
+    });
+
+    return request;
   }
 
   newConvo(friendId) {
@@ -27,7 +55,21 @@ class ChatAPI extends BaseAPI {
       friendId: friendId
     };
 
-    return this.post(APIEndPoints.CHAT_API_NEW(facebookId), data);
+    let request = this.post(APIEndPoints.CHAT_API_NEW(facebookId), data);
+    request.then((res)=> {
+    })
+    .catch((error)=> {
+      if (error.status === 401) {
+        this.clean();
+        if ('API_HOST'['API_HOST'.length - 1] === '/') {
+          window.location.href = 'API_HOST';
+        } else {
+          window.location.href = 'API_HOST/';
+        }
+      }
+    });
+
+    return request;
   }
 }
 

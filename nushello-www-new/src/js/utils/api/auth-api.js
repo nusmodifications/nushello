@@ -50,6 +50,7 @@ class AuthAPI extends BaseAPI {
       })
       .catch((error)=> {
         if (error.status === 401) {
+          this.clean();
           if ('API_HOST'['API_HOST'.length - 1] === '/') {
             window.location.href = 'API_HOST';
           } else {
@@ -86,6 +87,12 @@ class AuthAPI extends BaseAPI {
             })
             .catch((error)=> {
               if (error.status === 401) {
+                this.clean();
+                if ('API_HOST'['API_HOST'.length - 1] === '/') {
+                  window.location.href = 'API_HOST';
+                } else {
+                  window.location.href = 'API_HOST/';
+                }
               }
             });
         }
@@ -109,6 +116,7 @@ class AuthAPI extends BaseAPI {
             })
             .catch((error)=> {
               if (error.status === 401) {
+                this.clean();
                 authResult = false;
               }
             });
@@ -133,6 +141,7 @@ class AuthAPI extends BaseAPI {
             })
             .catch((error)=> {
               if (error.status === 401) {
+                this.clean();
                 authResult = false;
               }
             });
