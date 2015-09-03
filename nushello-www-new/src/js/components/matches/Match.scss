@@ -1,6 +1,9 @@
-.match-card {
-  min-height: 360px;
-  margin-bottom: -4%;
+.match-container {
+  .match-card {
+    max-height: 360px;
+    overflow: auto;
+    margin-bottom: 4%;
+  }
   .match-profile-pic {
     text-align: center;
     padding-top: 10px;

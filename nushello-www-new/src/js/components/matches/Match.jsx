@@ -10,8 +10,8 @@ var Match = React.createClass({
   render: function() {
     var initial = this.props.fakeName[0].toUpperCase();
     return (
-      <div className="col-xs-12 col-sm-6 col-md-4 match-card">
-        <div className="card">
+      <div className="col-xs-12 col-sm-6 col-md-4 match-container">
+        <div className="card match-card">
 
           <div className="title">
             <div className="match-profile-pic"><Avatar letter={initial} shouldCenter /></div>
