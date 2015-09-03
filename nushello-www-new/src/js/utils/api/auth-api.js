@@ -1,6 +1,7 @@
 'use strict';
 
 import BaseAPI from './base-api';
+import Router from 'react-router';
 import cookie from 'react-cookie';
 
 let APIEndPoints = require('constants/api-end-points');
@@ -23,18 +24,6 @@ class AuthAPI extends BaseAPI {
       resolve(currentUser);
     });
 
-    authenticate
-      .then((res)=> {
-      })
-      .catch((error)=> {
-        if (error.status === 401) {
-          if ('API_HOST'['API_HOST'.length - 1] === '/') {
-            window.location.href = 'API_HOST';
-          } else {
-            window.location.href = 'API_HOST/';
-          }
-        }
-      });
     return authenticate;
   }
 
@@ -66,6 +55,7 @@ class AuthAPI extends BaseAPI {
 
   authenticate(permission) {
     let authResult = false;
+    let authAsyncResult;
     let currentUser = cookie.load(this.currentUserKey);
     switch (permission) {
       case UserPermission.ALL:
@@ -80,7 +70,7 @@ class AuthAPI extends BaseAPI {
         if (typeof currentUser === 'undefined') {
           authResult = false;
         } else {
-          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+          authAsyncResult = this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
             .then((res)=> {
               if (res.data) {
                 authResult = true;
@@ -88,7 +78,6 @@ class AuthAPI extends BaseAPI {
             })
             .catch((error)=> {
               if (error.status === 401) {
-                authResult = false;
               }
             });
         }
@@ -102,7 +91,7 @@ class AuthAPI extends BaseAPI {
         if ((typeof currentUser === 'undefined') || (currentUser.type !== UserType.NEW_USER)) {
           authResult = false;
         } else {
-          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+          authAsyncResult = this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
             .then((res)=> {
               if (res.data === UserType.NEW_USER) {
                 authResult = true;
@@ -126,7 +115,7 @@ class AuthAPI extends BaseAPI {
         if ((typeof currentUser === 'undefined') || (currentUser.type !== UserType.EXISTING_USER)) {
           authResult = false;
         } else {
-          this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
+          authAsyncResult = this.get(APIEndPoints.TOKEN_VALIDATE_API(currentUser.userID))
             .then((res)=> {
               if (res.data === UserType.EXISTING_USER) {
                 authResult = true;
@@ -149,7 +138,13 @@ class AuthAPI extends BaseAPI {
         break;
     }
 
-    return authResult;
+    if (typeof authAsyncResult !== 'undefined') {
+      return authAsyncResult;
+    } else {
+      return new Promise(function(resolve, reject) {
+        resolve(authResult);
+      });
+    }
   }
 }
 

@@ -4,6 +4,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import Router from 'react-router';
 
+import Permission from 'components/permission/permission.jsx';
 import IvleLogin from 'components/login/ivle-login.jsx';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
 import RegisterQuestion from 'components/register-question/register-question.jsx';
@@ -12,6 +13,8 @@ import IvleAuthAction from 'actions/ivle-auth-action';
 import IvleAuthStore from 'stores/ivle-auth-store';
 import RegisterAction from 'actions/register-action';
 import RegisterStore from 'stores/register-store';
+
+let UserPermission = require('constants/user-permission.js');
 
 var RegisterPage = React.createClass({
   mixins: [Reflux.connect(IvleAuthStore), Reflux.connect(RegisterStore), Router.Navigation],
@@ -69,7 +72,7 @@ var RegisterPage = React.createClass({
     let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
     let isFormValidated = this.validateForm();
 
-    return (
+    let content = (
       <div className="col-sm-12">
         <h2>Please answer some questions so we can match you up!</h2>
         <hr/>
@@ -80,6 +83,15 @@ var RegisterPage = React.createClass({
           </div>
           { isIvleLoggedIn ? ivlePassed : ivleLogin }
           { isFormValidated ? proceedButton : null}
+      </div>
+    );
+
+    let permission = <Permission permission={UserPermission.NEW_USER_ONLY} />;
+    let canGo = this.state.canGo;
+
+    return (
+      <div>
+        { canGo ? content : permission }
       </div>
     );
   }

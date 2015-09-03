@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { Route, Redirect, DefaultRoute, NotFoundRoute } from 'react-router';
 
