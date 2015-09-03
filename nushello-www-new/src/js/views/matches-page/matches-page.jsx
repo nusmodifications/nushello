@@ -13,9 +13,7 @@ export default class MatchesPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { matches: [{userID: 1, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '},
-  {userID: 2, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '},
-{userID: 3, fakeName: 'test', bio: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem '}] };
+    this.state = { matches: {} };
   }
 
   componentWillMount() {
