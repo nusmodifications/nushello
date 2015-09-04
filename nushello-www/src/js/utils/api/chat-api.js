@@ -29,7 +29,7 @@ class ChatAPI extends BaseAPI {
     return request;
   }
 
-  fetchConvo() {
+  getAllConversations() {
     let facebookId = cookie.load('current_user').userID;
     let request = this.get(APIEndPoints.CHAT_API_FETCH(facebookId));
     request.then((res)=> {
@@ -48,7 +48,7 @@ class ChatAPI extends BaseAPI {
     return request;
   }
 
-  newConvo(friendId) {
+  createNewConversation(friendId) {
     // Note: friendId is NOT facebookId
     let facebookId = cookie.load('current_user').userID;
     let data = {

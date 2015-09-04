@@ -6,33 +6,17 @@ import FirebaseAPI from 'utils/api/firebase-api';
 
 var ChatAction = Reflux.createActions({
 	'init': {asyncResult: true},
-	'fetchConvo': {asyncResult: true},
-	'newConvo': {asyncResult: true},
-	'updateChat': {asyncResult: false},
-	'refreshMessages': {asyncResult: false},
-	'firebaseAuth': {asyncResult: false},
-	'firebaseListen': {asyncResult: true},
-	'firebaseGetAll': {asyncResult: true},
-	'firebaseSendMessage': {asyncResult: false}
+	'getAllConversations': {asyncResult: true},
+	'createNewConversation': {asyncResult: true},
+	'getAllMessages': {asyncResult: true},
+	'listenToChatUpdates': {asyncResult: true}
 });
 
-ChatAction.init.listenAndPromise(function() {
-	return ChatAPI.init();
-});
-
-ChatAction.fetchConvo.listenAndPromise(function() {
-  return ChatAPI.fetchConvo();
-});
-
-// Creates a new conversation with another user of userId
-ChatAction.newConvo.listenAndPromise(function(userId) {
-  return ChatAPI.newConvo(userId);
-});
-
-// Listens for new messages
-ChatAction.firebaseListen.listenAndPromise(FirebaseAPI.firebaseListen);
-
-ChatAction.firebaseGetAll.listenAndPromise(FirebaseAPI.firebaseGetAll);
+ChatAction.init.listenAndPromise(ChatAPI.init);
+ChatAction.getAllConversations.listenAndPromise(ChatAPI.getAllConversations);
+ChatAction.createNewConversation.listenAndPromise(ChatAPI.createNewConversation);
+ChatAction.getAllMessages.listenAndPromise(FirebaseAPI.getAllMessages);
+ChatAction.listenToChatUpdates.listenAndPromise(FirebaseAPI.listen);
 
 export default ChatAction;
 

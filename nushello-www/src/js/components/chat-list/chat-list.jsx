@@ -17,7 +17,6 @@ export default class MatchList extends React.Component {
   }
 
   componentWillMount() {
-    ChatAction.fetchConvo();
   }
 
   componentDidMount() {
