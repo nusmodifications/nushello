@@ -33,6 +33,8 @@ export default class ChatPage extends React.Component {
         this.onGetAllMessages(res.data);
       } else if (res === 'message sent') {
         ChatAction.firebaseGetAll(this.state.convoId);
+      } else if (res.type === 'change') {
+        this.onChatChange(res.convoId);
       } else if (!_.isEmpty(res)) {
         this.onFetchConvoChange(res);
       }
@@ -54,15 +56,23 @@ export default class ChatPage extends React.Component {
   }
 
   onNewConvoChange(res) {
-    this.setState({
-      convoId: res.data[0].id
-    });
-    ChatAction.firebaseListen(this.state.convoId);
+    if (!_.isEmpty(res.data)) {
+      this.setState({
+        convoId: res.data[0].id
+      });
+      ChatAction.firebaseListen(this.state.convoId);
+    }
   }
 
   onGetAllMessages(data) {
     this.setState({
       messages: data
+    });
+  }
+
+  onChatChange(convoId) {
+    this.setState({
+      convoId: convoId
     });
   }
 

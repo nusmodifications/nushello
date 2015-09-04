@@ -13,7 +13,7 @@ export default class ChatItem extends React.Component {
     var userProfilePage = '/';
     return (
       <li className="chat-item">
-        <Link to="chat">
+        <a>
           <div className="row">
             <div className="col-sm-5">
               <Avatar letter={this.props.name[0].toUpperCase()} />
@@ -22,7 +22,7 @@ export default class ChatItem extends React.Component {
               <p>{this.props.name}</p>
             </div>
           </div>
-        </Link>
+        </a>
       </li>
     );
   }

@@ -1,5 +1,7 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
+import cookie from 'react-cookie';
 
 import ChatItem  from './chat-item.jsx';
 import ChatAction from 'actions/chat-action';
@@ -29,10 +31,22 @@ export default class MatchList extends React.Component {
 
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  handleClick(userId) {
+    ChatAction.changeChat(userId);
+    ChatAction.firebaseGetAll(userId);
+  }
+
   render() {
-    var chatItems = this.state.users.map(function (item) {
+    let self = this;
+    let chatItems = _.map(this.state.users, (item) => {
       return (
-        <ChatItem key={item.id} id={item.id} name={item.friend.fakeName} />
+        <span onClick={self.handleClick.bind(this, item.id)}>
+          <ChatItem key={item.id} id={item.id} name={item.friend.fakeName} />
+        </span>
       );
     });
     return (
