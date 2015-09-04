@@ -13,6 +13,8 @@ var FacebookShare = React.createClass({
     window.fbAsyncInit = function() {
       FB.init({
         appId: this.props.appId,
+        status: true,
+        cookie: true,
         xfbml: true,
         version: 'v2.4'
       });
@@ -29,9 +31,15 @@ var FacebookShare = React.createClass({
 
   handleClick: function() {
     FB.ui({
-      method: 'share',
-      href: 'http://nushello.com/'
-    }, function(response){});
+      method: 'share_open_graph',
+      action_type: 'nushello:find',
+      action_properties: JSON.stringify({
+        match: 'http://nushello.com/'
+      })
+    },
+
+     function(response) {}
+    );
   },
 
   render: function() {
