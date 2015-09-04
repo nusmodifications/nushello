@@ -34,6 +34,38 @@ var PrefsPage = React.createClass({
         gender: gender
       });
     }
+
+    if (!this.state.personalities && this.state.profile) {
+      let personalities = {};
+      let preference = this.state.profile.preference;
+      if (preference.party) {
+        personalities.party = true;
+      } else {
+        personalities.party = false;
+      }
+
+      if (preference.sports) {
+        personalities.sports = true;
+      } else {
+        personalities.sports = false;
+      }
+
+      if (preference.mugger) {
+        personalities.mugger = true;
+      } else {
+        personalities.mugger = false;
+      }
+
+      if (preference.introvert) {
+        personalities.introvert = true;
+      } else {
+        personalities.introvert = false;
+      }
+
+      this.setState({
+        personalities: personalities
+      });
+    }
   },
 
   handleSubmit: function(e) {
@@ -41,7 +73,8 @@ var PrefsPage = React.createClass({
     let preference = {
       preference: {
         'facultyId': this.state.selectedFacultyId,
-        'majorId': this.state.selectedMajorId
+        'majorId': this.state.selectedMajorId,
+        ...this.state.personalities
       }
     };
 
@@ -50,31 +83,34 @@ var PrefsPage = React.createClass({
     } else {
       preference.preference.gender = null;
     }
+
     PreferenceAction.edit(preference);
   },
 
-  toggleMale: function() {
-    if (this.state.gender === 'Male') {
-      this.setState({
-        gender: 'Both'
-      });
-    } else {
-      this.setState({
-        gender: 'Male'
-      });
-    }
+  selectGender: function(gender) {
+    let self = this;
+    return function() {
+      if (self.state.gender === gender) {
+        self.setState({
+          gender: 'Both'
+        });
+      } else {
+        self.setState({
+          gender: gender
+        });
+      }
+    };
   },
 
-  toggleFemale: function() {
-    if (this.state.gender === 'Female') {
-      this.setState({
-        gender: 'Both'
+  togglePersonality: function(personality) {
+    let self = this;
+    return function() {
+      let personalities = self.state.personalities;
+      personalities[personality] = !personalities[personality];
+      self.setState({
+        personalities: personalities
       });
-    } else {
-      this.setState({
-        gender: 'Female'
-      });
-    }
+    };
   },
 
   render: function() {
@@ -89,10 +125,18 @@ var PrefsPage = React.createClass({
       let facultyId = 1;
       let majorId = 1;
       let gender = null;
+      let personalities = null;
 
       if (typeof profile !== 'undefined') {
-        facultyId = profile.preference.facultyId;
-        majorId = profile.preference.majorId;
+        let preference = profile.preference;
+        facultyId = preference.facultyId;
+        majorId = preference.majorId;
+        personalities = {
+          party: preference.party,
+          sports: preference.sports,
+          mugger: preference.mugger,
+          introvert: preference.introvert
+        };
       }
 
       var maleClass = 'btn btn-default';
@@ -100,11 +144,32 @@ var PrefsPage = React.createClass({
       if (this.state.gender) {
         gender = this.state.gender;
       }
-
       if (gender === 'Male') {
         maleClass = `${maleClass} selected`;
       } else if (gender === 'Female') {
         femaleClass = `${femaleClass} selected`;
+      }
+
+      var partyClass = 'btn btn-default';
+      var sportsClass = 'btn btn-default';
+      var muggerClass = 'btn btn-default';
+      var introvertClass = 'btn btn-default';
+      if (this.state.personalities) {
+        personalities = this.state.personalities;
+      }
+      if (personalities) {
+        if (personalities.party) {
+          partyClass = `${partyClass} selected`;
+        }
+        if (personalities.sports) {
+          sportsClass = `${sportsClass} selected`;
+        }
+        if (personalities.mugger) {
+          muggerClass = `${muggerClass} selected`;
+        }
+        if (personalities.introvert) {
+          introvertClass = `${introvertClass} selected`;
+        }
       }
 
       return (
@@ -129,15 +194,48 @@ var PrefsPage = React.createClass({
                        <div className="btn-group" data-toggle='gender'>
                           <button
                             type="button"
-                            onClick={ this.toggleMale }
+                            onClick={ this.selectGender('Male') }
                             className={ maleClass }>
                             Male
                           </button>
                           <button
                             type="button"
-                            onClick={ this.toggleFemale }
+                            onClick={ this.selectGender('Female') }
                             className={ femaleClass }>
                             Female
+                          </button>
+                       </div>
+                   </div>
+
+                   <div className="form-group">
+                      <label className="control-label">
+                        and personality is:
+                      </label>
+                      <br />
+                       <div className="btn-group" data-toggle='personality'>
+                          <button
+                            type="button"
+                            onClick={ this.togglePersonality('party') }
+                            className={ partyClass }>
+                            Party
+                          </button>
+                          <button
+                            type="button"
+                            onClick={ this.togglePersonality('sports') }
+                            className={ sportsClass }>
+                            Sports
+                          </button>
+                          <button
+                            type="button"
+                            onClick={ this.togglePersonality('mugger') }
+                            className={ muggerClass }>
+                            Mugger
+                          </button>
+                          <button
+                            type="button"
+                            onClick={ this.togglePersonality('introvert') }
+                            className={ introvertClass }>
+                            Introvert
                           </button>
                        </div>
                    </div>
