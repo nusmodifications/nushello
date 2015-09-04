@@ -1,8 +1,5 @@
 .chat-item {
-  img {
-    height: 50px !important;
-    @media screen and (max-width: 768px){
-      height: 30px;
-    }
+  .name {
+    padding-top: .8em;
   }
 }

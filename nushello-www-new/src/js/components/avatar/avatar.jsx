@@ -9,8 +9,15 @@ export default class Avatar extends React.Component {
   }
 
   render() {
+    var profileBg = {
+      backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)
+    };
+    var classString = 'img-responsive img-circle avatar';
+    if (this.props.shouldCenter) {
+      classString += ' center-block';
+    }
     return (
-      <span><img className="img-responsive img-circle center-block profile-pic" src="http://lorempixel.com/200/200" /></span>
+      <span className={classString} style={profileBg}>{this.props.letter}</span>
     );
   }
 }

@@ -1,0 +1,38 @@
+@import '../../../styles/variables.scss';
+
+.static-container {
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .static-wrapper {
+    flex: 1;
+  }
+
+  .static-page-banner {
+    background-color: $theme-green;
+  }
+
+  .static-page-icon-container {
+    padding: 50px 0;
+
+    .static-page-icon {
+      display: block;
+      margin: 0 auto;
+      width: 256px;
+    }
+  }
+
+  .static-page-content {
+    padding: 30px 0;
+  }
+
+  h2 {
+    color: $theme-green;
+  }
+
+  h3 {
+    color: $gray-dark;
+  }
+}

@@ -1,31 +1,48 @@
 'use strict';
 
-import _ from 'lodash';
 import Reflux from 'reflux';
+import cookie from 'react-cookie';
 import ProfileAction from 'actions/profile-action';
-
-var currentUser = null;
+import PermissionStore from 'stores/permission-store';
 
 var ProfileStore = Reflux.createStore({
-  listenables: ProfileAction,
+  listenables: [ProfileAction],
 
-  getCurrentUser: function() {
-    return currentUser;
+  init: function() {
+    this.listenTo(PermissionStore, this.updatePermission);
+  },
+
+  onInit: function(res) {
   },
 
   onInitCompleted: function(res) {
-    if (res) {
-      currentUser = res;
-    }
-
-    this.trigger({
-      currentUser: currentUser
-    });
+    this.trigger(res);
   },
 
-  onInitFailed: function(res) {
+  onInitFailed: function(msg) {
+    this.trigger(msg);
+  },
+
+  onEdit: function(res) {
+
+  },
+
+  onEditCompleted: function(res) {
     this.trigger(res);
+  },
+
+  onEditFailed: function(res) {
+    this.trigger(res);
+  },
+
+  updatePermission: function(res) {
+    if (res.canGo) {
+      this.trigger({
+        canGo: res.canGo
+      });
+    }
   }
+
 });
 
 export default ProfileStore;

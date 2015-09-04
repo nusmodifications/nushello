@@ -1,10 +1,15 @@
 class Api::V1::UsersController < ApplicationController
   skip_before_filter :authenticate_user_from_token!, only: [:fb_auth]
 
+  def auth
+    user_type = @user.nusnet_id.present? ? 'existingUser' : 'newUser'
+    generate_api_payload(user_type)
+  end
+
   def fb_auth
     begin
       fb_user_object = Koala::Facebook::API.new(params[:facebookToken])
-          .get_object('me?fields=id,name,last_name,email,picture.type(large){url}&redirect=false')
+          .get_object('me?fields=id,name,last_name,email,picture.width(240).height(240){url}&redirect=false')
       fb_long_live_token_info = Koala::Facebook::OAuth.new.exchange_access_token_info(params['facebookToken'])
     rescue Koala::Facebook::AuthenticationError, Koala::Facebook::OAuthTokenRequestError => e
       return generate_error_payload('Bad Request', 400, 'Bad Token')

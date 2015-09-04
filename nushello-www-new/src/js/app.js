@@ -1,12 +1,12 @@
 'use strict';
 
-require('styles/app.scss');
-
 import _ from 'lodash';
 import axios from 'axios';
 import React from 'react';
 import Router from 'react-router';
 import Routes from './routes';
+
+require('styles/pe-icon-7-stroke.css');
 
 function initApp() {
   //

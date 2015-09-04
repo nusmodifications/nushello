@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :facebook_id, :name, :last_name, :fake_name, :bio, :gender, :matriculation_year, :faculty,
+  attributes :id, :facebook_id, :name, :last_name, :fake_name, :bio, :gender, :matriculation_year, :faculty,
              :first_major, :second_major, :residence, :online, :profile_picture_url, :fake_profile_picture_url
 
   has_one :personality, serializer: PersonalitySerializer

@@ -2,8 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-require('./sidebar-controls.scss');
-
 export default class SidebarControls extends React.Component {
 
   constructor(props, context) {
@@ -14,16 +12,19 @@ export default class SidebarControls extends React.Component {
     return (
       <ul className="nav list-unstyled nh-nav">
         <li>
+          Settings
           <Link to="prefs">
             <img src={require('images/pref.png')}/>
           </Link>
         </li>
         <li>
+          Matches
           <Link to="matches">
             <img src={require('images/matches.png')}/>
           </Link>
         </li>
         <li>
+          Profile
           <Link to="profile">
             <img src={require('images/userprofile.png')}/>
           </Link>

@@ -1,18 +1,25 @@
-@import "light-bootstrap-dashboard.css";
+@import "variables.scss";
 
-$theme: #09c;
+@import url('https://fonts.googleapis.com/css?family=Happy+Monkey');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,500,100');
 
 body {
-  color: #000;
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+  color: $main-font-color;
+  font-family: $main-font-family;
+  background-color: $main-background;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.app-container {
+  flex: 1;
 }
 
 a {
-  color: $theme;
+  color: $theme-green;
 
   &:hover {
-    color: darken($theme, 10%);
+    color: $theme-green-secondary;
     text-decoration: none;
   }
 }

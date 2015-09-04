@@ -6,7 +6,6 @@
   height: 100%;
   .sidebar {
     position: absolute;
-    background-color: #000;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -24,3 +23,6 @@
   }
 }
 
+.sidebar .nav li > a {
+  border-radius: 100px;
+}

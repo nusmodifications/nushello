@@ -1,0 +1,5 @@
+@import '../../../styles/variables.scss';
+.selected {
+  color: #fff !important;
+  background-color: $theme-green !important; // for now
+}

@@ -6,10 +6,10 @@
   font-size: 1em;
   opacity: 0.2;
   transition: opacity 1s;
+  background-color: #999;
 }
 #messageField:focus {
   outline: 0;
-  color: green;
-  background-color: #d1d1d1;
+  background-color: #fff;
   opacity: 1.0;
 }

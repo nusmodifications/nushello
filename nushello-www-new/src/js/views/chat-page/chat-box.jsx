@@ -4,8 +4,6 @@ import React from 'react';
 import ConvoControls from './convo-controls.jsx';
 import Messages from './messages.jsx';
 
-require('./chat-box.scss');
-
 export default class Chatbox extends React.Component {
 
   constructor(props, context) {
@@ -16,9 +14,9 @@ export default class Chatbox extends React.Component {
     return (
       <div className="chat-wrapper">
         <div className="chatbox">
-          <Messages />
+          <Messages messages={this.props.messages} convoId={this.props.convoId} />
           <div className="input">
-          <ConvoControls />
+          <ConvoControls convoId={this.props.convoId} />
           </div>
         </div>
       </div>

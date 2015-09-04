@@ -1,6 +1,8 @@
 'use strict';
 
 import BaseAPI from './base-api';
+import cookie from 'react-cookie';
+
 let APIEndPoints = require('constants/api-end-points');
 
 class ProfileAPI extends BaseAPI {
@@ -9,21 +11,22 @@ class ProfileAPI extends BaseAPI {
   }
 
   init() {
-    let profile = this.ajaxFake(require('json!../../mocks/profile/me'), 1500);
+    let facebookId = cookie.load(this.currentUserKey).userID;
+    return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
+  }
 
-    profile
-      .catch((error)=> {
-        if (error.status === 401) {
-          if ('API_HOST'['API_HOST'.length - 1] === '/') {
-            window.location.href = 'API_HOST?path=' + encodeURIComponent(window.location.pathname);
-          } else {
-            window.location.href = 'API_HOST/?path=' + encodeURIComponent(window.location.pathname);
-          }
-        }
-      });
+  edit(bio) {
+    let data = {
+      'bio': bio
+    };
+    return this.editAll(data);
+  }
 
-    return profile;
+  editAll(data) {
+    let facebookId = cookie.load(this.currentUserKey).userID;
+    return this.put(APIEndPoints.USER_UPDATE_API(facebookId), data);
   }
 }
 
 export default new ProfileAPI();
+

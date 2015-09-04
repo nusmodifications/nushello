@@ -36,11 +36,12 @@ module.exports = {
       'react-router-bootstrap',
       'axios',
       'lodash',
-      'moment',
-      'leaflet',
-      'leaflet.markercluster',
       'jquery',
-      'numeral'
+      'moment',
+      'numeral',
+      './src/js/vendor/bootstrap-notify.js',
+      './src/js/vendor/bootstrap-select.js',
+      './src/js/vendor/light-bootstrap-dashboard.js',
     ]
   },
 
@@ -67,14 +68,20 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|vendor)/,
         loaders: ['babel-loader?stage=0&optional=runtime']
       },
 
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|vendor)/,
         loader: 'eslint-loader'
+      },
+
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: 'style-loader!css-loader'
       },
 
       {
@@ -91,6 +98,11 @@ module.exports = {
       {
         test: /\.(svg)$/,
         loader: 'raw-loader'
+      },
+
+      {
+        test: /\.(ttf|eot|woff)$/,
+        loader: 'file-loader'
       },
 
       {

@@ -1,15 +1,11 @@
 'use strict';
+import _ from 'lodash';
 import React  from 'react';
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
-import AuthAction from 'actions/auth-action';
-import AuthStore from 'stores/auth-store';
 
 var FacebookLogin = React.createClass({
-  mixins: [Reflux.connect(AuthStore)],
-
   componentWillMount: function() {
-    AuthAction.init();
   },
 
   componentDidMount: function() {
@@ -34,31 +30,13 @@ var FacebookLogin = React.createClass({
     }(document, 'script', 'facebook-jssdk'));
   },
 
-  handleClick: function() {
-    FB.login(function(response) {
-      if (response.status === 'connected') {
-        let facebookToken = response.authResponse.accessToken;
-        let userID = response.authResponse.userID;
-
-        AuthAction.login({
-          'userID': userID,
-          'facebookToken': facebookToken
-        });
-
-      } else {
-        // error message here
-      }
-    });
-  },
-
   render: function() {
     var isLogin = false;
-
-    if (this.state.currentUser) {
+    if (!_.isEmpty(this.props.currentUser)) {
       isLogin = true;
     }
 
-    var button = <button onClick={ this.handleClick } className="btn btn-info">Facebook Login</button>;
+    var button = <button onClick={ this.props.onClick } className="btn btn-fill btn-primary btn-lg facebook-login">Login with Facebook</button>;
     return (
       <div>{ isLogin ? null : button }</div>
     );

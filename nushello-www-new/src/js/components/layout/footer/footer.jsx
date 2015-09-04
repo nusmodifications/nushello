@@ -1,8 +1,7 @@
 'use strict';
 import React from 'react';
 import { Link } from 'react-router';
-
-require('./footer.scss');
+import FacebookLike from '../../buttons/facebook-like.jsx';
 
 export default class Footer extends React.Component {
 
@@ -11,21 +10,30 @@ export default class Footer extends React.Component {
   }
 
   render() {
-
     return (
-    <section id="footer">
-      <div className="row">
-        <div className="col-sm-6 col-sm-offset-3">
-          <div className="footer">
-          <ul>
-            <li><Link to="about">About</Link></li>
-            <li><Link to="privacy">Privacy Policy</Link></li>
-            <li><Link to="how">How It Works</Link></li>
-          </ul>
-          </div>
+      <footer className="footer">
+        <div className="container">
+          <nav className="pull-left">
+            <ul>
+              <li>
+                <li><Link to="about">About</Link></li>
+              </li>
+              <li>
+                <li><Link to="privacy">Privacy Policy</Link></li>
+              </li>
+              <li>
+                <li><a href="mailto:nushello@gmail.com">Talk to us</a></li>
+              </li>
+              <li>
+                <FacebookLike />
+              </li>
+            </ul>
+          </nav>
+          <p className="copyright pull-right">
+            © 2015 NUSHello Team, made <s>with</s> for love
+          </p>
         </div>
-      </div>
-      </section>
+      </footer>
     );
   }
 }

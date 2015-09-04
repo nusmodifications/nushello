@@ -1,8 +1,13 @@
 'use strict';
-
 import React from 'react';
 import { RouteHandler } from 'react-router';
 import classnames from 'classnames';
+
+// import ChartList from 'vendor/chartist.min.js';
+// import BootstrapSwitch from 'vendor/bootstrap-checkbox-radio-switch.js';
+// import BootstrapSelect from 'vendor/bootstrap-select.js';
+// import BootstrapNotify from 'vendor/bootstrap-notify.js';
+// import BootstrapTheme from 'vendor/light-bootstrap-dashboard.js';
 
 import Sidebar from 'components/layout/sidebar/sidebar.jsx';
 import Spinner from 'components/spinner.jsx';
@@ -54,24 +59,12 @@ class AppContainer extends React.Component {
   }
 
   render() {
-    var spinner = (
-      <div className={ classnames('spinner-wrapper', { hidden: !this.state.isInitializing }) }>
-        <Spinner kind="puff"/>
-      </div>
-    );
-
-    var appContainer = (
-      <div className={ classnames({ hidden: this.state.isInitializing, wrapper: true }) }>
+    return (
+      <div className="wrapper">
         <Sidebar/>
         <div className="main-panel">
           <RouteHandler />
         </div>
-      </div>
-    );
-
-    return (
-      <div className="app-container">
-        {(this.state.isInitializing) ? spinner : appContainer }
       </div>
     );
   }

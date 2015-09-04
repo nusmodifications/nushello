@@ -5,14 +5,20 @@ import ProfileAPI from 'utils/api/profile-api';
 
 var ProfileAction = Reflux.createActions({
   'init': {asyncResult: true},
-  'edit': {asyncResult: false}
+  'edit': {asyncResult: true}
 });
 
 ProfileAction.init.listen(function() {
-  return ProfileAPI.init();
+  return ProfileAPI.init()
+    .then(this.completed)
+    .catch(this.failed);
 });
 
-ProfileAction.edit.listen(function() {
+ProfileAction.edit.listen(function(bio) {
+  return ProfileAPI.edit(bio)
+    .then(this.completed)
+    .catch(this.failed);
 });
 
 export default ProfileAction;
+

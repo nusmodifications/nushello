@@ -3,8 +3,7 @@ import React from 'react';
 
 import SidebarControls from './sidebar-controls.jsx';
 import ChatList from 'components/chat-list/chat-list.jsx';
-
-require('./sidebar.scss');
+import Logout from 'components/logout/logout.jsx';
 
 export default class Sidebar extends React.Component {
 
@@ -15,14 +14,15 @@ export default class Sidebar extends React.Component {
   render() {
 
     return (
-      <div className="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
+      <div className="sidebar" data-color="green">
         <div className="sidebar-wrapper">
           <div className="logo">
             <a href="/" className="simple-text">NUSHello</a>
           </div>
-          <SidebarControls/>
+          <SidebarControls />
           <hr/>
-          <ChatList/>
+          <ChatList />
+          <Logout />
         </div>
       </div>
     );

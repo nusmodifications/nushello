@@ -1,6 +1,10 @@
-.profile-pic {
+.avatar {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  margin: 0 .4em .4em 0;
+  opacity: .7;
+  text-align: center;
+  padding-top: .2em;
+  font-size: 2em;
+  color: #fff;
+  font-weight: 400;
 }
