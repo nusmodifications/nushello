@@ -2,17 +2,19 @@
 import React  from 'react';
 
 export default class Avatar extends React.Component {
-
-
   constructor(props, context) {
     super(props, context);
   }
 
   render() {
-    var profileBg = {
-      backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)
+    let id = this.props.id;
+    let r = id * 27327 % 256;
+    let g = id * 12363 % 187;
+    let b = id * 12899 % 256;
+    let profileBg = {
+      backgroundColor: `rgb(${r}, ${g}, ${b})`
     };
-    var classString = 'img-responsive img-circle avatar';
+    let classString = 'img-responsive img-circle avatar';
     if (this.props.shouldCenter) {
       classString += ' center-block';
     }
