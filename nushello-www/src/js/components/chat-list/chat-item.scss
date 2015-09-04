@@ -1,5 +1,13 @@
 .chat-item {
+  .col-sm-4 {
+    padding-right: 0px;
+  }
   .name {
     padding-top: .8em;
+    padding-left: 0px;
+    p {
+      font-size: 1em;
+      text-transform: none;
+    }
   }
 }
