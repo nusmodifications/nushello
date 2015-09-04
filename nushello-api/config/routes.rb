@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       put 'users/:facebookId', to: 'users#update'
       get 'users/:facebookId', to: 'users#show'
       get 'users/:facebookId/randomName', to: 'users#random_name'
-      get 'users/:facebookId/matches', to: 'users#matches'
+      get 'users/:facebookId/matches', to: 'matches#search'
       get 'users/:facebookId/matches/:Id', to: 'matches#show'
 
       get 'users/:facebookId/conversations', to: 'conversations#index'
