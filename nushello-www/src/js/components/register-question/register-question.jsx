@@ -43,8 +43,8 @@ var RegisterQuestion = React.createClass({
   },
 
   render: function() {
-    var yesClass = 'btn btn-default';
-    var noClass = 'btn btn-default';
+    var yesClass = 'btn btn-default register-question';
+    var noClass = 'btn btn-default register-question';
     if (this.state && this.state.active === true) {
       yesClass = `${yesClass} selected`;
     } else if (this.state && this.state.active === false) {
