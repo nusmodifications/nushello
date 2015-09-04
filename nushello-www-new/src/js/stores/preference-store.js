@@ -34,7 +34,9 @@ var PreferenceStore = Reflux.createStore({
   },
 
   onEditCompleted: function(res) {
-    this.trigger(res);
+    this.trigger({
+      goMatch: true
+    });
   },
 
   onEditFailed: function(res) {

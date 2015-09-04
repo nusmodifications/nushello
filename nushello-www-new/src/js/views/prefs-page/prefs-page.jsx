@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import Reflux from 'reflux';
-import jquery from 'jquery';
+import Router from 'react-router';
 import PreferenceAction from '../../actions/preference-action';
 import PreferenceStore from '../../stores/preference-store';
 import Permission from 'components/permission/permission.jsx';
@@ -10,7 +10,7 @@ import MajorPicker from 'components/pickers/major-picker.jsx';
 
 let UserPermission = require('constants/user-permission.js');
 var PrefsPage = React.createClass({
-  mixins: [Reflux.connect(PreferenceStore)],
+  mixins: [Reflux.connect(PreferenceStore), Router.Navigation],
 
   getInitialState: function() {
   },
@@ -23,6 +23,10 @@ var PrefsPage = React.createClass({
       if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
         PreferenceAction.init();
       }
+    }
+
+    if (this.state.goMatch) {
+      this.transitionTo('/matches');
     }
 
     if (!this.state.gender && this.state.profile) {
