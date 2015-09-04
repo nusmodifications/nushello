@@ -2,15 +2,15 @@
 import React from 'react';
 import Reflux from 'reflux';
 import Router from 'react-router';
-import PreferenceAction from '../../actions/preference-action';
-import PreferenceStore from '../../stores/preference-store';
+import InfoAction from '../../actions/info-action';
+import InfoStore from '../../stores/info-store';
 import Permission from 'components/permission/permission.jsx';
 import FacultyPicker from 'components/pickers/faculty-picker.jsx';
 import MajorPicker from 'components/pickers/major-picker.jsx';
 
 let UserPermission = require('constants/user-permission.js');
-var PrefsPage = React.createClass({
-  mixins: [Reflux.connect(PreferenceStore), Router.Navigation],
+var InfoPage = React.createClass({
+  mixins: [Reflux.connect(InfoStore), Router.Navigation],
 
   getInitialState: function() {
   },
@@ -21,7 +21,7 @@ var PrefsPage = React.createClass({
   componentDidUpdate: function(prevProps, prevState) {
     if ((typeof prevState.canGo === 'undefined') || (!prevState.canGo)) {
       if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
-        PreferenceAction.init();
+        InfoAction.init();
       }
     }
 
@@ -88,7 +88,7 @@ var PrefsPage = React.createClass({
       preference.preference.gender = null;
     }
 
-    PreferenceAction.edit(preference);
+    InfoAction.edit(preference);
   },
 
   selectGender: function(gender) {
@@ -255,4 +255,4 @@ var PrefsPage = React.createClass({
   }
 });
 
-module.exports = PrefsPage;
+module.exports = InfoPage;
