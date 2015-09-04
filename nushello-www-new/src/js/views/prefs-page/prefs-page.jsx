@@ -13,9 +13,6 @@ var PrefsPage = React.createClass({
   mixins: [Reflux.connect(PreferenceStore)],
 
   getInitialState: function() {
-    return {
-      gender: null
-    };
   },
 
   componentDidMount: function() {
@@ -26,6 +23,16 @@ var PrefsPage = React.createClass({
       if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
         PreferenceAction.init();
       }
+    }
+
+    if (!this.state.gender && this.state.profile) {
+      let gender = 'Both';
+      if (this.state.profile.preference.gender) {
+        gender = this.state.profile.preference.gender;
+      }
+      this.setState({
+        gender: gender
+      });
     }
   },
 
@@ -38,8 +45,10 @@ var PrefsPage = React.createClass({
       }
     };
 
-    if (this.state.gender) {
+    if (this.state.gender && (this.state.gender !== 'Both')) {
       preference.preference.gender = this.state.gender;
+    } else {
+      preference.preference.gender = null;
     }
     PreferenceAction.edit(preference);
   },
@@ -47,7 +56,7 @@ var PrefsPage = React.createClass({
   toggleMale: function() {
     if (this.state.gender === 'Male') {
       this.setState({
-        gender: null
+        gender: 'Both'
       });
     } else {
       this.setState({
@@ -59,7 +68,7 @@ var PrefsPage = React.createClass({
   toggleFemale: function() {
     if (this.state.gender === 'Female') {
       this.setState({
-        gender: null
+        gender: 'Both'
       });
     } else {
       this.setState({
@@ -79,6 +88,8 @@ var PrefsPage = React.createClass({
       let profile = this.state.profile;
       let facultyId = 1;
       let majorId = 1;
+      let gender = null;
+
       if (typeof profile !== 'undefined') {
         facultyId = profile.preference.facultyId;
         majorId = profile.preference.majorId;
@@ -86,9 +97,13 @@ var PrefsPage = React.createClass({
 
       var maleClass = 'btn btn-default';
       var femaleClass = 'btn btn-default';
-      if (this.state.gender && this.state.gender === 'Male') {
+      if (this.state.gender) {
+        gender = this.state.gender;
+      }
+
+      if (gender === 'Male') {
         maleClass = `${maleClass} selected`;
-      } else if (this.state.gender && this.state.gender === 'Female') {
+      } else if (gender === 'Female') {
         femaleClass = `${femaleClass} selected`;
       }
 
@@ -127,7 +142,7 @@ var PrefsPage = React.createClass({
                        </div>
                    </div>
 
-                  <input className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
+                  <input type="submit" className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
                 </form>
               </div>
             </div>
