@@ -68,7 +68,6 @@ var RegisterPage = React.createClass({
     let ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
     let ivlePassed = <div>OK</div>;
     let isIvleLoggedIn = this.state.ivleAuthenticated;
-
     let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
     let isFormValidated = this.validateForm();
 
