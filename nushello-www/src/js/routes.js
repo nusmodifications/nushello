@@ -14,7 +14,7 @@ import NotImplementPage from 'views/not-implement-page.jsx';
 import LoginPage from 'views/login-page/login-page.jsx';
 import ChatPage from 'views/chat-page/chat-page.jsx';
 import MatchesPage from 'views/matches-page/matches-page.jsx';
-import PrefsPage from 'views/prefs-page/prefs-page.jsx';
+import InfoPage from 'views/info-page/info-page.jsx';
 import ProfilePage from 'views/profile-page/profile-page.jsx';
 import RegisterPage from 'views/register-page/register-page.jsx';
 import LogoutPage from 'views/logout-page/logout-page.jsx';
@@ -33,7 +33,7 @@ var routes = (
     <Route name="app" path="/app" handler={AppContainer}>
       <DefaultRoute handler={ChatPage}/>
       <Route name="chat" path="/chat" handler={ChatPage} />
-      <Route name="prefs" path="/prefs" handler={PrefsPage} />
+      <Route name="prefs" path="/prefs" handler={InfoPage} />
       <Route name="matches" path="/matches" handler={MatchesPage} />
       <Route name="profile" path="/profile" handler={ProfilePage} />
     </Route>

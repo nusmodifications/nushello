@@ -12,7 +12,7 @@ export default class SidebarControls extends React.Component {
     return (
       <ul className="nav list-unstyled nh-nav">
         <li>
-          Settings
+          Info
           <Link to="prefs">
             <img src={require('images/pref.png')}/>
           </Link>

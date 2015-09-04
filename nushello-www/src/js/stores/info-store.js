@@ -2,12 +2,12 @@
 
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
-import PreferenceAction from 'actions/preference-action';
+import InfoAction from 'actions/info-action';
 import PermissionStore from 'stores/permission-store';
 import FacultyPickerStore from 'stores/faculty-picker-store';
 
-var PreferenceStore = Reflux.createStore({
-  listenables: [PreferenceAction],
+var InfoStore = Reflux.createStore({
+  listenables: [InfoAction],
 
   init: function() {
     this.listenTo(PermissionStore, this.updatePermission);
@@ -57,5 +57,5 @@ var PreferenceStore = Reflux.createStore({
 
 });
 
-export default PreferenceStore;
+export default InfoStore;
 
