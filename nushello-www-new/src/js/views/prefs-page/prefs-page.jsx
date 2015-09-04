@@ -14,8 +14,7 @@ var PrefsPage = React.createClass({
 
   getInitialState: function() {
     return {
-      male: false,
-      female: false
+      gender: null
     };
   },
 
@@ -32,20 +31,41 @@ var PrefsPage = React.createClass({
 
   handleSubmit: function(e) {
     e.preventDefault();
-    console.log(this.state);
+    let preference = {
+      preference: {
+        'facultyId': this.state.selectedFacultyId,
+        'majorId': this.state.selectedMajorId
+      }
+    };
+
+    if (this.state.gender) {
+      preference.preference.gender = this.state.gender;
+    }
+    PreferenceAction.edit(preference);
   },
 
   toggleMale: function() {
-    console.log(this.state);
-    this.setState({
-      male: !this.state.male
-    });
+    if (this.state.gender === 'Male') {
+      this.setState({
+        gender: null
+      });
+    } else {
+      this.setState({
+        gender: 'Male'
+      });
+    }
   },
 
   toggleFemale: function() {
-    this.setState({
-      female: !this.state.female
-    });
+    if (this.state.gender === 'Female') {
+      this.setState({
+        gender: null
+      });
+    } else {
+      this.setState({
+        gender: 'Female'
+      });
+    }
   },
 
   render: function() {
@@ -64,10 +84,9 @@ var PrefsPage = React.createClass({
       }
       var maleClass = 'btn btn-default';
       var femaleClass = 'btn btn-default';
-      if (this.state && this.state.male) {
+      if (this.state.gender && this.state.gender === 'Male') {
         maleClass = `${maleClass} selected`;
-      }
-      if (this.state && this.state.female) {
+      } else if (this.state.gender && this.state.gender === 'Female') {
         femaleClass = `${femaleClass} selected`;
       }
 
