@@ -22,10 +22,15 @@ var FacultyPicker = React.createClass({
       faculties = this.state.faculties;
     }
 
+    let defaultFacultyId = this.props.facultyId;
+    if (!_.isEmpty(this.state.selectedFacultyId) && (this.state.selectedFacultyId !== -1)) {
+      defaultFacultyId = this.state.selectedFacultyId;
+    }
+
     return (
       <div className="form-group">
         <label htmlFor="faculty">faculty is:</label>
-        <select id="faculty" className="form-control" onChange={ this.handleFacultyChange }>
+        <select id="faculty" value={ defaultFacultyId } className="form-control" onChange={ this.handleFacultyChange }>
           { faculties.map(function(faculty) {
             return <option value={ faculty.id } key={ faculty.id }>{ faculty.name }</option>;
           })}

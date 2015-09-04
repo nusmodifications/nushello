@@ -77,11 +77,13 @@ var PrefsPage = React.createClass({
       );
     } else {
       let profile = this.state.profile;
-      let preference = null;
-
+      let facultyId = 1;
+      let majorId = 1;
       if (typeof profile !== 'undefined') {
-        preference = profile.preference;
+        facultyId = profile.preference.facultyId;
+        majorId = profile.preference.majorId;
       }
+
       var maleClass = 'btn btn-default';
       var femaleClass = 'btn btn-default';
       if (this.state.gender && this.state.gender === 'Male') {
@@ -101,8 +103,8 @@ var PrefsPage = React.createClass({
             <div className="row">
               <div className="col-sm-4 col-sm-offset-1">
                 <form>
-                  <FacultyPicker />
-                  <MajorPicker />
+                  <FacultyPicker facultyId={facultyId}/>
+                  <MajorPicker facultyId={facultyId} majorId={majorId}/>
 
                   <div className="form-group">
                       <label className="control-label">
@@ -125,7 +127,7 @@ var PrefsPage = React.createClass({
                        </div>
                    </div>
 
-                  <input className="btn btn-default" onClick={this.handleSubmit} value="Alright, let's go!" />
+                  <input className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
                 </form>
               </div>
             </div>

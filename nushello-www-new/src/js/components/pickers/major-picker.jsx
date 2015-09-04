@@ -10,8 +10,7 @@ var MajorPicker = React.createClass({
 
   getInitialState: function() {
     return {
-      selectedMajorId: 1,
-      majors: []
+      selectedMajorId: -1
     };
   },
 
@@ -24,12 +23,8 @@ var MajorPicker = React.createClass({
   componentDidUpdate: function(prevProps, prevState) {
     if (prevState.selectedFacultyId !== this.state.selectedFacultyId) {
       if (!_.isEmpty(this.state.faculties)) {
-        let majors = this.state.faculties[this.state.selectedFacultyId - 1].majors;
-        this.setState({
-          majors: majors
-        });
-
         let selectedId = 1;
+        let majors = this.state.faculties[this.state.selectedFacultyId - 1].majors;
         if (typeof majors[0] !== 'undefined') {
           selectedId = majors[0].id;
         }
@@ -45,11 +40,24 @@ var MajorPicker = React.createClass({
   },
 
   render: function() {
+    let defaultMajorId = this.props.majorId;
+    if (!_.isEmpty(this.state.selectedMajorId) && (this.state.selectedMajorId !== -1)) {
+      defaultMajorId = this.state.selectedMajorId;
+    }
+    let defaultFacultyId = this.props.facultyId;
+    if (!_.isEmpty(this.state.selectedFacultyId) && (this.state.selectedFacultyId !== -1)) {
+      defaultFacultyId = this.state.selectedFacultyId;
+    }
+    let majors = [];
+    if (!_.isEmpty(this.state.faculties)) {
+      majors = this.state.faculties[defaultFacultyId - 1].majors;
+    }
+
     return (
       <div className="form-group">
         <label htmlFor="major">major is:</label>
-        <select id="major" className="form-control" onChange={ this.handleMajorChange }>
-          { this.state.majors.map(function(major) {
+        <select id="major" value={ defaultMajorId } className="form-control" onChange={ this.handleMajorChange }>
+          { majors.map(function(major) {
             return <option value={ major.id } key={ major.id }>{ major.name }</option>;
           }) }
         </select>
