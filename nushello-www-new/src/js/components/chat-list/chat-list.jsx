@@ -2,23 +2,37 @@
 import React from 'react';
 
 import ChatItem  from './chat-item.jsx';
+import ChatAction from 'actions/chat-action';
+import ChatStore from 'stores/chat-store';
 
 export default class MatchList extends React.Component {
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      users: [
-        {id: 1, username: 'Xinan', photoUrl: 'https://graph.facebook.com/100000412271842/picture'},
-        {id: 2, username: 'Bili', photoUrl: 'https://graph.facebook.com/831169440/picture'}
-      ]
+      users: []
     };
+  }
+
+  componentWillMount() {
+    ChatAction.fetchConvo();
+  }
+
+  componentDidMount() {
+    this.unsubscribe = ChatStore.listen((res) => {
+      if (res.type === 'conversations') {
+        this.setState({
+          users: res.data
+        });
+      }
+    });
+
   }
 
   render() {
     var chatItems = this.state.users.map(function (item) {
       return (
-        <ChatItem key={item.id} name={item.username} photoUrl={item.photoUrl} />
+        <ChatItem key={item.id} id={item.id} name={item.friend.fakeName} />
       );
     });
     return (
