@@ -20,6 +20,7 @@ class Api::V1::MatchesController < ApplicationController
 
   def search
     preference = @user.preference
+    return generate_api_payload('matches', random) unless preference.present?
     faculty, major, gender = preference.get_filters
     @possibilities = User.includes(:first_major, :personality)
     @possibilities = @possibilities.where('majors.faculty_id = ?', faculty) unless faculty.nil?
