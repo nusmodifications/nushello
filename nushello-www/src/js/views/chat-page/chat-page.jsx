@@ -14,67 +14,40 @@ export default class ChatPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { convoId: '' };
+    this.state = {};
 
-    this.onFetchConvo.bind(this);
-    this.onNewConvo.bind(this);
-    this.onChatUpdate.bind(this);
+    this._updateConversations.bind(this);
+    this._updateMessages.bind(this);
+    this._setPermission.bind(this);
   }
 
   componentWillMount() {
+    ChatAction.init();
+    ChatAction.getAllConversations();
+  }
+
+  componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
-      if (res.type === 'permission') {
-        this.setState({
-          canGo: res.canGo
-        });
-        ChatAction.init();
-        ChatAction.firebaseAuth();
-        ChatAction.fetchConvo();
-      } else if (res.type === 'messages') {
-        this.onGetAllMessages(res.data);
-      } else if (res === 'message sent') {
-        ChatAction.firebaseGetAll(this.state.convoId);
-      } else if (res.type === 'update' || res === 'new chat') {
-        this.onChatUpdate(res.convoId);
-      } else if (!_.isEmpty(res)) {
-        this.onFetchConvo(res);
+      switch(res.action) {
+        case 'getAllConversations':
+        case 'createNewConversation':
+          this._updateConversations(res.data);
+          break;
+        case 'getAllMessages':
+        case 'listenToChatUpdates':
+          this._updateMessages(res.data);
+          break;
+        case 'updatePermission':
+          this._setPermission(res);
+          break;
+        default:
+          console.log('Invalid action declaration');
       }
     });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
-  }
-
-  onFetchConvo(res) {
-    if (!_.isEmpty(res.data)) {
-      this.setState({
-        convoId: res.data[0].id
-      });
-      ChatAction.firebaseGetAll(this.state.convoId);
-      ChatAction.firebaseListen(this.state.convoId);
-    }
-  }
-
-  onNewConvo(res) {
-    if (!_.isEmpty(res.data)) {
-      this.setState({
-        convoId: res.data[0].id
-      });
-      ChatAction.firebaseListen(this.state.convoId);
-    }
-  }
-
-  onGetAllMessages(data) {
-    this.setState({
-      messages: data
-    });
-  }
-
-  onChatUpdate(convoId) {
-    this.setState({
-      convoId: convoId
-    });
   }
 
   render() {
@@ -91,5 +64,19 @@ export default class ChatPage extends React.Component {
         </div>
       );
     }
+  }
+
+  _updateConversations(data) {
+    console.log('_updateConversations', data);
+  }
+
+  _updateMessages(data) {
+    console.log('_updateMessages', data);
+  }
+
+  _setPermission(data) {
+    this.setState({
+      canGo: data.canGo
+    });
   }
 }

@@ -13,7 +13,7 @@ class FirebaseAPI extends BaseAPI {
     super();
   }
 
-  firebaseAuth() {
+  auth() {
     let authToken = cookie.load('firebaseAuthToken');
     let token = '';
     firebase.authWithCustomToken(authToken, (err, authData) => {
@@ -26,7 +26,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseListen(convoId) {
+  listen(convoId) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
@@ -36,7 +36,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseGetAll(convoId) {
+  getAllMessages(convoId) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
@@ -45,7 +45,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseSendMessage(convoId, content) {
+  sendMessage(convoId, content) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
@@ -56,7 +56,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseSetRead(convoId, messageId) {
+  setRead(convoId, messageId) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     firebaseChild.child(messageId).update({
       read: true
