@@ -36,7 +36,7 @@ export default class MatchList extends React.Component {
   }
 
   handleClick(userId) {
-    ChatAction.changeChat(userId);
+    ChatAction.updateChat(userId);
     ChatAction.firebaseGetAll(userId);
   }
 

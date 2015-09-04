@@ -30,23 +30,10 @@ class FirebaseAPI extends BaseAPI {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
-    firebaseChild.on('child_added', (snapshot) => {
-      if (snapshot.val().user_id === userId) {
-        return {
-          owner: 'self',
-          content: snapshot.val().content
-        };
-      } else {
-        return {
-          owner: 'opp',
-          content: snapshot.val().content
-        };
-      }
-    }, (err) => {
-      console.log(err);
+    return new Promise((fulfill, reject) => {
+      firebaseChild.on('child_added', fulfill, reject);
+      console.log('Firebase server listening...');
     });
-
-    console.log('Firebase server listening...');
   }
 
   firebaseGetAll(convoId) {

@@ -34,7 +34,7 @@ export default class ChatPage extends React.Component {
         this.onGetAllMessages(res.data);
       } else if (res === 'message sent') {
         ChatAction.firebaseGetAll(this.state.convoId);
-      } else if (res.type === 'update') {
+      } else if (res.type === 'update' || res === 'new chat') {
         this.onChatUpdate(res.convoId);
       } else if (!_.isEmpty(res)) {
         this.onFetchConvo(res);

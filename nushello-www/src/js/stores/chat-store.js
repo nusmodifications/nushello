@@ -22,6 +22,14 @@ let ChatStore = Reflux.createStore({
     console.log(msg);
   },
 
+  onListenCompleted: function(snapshot) {
+    this.trigger('new chat');
+  },
+
+  onListenFailed: function(msg) {
+    console.log(msg);
+  },
+
   onFetchConvoCompleted: function(res) {
     this.trigger(res);
   },
