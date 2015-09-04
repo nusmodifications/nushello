@@ -36,6 +36,7 @@ var PreferenceStore = Reflux.createStore({
   },
 
   updatePermission: function(res) {
+    console.log('a');
     if (res.canGo) {
       this.trigger({
         canGo: res.canGo

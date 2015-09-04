@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-
+import Reflux from 'reflux';
 import PrefsForm from 'components/preferences/prefs-form.jsx';
 import PreferenceAction from '../../actions/preference-action';
 import PreferenceStore from '../../stores/preference-store';
@@ -8,14 +8,17 @@ import Permission from 'components/permission/permission.jsx';
 
 let UserPermission = require('constants/user-permission.js');
 
-export default class PrefsPage extends React.Component {
+var PrefsPage = React.createClass({
+  mixins: [Reflux.connect(PreferenceStore)],
 
-  constructor(props, context) {
-    super(props, context);
-  }
+  componentDidUpdate: function() {
+    if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
+      PreferenceAction.init();
+    }
+  },
 
-  render() {
-    if ((typeof this.state.canGo === 'undefined') && (!this.state.canGo)) {
+  render: function() {
+    if ((typeof this.state.canGo === 'undefined') || (!this.state.canGo)) {
       return (
         <div>
           <Permission permission={UserPermission.EXISTING_USER_ONLY} />
@@ -38,4 +41,6 @@ export default class PrefsPage extends React.Component {
       );
     }
   }
-}
+});
+
+module.exports = PrefsPage;

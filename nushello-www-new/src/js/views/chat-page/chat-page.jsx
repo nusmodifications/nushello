@@ -67,7 +67,7 @@ export default class ChatPage extends React.Component {
   }
 
   render() {
-    if ((typeof this.state.canGo === 'undefined') && (!this.state.canGo)) {
+    if ((typeof this.state.canGo === 'undefined') || (!this.state.canGo)) {
       return (
         <div>
           <Permission permission={UserPermission.EXISTING_USER_ONLY} />
