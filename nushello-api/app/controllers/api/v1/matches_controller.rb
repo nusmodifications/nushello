@@ -12,8 +12,8 @@ class Api::V1::MatchesController < ApplicationController
     generate_api_payload('friendProfile', result)
   end
 
-  def random(pool)
-    pool = User.where.not(id: @user) if pool.empty?
+  def random(pool = nil)
+    pool = User.where.not(id: @user) if pool.blank?
     result = pool.limit(8)
     users = ActiveModel::ArraySerializer.new(result, each_serializer: MatchSerializer)
   end
