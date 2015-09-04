@@ -14,10 +14,10 @@ export default class ChatItem extends React.Component {
     return (
         <Link to="chat">
           <div className="row">
-            <div className="col-sm-5">
+            <div className="col-sm-4 picture">
               <Avatar id={this.props.userId} letter={this.props.name[0].toUpperCase()} />
             </div>
-            <div className="col-sm-7 name">
+            <div className="col-sm-8 name">
               <p>{this.props.name}</p>
             </div>
           </div>
