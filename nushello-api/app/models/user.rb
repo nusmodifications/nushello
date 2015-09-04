@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   validates :bio, length: { maximum: 140 }
 
   before_save :generate_access_token, if: :facebook_token_changed?
+  before_create :build_preference
 
   def conversations
     active_conversations | passive_conversations
