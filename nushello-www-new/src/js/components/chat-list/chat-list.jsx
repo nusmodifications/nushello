@@ -44,9 +44,9 @@ export default class MatchList extends React.Component {
     let self = this;
     let chatItems = _.map(this.state.users, (item) => {
       return (
-        <span onClick={self.handleClick.bind(this, item.id)}>
+        <li className="chat-item" onClick={self.handleClick.bind(this, item.id)}>
           <ChatItem key={item.id} id={item.id} name={item.friend.fakeName} />
-        </span>
+        </li>
       );
     });
     return (
