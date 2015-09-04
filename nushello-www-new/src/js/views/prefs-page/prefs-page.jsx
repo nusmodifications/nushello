@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import Reflux from 'reflux';
+import jquery from 'jquery';
 import PrefsForm from 'components/preferences/prefs-form.jsx';
 import PreferenceAction from '../../actions/preference-action';
 import PreferenceStore from '../../stores/preference-store';
@@ -9,6 +10,9 @@ import Permission from 'components/permission/permission.jsx';
 let UserPermission = require('constants/user-permission.js');
 var PrefsPage = React.createClass({
   mixins: [Reflux.connect(PreferenceStore)],
+
+  componentDidMount: function() {
+  },
 
   componentDidUpdate: function(prevProps, prevState) {
     if ((typeof prevState.canGo === 'undefined') || (!prevState.canGo)) {

@@ -86,7 +86,7 @@ var RegisterPage = React.createClass({
       </div>
     );
 
-    let permission = <Permission permission={UserPermission.NEW_USER_ONLY} />;
+    let permission = <Permission permission={UserPermission.ALL} />;
     let canGo = this.state.canGo;
 
     return (
