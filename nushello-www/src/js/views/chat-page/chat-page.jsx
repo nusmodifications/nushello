@@ -16,8 +16,9 @@ export default class ChatPage extends React.Component {
     super(props, context);
     this.state = { convoId: '' };
 
-    this.onFetchConvoChange.bind(this);
-    this.onNewConvoChange.bind(this);
+    this.onFetchConvo.bind(this);
+    this.onNewConvo.bind(this);
+    this.onChatUpdate.bind(this);
   }
 
   componentWillMount() {
@@ -33,10 +34,10 @@ export default class ChatPage extends React.Component {
         this.onGetAllMessages(res.data);
       } else if (res === 'message sent') {
         ChatAction.firebaseGetAll(this.state.convoId);
-      } else if (res.type === 'change') {
-        this.onChatChange(res.convoId);
+      } else if (res.type === 'update' || res === 'new chat') {
+        this.onChatUpdate(res.convoId);
       } else if (!_.isEmpty(res)) {
-        this.onFetchConvoChange(res);
+        this.onFetchConvo(res);
       }
     });
   }
@@ -45,7 +46,7 @@ export default class ChatPage extends React.Component {
     this.unsubscribe();
   }
 
-  onFetchConvoChange(res) {
+  onFetchConvo(res) {
     if (!_.isEmpty(res.data)) {
       this.setState({
         convoId: res.data[0].id
@@ -55,7 +56,7 @@ export default class ChatPage extends React.Component {
     }
   }
 
-  onNewConvoChange(res) {
+  onNewConvo(res) {
     if (!_.isEmpty(res.data)) {
       this.setState({
         convoId: res.data[0].id
@@ -70,7 +71,7 @@ export default class ChatPage extends React.Component {
     });
   }
 
-  onChatChange(convoId) {
+  onChatUpdate(convoId) {
     this.setState({
       convoId: convoId
     });

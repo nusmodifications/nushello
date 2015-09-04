@@ -22,6 +22,14 @@ let ChatStore = Reflux.createStore({
     console.log(msg);
   },
 
+  onListenCompleted: function(snapshot) {
+    this.trigger('new chat');
+  },
+
+  onListenFailed: function(msg) {
+    console.log(msg);
+  },
+
   onFetchConvoCompleted: function(res) {
     this.trigger(res);
   },
@@ -34,9 +42,9 @@ let ChatStore = Reflux.createStore({
     this.trigger(res);
   },
 
-  onChangeChat: function(convoId) {
+  onUpdateChat: function(convoId) {
     this.trigger({
-      type: 'change',
+      type: 'update',
       convoId: convoId
     });
   },
