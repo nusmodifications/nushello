@@ -3,8 +3,6 @@ import _ from 'lodash';
 import React from 'react';
 
 import Message from './message.jsx';
-import ChatAction from 'actions/chat-action';
-import ChatStore from 'stores/chat-store';
 
 export default class Messages extends React.Component {
 
@@ -14,19 +12,20 @@ export default class Messages extends React.Component {
   }
 
   componentDidMount() {
+  }
+
+  shouldComponentUpdate() {
     // Scrolls new message to the bottom
     let node = React.findDOMNode(this);
     setTimeout(() => {
       node.scrollTop = node.scrollHeight;
     }, 0);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({ messages: nextProps.messages });
+    return true;
   }
 
   render() {
-    let messageItems = _.map(this.state.messages, (message) => {
+    console.log(this.state);
+    let messageItems = _.map(this.props.messages, (message) => {
       return <Message body={message.content}/>;
     });
 

@@ -8,6 +8,7 @@ var ChatAction = Reflux.createActions({
 	'init': {asyncResult: true},
 	'fetchConvo': {asyncResult: true},
 	'newConvo': {asyncResult: true},
+	'refreshMessages': {asyncResult: false},
 	'firebaseAuth': {asyncResult: false},
 	'firebaseListen': {asyncResult: false},
 	'firebaseGetAll': {asyncResult: true},
@@ -27,14 +28,9 @@ ChatAction.newConvo.listenAndPromise(function(userId) {
   return ChatAPI.newConvo(userId);
 });
 
-ChatAction.firebaseAuth = FirebaseAPI.firebaseAuth;
-
 // Listens for new messages
-ChatAction.firebaseListen = FirebaseAPI.firebaseListen;
-
 ChatAction.firebaseGetAll.listenAndPromise(FirebaseAPI.firebaseGetAll);
 
-ChatAction.firebaseSendMessage = FirebaseAPI.firebaseSendMessage;
 
 export default ChatAction;
 

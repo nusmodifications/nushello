@@ -1,4 +1,5 @@
 'use strict';
+import _ from 'lodash';
 import React from 'react';
 import cookie from 'react-cookie';
 
@@ -19,20 +20,20 @@ export default class ChatPage extends React.Component {
     this.onNewConvoChange.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.unsubscribe = ChatStore.listen((res) => {
       if (res.type === 'permission') {
-          this.setState({
+        this.setState({
           canGo: res.canGo
         });
-
         ChatAction.init();
         ChatAction.firebaseAuth();
         ChatAction.fetchConvo();
-
       } else if (res.type === 'messages') {
         this.onGetAllMessages(res.data);
-      } else {
+      } else if (res === 'message sent') {
+        ChatAction.firebaseGetAll(this.state.convoId);
+      } else if (!_.isEmpty(res)) {
         this.onFetchConvoChange(res);
       }
     });
@@ -43,11 +44,13 @@ export default class ChatPage extends React.Component {
   }
 
   onFetchConvoChange(res) {
-    this.setState({
-      convoId: res.data[0].id
-    });
-    ChatAction.firebaseGetAll(this.state.convoId);
-    ChatAction.firebaseListen(this.state.convoId);
+    if (!_.isEmpty(res.data)) {
+      this.setState({
+        convoId: res.data[0].id
+      });
+      ChatAction.firebaseGetAll(this.state.convoId);
+      ChatAction.firebaseListen(this.state.convoId);
+    }
   }
 
   onNewConvoChange(res) {
