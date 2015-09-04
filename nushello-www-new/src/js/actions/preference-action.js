@@ -8,11 +8,11 @@ var PreferenceAction = Reflux.createActions({
   'edit': {asyncResult: true}
 });
 
-PreferenceAction.init.listen(function() {
+PreferenceAction.init.listenAndPromise(function() {
   return ProfileAPI.init();
 });
 
-PreferenceAction.edit.listen(function(data) {
+PreferenceAction.edit.listenAndPromise(function(data) {
   return ProfileAPI.editAll(data);
 });
 

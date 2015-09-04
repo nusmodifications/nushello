@@ -1,19 +1,24 @@
 'use strict';
 import React from 'react';
 import Reflux from 'reflux';
+import jquery from 'jquery';
 import PrefsForm from 'components/preferences/prefs-form.jsx';
 import PreferenceAction from '../../actions/preference-action';
 import PreferenceStore from '../../stores/preference-store';
 import Permission from 'components/permission/permission.jsx';
 
 let UserPermission = require('constants/user-permission.js');
-
 var PrefsPage = React.createClass({
   mixins: [Reflux.connect(PreferenceStore)],
 
-  componentDidUpdate: function() {
-    if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
-      PreferenceAction.init();
+  componentDidMount: function() {
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if ((typeof prevState.canGo === 'undefined') || (!prevState.canGo)) {
+      if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
+        PreferenceAction.init();
+      }
     }
   },
 
@@ -25,6 +30,11 @@ var PrefsPage = React.createClass({
         </div>
       );
     } else {
+      let profile = this.state.profile;
+      let preference = null;
+      if (typeof profile !== 'undefined') {
+        preference = profile.preference;
+      }
       return (
         <div>
           <div className="container prefs">
@@ -34,7 +44,7 @@ var PrefsPage = React.createClass({
               </div>
             </div>
             <div className="row">
-              <PrefsForm hah="aa"/>
+              <PrefsForm preference={preference}/>
             </div>
           </div>
         </div>

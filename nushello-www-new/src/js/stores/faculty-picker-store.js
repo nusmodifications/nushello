@@ -5,7 +5,6 @@ import Reflux from 'reflux';
 import FacultyPickersAction from 'actions/faculty-picker-action';
 
 let faculties = null;
-let selectedFacultyId = 1;
 
 var FacultyPickerStore = Reflux.createStore({
   listenables: FacultyPickersAction,
@@ -20,6 +19,12 @@ var FacultyPickerStore = Reflux.createStore({
     });
   },
 
+  onSelectMajor: function(response) {
+    this.trigger({
+      selectedMajorId: response
+    });
+  },
+
   onFetchFacultiesCompleted: function(response) {
     if (response.type === 'faculties') {
       faculties = response.data;
@@ -27,7 +32,8 @@ var FacultyPickerStore = Reflux.createStore({
 
     this.trigger({
       faculties: faculties,
-      selectedFacultyId: selectedFacultyId
+      selectedFacultyId: 1,
+      selectedMajorId: 1
     });
   },
 
@@ -35,7 +41,8 @@ var FacultyPickerStore = Reflux.createStore({
     faculties = null;
     this.trigger({
       faculties: faculties,
-      selectedFacultyId: -1
+      selectedFacultyId: -1,
+      selectedMajorId: -1
     });
   }
 
