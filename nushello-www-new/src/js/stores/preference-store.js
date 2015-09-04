@@ -4,12 +4,14 @@ import Reflux from 'reflux';
 import cookie from 'react-cookie';
 import PreferenceAction from 'actions/preference-action';
 import PermissionStore from 'stores/permission-store';
+import FacultyPickerStore from 'stores/faculty-picker-store';
 
 var PreferenceStore = Reflux.createStore({
   listenables: [PreferenceAction],
 
   init: function() {
     this.listenTo(PermissionStore, this.updatePermission);
+    this.listenTo(FacultyPickerStore, this.updateSelectedFaculty);
   },
 
   onInit: function(res) {
@@ -45,6 +47,10 @@ var PreferenceStore = Reflux.createStore({
         canGo: res.canGo
       });
     }
+  },
+
+  updateSelectedFaculty: function(res) {
+    console.log(res);
   }
 
 });
