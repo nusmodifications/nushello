@@ -16,7 +16,11 @@ var PreferenceStore = Reflux.createStore({
   },
 
   onInitCompleted: function(res) {
-    this.trigger(res);
+    if (res.type === 'userProfile') {
+      this.trigger({
+        profile: res.data
+      });
+    }
   },
 
   onInitFailed: function(msg) {
@@ -36,7 +40,6 @@ var PreferenceStore = Reflux.createStore({
   },
 
   updatePermission: function(res) {
-    console.log('a');
     if (res.canGo) {
       this.trigger({
         canGo: res.canGo
