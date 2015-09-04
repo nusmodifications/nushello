@@ -45,7 +45,6 @@ var AuthStore = Reflux.createStore({
       type,
       accessToken
     };
-    console.log(currentUser);
     this.trigger({
       currentUser: currentUser
     });

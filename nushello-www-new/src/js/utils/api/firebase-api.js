@@ -32,13 +32,11 @@ class FirebaseAPI extends BaseAPI {
 
     firebaseChild.on('child_added', (snapshot) => {
       if (snapshot.val().user_id === userId) {
-        console.log('I said: ', snapshot.val().content);
         return {
           owner: 'self',
           content: snapshot.val().content
         };
       } else {
-        console.log('He said: ', snapshot.val().content);
         return {
           owner: 'opp',
           content: snapshot.val().content

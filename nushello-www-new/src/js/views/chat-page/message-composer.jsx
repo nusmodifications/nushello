@@ -46,7 +46,6 @@ export default class MessageComposer extends React.Component {
       e.preventDefault();
       var text = this.state.text.trim();
       if (text) {
-        console.log('Found entered text' + text);
         ChatAction.firebaseSendMessage(this.props.convoId, text);
       }
       this.setState({text: ''});

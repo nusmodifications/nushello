@@ -24,7 +24,6 @@ export default class Messages extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     let messageItems = _.map(this.props.messages, (message) => {
       return <Message body={message.content}/>;
     });
