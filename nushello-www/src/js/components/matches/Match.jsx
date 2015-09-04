@@ -14,7 +14,9 @@ var Match = React.createClass({
         <div className="card match-card">
 
           <div className="title">
-            <div className="match-profile-pic"><Avatar letter={initial} shouldCenter /></div>
+            <div className="match-profile-pic">
+              <Avatar id={this.props.userId} letter={initial} shouldCenter />
+            </div>
           </div>
 
           <div className="content">
