@@ -50,7 +50,7 @@ var PreferenceStore = Reflux.createStore({
   },
 
   updateSelectedFaculty: function(res) {
-    console.log(res);
+    this.trigger(res);
   }
 
 });

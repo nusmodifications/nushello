@@ -11,7 +11,6 @@ var PrefsPage = React.createClass({
   mixins: [Reflux.connect(PreferenceStore)],
 
   componentDidUpdate: function(prevProps, prevState) {
-    console.log(this.state);
     if ((typeof prevState.canGo === 'undefined') || (!prevState.canGo)) {
       if ((typeof this.state.canGo !== 'undefined') && (this.state.canGo)) {
         PreferenceAction.init();
