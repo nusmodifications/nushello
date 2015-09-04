@@ -181,7 +181,7 @@ var PrefsPage = React.createClass({
           <div className="container prefs">
             <div className="row">
               <div className="col-sm-7 col-sm-offset-1">
-                <h1>I'm looking for a friend whose...</h1>
+                <h1>I&#39;m looking for a friend whose...</h1>
               </div>
             </div>
             <div className="row">

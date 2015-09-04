@@ -12,7 +12,6 @@ export default class ChatItem extends React.Component {
   render() {
     var userProfilePage = '/';
     return (
-      <li className="chat-item">
         <Link to="chat">
           <div className="row">
             <div className="col-sm-5">
@@ -23,7 +22,6 @@ export default class ChatItem extends React.Component {
             </div>
           </div>
         </Link>
-      </li>
     );
   }
 }

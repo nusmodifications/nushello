@@ -8,6 +8,7 @@ var ChatAction = Reflux.createActions({
 	'init': {asyncResult: true},
 	'fetchConvo': {asyncResult: true},
 	'newConvo': {asyncResult: true},
+	'changeChat': {asyncResult: true},
 	'refreshMessages': {asyncResult: false},
 	'firebaseAuth': {asyncResult: false},
 	'firebaseListen': {asyncResult: false},

@@ -56,7 +56,7 @@ export default class ProfilePage extends React.Component {
             <div className="row">
               <div className="col-md-offset-4 col-md-4 text-center">
                 <ProfilePic picUrl={ user.profilePictureUrl } />
-                <h2>{ user.name }</h2>
+                <h2>{ user.fakeName }</h2>
                 <ProfileEdit />
                 <div className="prefs-link">
                   <Link to="prefs">
