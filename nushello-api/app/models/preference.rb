@@ -30,6 +30,6 @@ class Preference < ActiveRecord::Base
   end
 
   def get_desired_personality
-    [party, sports, mugger, introvert]
+    { party: party, sports: sports, mugger: mugger, introvert: introvert }
   end
 end
