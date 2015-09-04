@@ -29,7 +29,7 @@ var InfoPage = React.createClass({
       this.transitionTo('/matches');
     }
 
-    if (!this.state.gender && this.state.profile) {
+    if (!this.state.gender && this.state.profile && this.state.profile.preference) {
       let gender = 'Both';
       if (this.state.profile.preference.gender) {
         gender = this.state.profile.preference.gender;
@@ -41,29 +41,36 @@ var InfoPage = React.createClass({
 
     if (!this.state.personalities && this.state.profile) {
       let personalities = {};
-      let preference = this.state.profile.preference;
-      if (preference.party) {
-        personalities.party = true;
-      } else {
+      if (!this.state.profile.preference) {
         personalities.party = false;
-      }
-
-      if (preference.sports) {
-        personalities.sports = true;
-      } else {
         personalities.sports = false;
-      }
-
-      if (preference.mugger) {
-        personalities.mugger = true;
-      } else {
         personalities.mugger = false;
-      }
-
-      if (preference.introvert) {
-        personalities.introvert = true;
-      } else {
         personalities.introvert = false;
+      } else {
+        let preference = this.state.profile.preference;
+        if (preference.party) {
+          personalities.party = true;
+        } else {
+          personalities.party = false;
+        }
+
+        if (preference.sports) {
+          personalities.sports = true;
+        } else {
+          personalities.sports = false;
+        }
+
+        if (preference.mugger) {
+          personalities.mugger = true;
+        } else {
+          personalities.mugger = false;
+        }
+
+        if (preference.introvert) {
+          personalities.introvert = true;
+        } else {
+          personalities.introvert = false;
+        }
       }
 
       this.setState({
@@ -131,7 +138,7 @@ var InfoPage = React.createClass({
       let gender = null;
       let personalities = null;
 
-      if (typeof profile !== 'undefined') {
+      if ((typeof profile !== 'undefined') && (profile.preference)) {
         let preference = profile.preference;
         facultyId = preference.facultyId;
         majorId = preference.majorId;
