@@ -34,9 +34,9 @@ let ChatStore = Reflux.createStore({
     this.trigger(res);
   },
 
-  onChangeChat: function(convoId) {
+  onUpdateChat: function(convoId) {
     this.trigger({
-      type: 'change',
+      type: 'update',
       convoId: convoId
     });
   },
