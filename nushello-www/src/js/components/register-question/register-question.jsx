@@ -27,6 +27,17 @@ var RegisterQuestion = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
+    if (typeof this.state.active === 'undefined') {
+      if (this.props.answer === true) {
+        this.setState({
+          active: true
+        });
+      } else if (this.props.answer === false) {
+        this.setState({
+          active: false
+        });
+      }
+    }
   },
 
   componentWillUnmount: function() {

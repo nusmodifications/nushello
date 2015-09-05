@@ -54,7 +54,6 @@ var InfoPage = React.createClass({
       } else {
         infoClass = `${infoClass} selected`;
       }
-
       let prefForm = <PreferenceForm profile={ this.state.profile } />;
       let infoForm = <PersonalInfoForm profile={ this.state.profile } />;
 

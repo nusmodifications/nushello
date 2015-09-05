@@ -40,6 +40,22 @@ var RegisterQuestions = React.createClass({
   },
 
   render: function() {
+    let partyClass = 'btn btn-default personality-btn';
+    let sportsClass = 'btn btn-default personality-btn';
+    let muggerClass = 'btn btn-default personality-btn';
+    let introvertClass = 'btn btn-default personality-btn';
+
+    let personalities = {
+      party: null,
+      sports: null,
+      mugger: null,
+      introvert: null
+    };
+
+    if (this.props.personalities) {
+      personalities = this.props.personalities;
+    }
+
     return (
       <div className='register-question'>
         <RegisterQuestion
@@ -48,11 +64,13 @@ var RegisterQuestions = React.createClass({
           text="It's a Friday night, would you stay home or head out for a drink?"
           yesText="Party"
           noText="Stay home"
+          answer={ personalities.party }
         />
         <RegisterQuestion
           handler={ this.handleQuestion }
           questionId={ 1 }
           text="Do you play any sports?"
+          answer={ personalities.sports }
         />
         <RegisterQuestion
           handler={ this.handleQuestion }
@@ -60,6 +78,7 @@ var RegisterQuestions = React.createClass({
           text="It’s the finals period and your friend’s birthday party is here, what would you do?"
           yesText="Party"
           noText="Stay of course"
+          answer={ personalities.mugger }
         />
         <RegisterQuestion
           handler={ this.handleQuestion }
@@ -67,6 +86,7 @@ var RegisterQuestions = React.createClass({
           text="Do you find that you are more of an introvert or more of an extrovert?"
           yesText="Introvert"
           noText="Extrovert"
+          answer={ personalities.introvert }
         />
       </div>
     );
