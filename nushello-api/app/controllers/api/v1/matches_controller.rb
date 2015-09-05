@@ -22,7 +22,7 @@ class Api::V1::MatchesController < ApplicationController
     preference = @user.preference
     return generate_api_payload('matches', random) unless preference.present?
     faculty, major, gender = preference.get_filters
-    @possibilities = User.includes(:first_major, :personality)
+    @possibilities = User.joins(:first_major, :personality)
     @possibilities = @possibilities.where('majors.faculty_id = ?', faculty) unless faculty.nil?
     @possibilities = @possibilities.where(gender: gender) unless gender.nil?
     @possibilities = @possibilities.where(first_major: major) unless major.nil?
