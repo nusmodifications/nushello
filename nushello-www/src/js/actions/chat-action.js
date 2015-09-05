@@ -8,15 +8,30 @@ var ChatAction = Reflux.createActions({
 	'init': {asyncResult: true},
 	'getAllConversations': {asyncResult: true},
 	'createNewConversation': {asyncResult: true},
+	'authenticateFirebase': {asyncResult: true},
 	'getAllMessages': {asyncResult: true},
-	'listenToChatUpdates': {asyncResult: true}
+	'sendMessage': {asyncResult: false}
 });
 
-ChatAction.init.listenAndPromise(ChatAPI.init);
-ChatAction.getAllConversations.listenAndPromise(ChatAPI.getAllConversations);
-ChatAction.createNewConversation.listenAndPromise(ChatAPI.createNewConversation);
-ChatAction.getAllMessages.listenAndPromise(FirebaseAPI.getAllMessages);
-ChatAction.listenToChatUpdates.listenAndPromise(FirebaseAPI.listen);
+ChatAction.init.listenAndPromise(() => {
+  return ChatAPI.init();
+});
+
+ChatAction.getAllConversations.listenAndPromise(() => {
+  return ChatAPI.getAllConversations();
+});
+
+ChatAction.createNewConversation.listenAndPromise((friendId) => {
+  return ChatAPI.createNewConversation(friendId);
+});
+
+ChatAction.authenticateFirebase.listenAndPromise(() => {
+  return FirebaseAPI.auth();
+});
+
+ChatAction.getAllMessages.listenAndPromise((convoId) => {
+  return FirebaseAPI.getAllMessages(convoId);
+});
 
 export default ChatAction;
 

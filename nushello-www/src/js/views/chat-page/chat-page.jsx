@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import React from 'react';
 import cookie from 'react-cookie';
+import Firebase from 'firebase';
 
 import Chatbox from './chat-box.jsx';
 import ChatStore from 'stores/chat-store';
@@ -15,33 +16,37 @@ export default class ChatPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {};
-
-    this._updateConversations.bind(this);
-    this._updateMessages.bind(this);
-    this._setPermission.bind(this);
   }
 
   componentWillMount() {
     ChatAction.init();
-    ChatAction.getAllConversations();
+
+    // Set firebase listener here because it's causing too many problems
+
   }
 
   componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
+      let convoId = -1;
+
       switch(res.action) {
+        case 'init':
+          this._initComplete();
+          break;
         case 'getAllConversations':
-        case 'createNewConversation':
-          this._updateConversations(res.data);
+          this._setConversationId(res.data);
+          break;
+        case 'authenticateFirebase':
+          ChatAction.getAllConversations();
           break;
         case 'getAllMessages':
-        case 'listenToChatUpdates':
-          this._updateMessages(res.data);
+          this._updateMessages(res.data.val());
           break;
         case 'updatePermission':
           this._setPermission(res);
           break;
         default:
-          console.log('Invalid action declaration');
+          console.log('Invalid action declaration - ', res.action);
       }
     });
   }
@@ -66,12 +71,34 @@ export default class ChatPage extends React.Component {
     }
   }
 
-  _updateConversations(data) {
-    console.log('_updateConversations', data);
+  _initComplete() {
+    ChatAction.authenticateFirebase();
+  }
+
+  _setConversationId(res) {
+    let convoId = res.data[0].id;
+    this.setState({
+      convoId: convoId
+    });
+    ChatAction.getAllMessages(this.state.convoId);
   }
 
   _updateMessages(data) {
-    console.log('_updateMessages', data);
+    this.setState({
+      messages: data
+    });
+
+    // Firebase listener
+    let firebase = new Firebase('https://nushello.firebaseio.com/conversations');
+    let firebaseChild = firebase.child(this.state.convoId + '/messages');
+    let userId = cookie.load('current_user').id.toString();
+
+    firebaseChild.on('value', (res) => {
+      this.setState({
+        messages: res.val()
+      });
+    });
+    console.log('Firebase server listening...');
   }
 
   _setPermission(data) {

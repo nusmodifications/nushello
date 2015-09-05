@@ -15,24 +15,9 @@ class FirebaseAPI extends BaseAPI {
 
   auth() {
     let authToken = cookie.load('firebaseAuthToken');
-    let token = '';
-    firebase.authWithCustomToken(authToken, (err, authData) => {
-      if (err) {
-        console.log('Firebase auth failed. Please contact developer.');
-      } else {
-        token = authData.token;
-        cookie.save('firebaseToken', token);
-      }
-    });
-  }
-
-  listen(convoId) {
-    let firebaseChild = firebase.child(`${convoId}/messages`);
-    let userId = cookie.load('current_user').id.toString();
 
     return new Promise((fulfill, reject) => {
-      firebaseChild.on('child_added', fulfill, reject);
-      console.log('Firebase server listening...');
+      firebase.authWithCustomToken(authToken, fulfill);
     });
   }
 

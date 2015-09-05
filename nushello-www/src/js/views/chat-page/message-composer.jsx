@@ -10,24 +10,15 @@ export default class MessageComposer extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = { text: '' };
-    this.onMessageSent.bind(this);
   }
 
   componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
-      if (res === 'message sent') {
-        this.onMessageSent();
-      }
     });
-
   }
 
   componentWillUnmount() {
     this.unsubscribe();
-  }
-
-  onMessageSent() {
-    ChatAction.refreshMessages();
   }
 
   render() {
@@ -46,7 +37,7 @@ export default class MessageComposer extends React.Component {
       e.preventDefault();
       var text = this.state.text.trim();
       if (text) {
-        ChatAction.firebaseSendMessage(this.props.convoId, text);
+        ChatAction.sendMessage(this.props.convoId, text);
       }
       this.setState({text: ''});
     }
