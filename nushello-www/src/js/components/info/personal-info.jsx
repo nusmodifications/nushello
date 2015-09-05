@@ -5,7 +5,6 @@ import Route from 'react-router';
 import PersonalInfoAction from 'actions/personal-info-action';
 import PersonalInfoStore from 'stores/personal-info-store';
 import ResidencePicker from 'components/pickers/residence-picker.jsx';
-import RegisterQuestion from 'components/register-question/register-question.jsx';
 import RegisterQuestions from 'components/register-question/register-questions.jsx';
 
 var PersonalInfoForm = React.createClass({
@@ -29,10 +28,32 @@ var PersonalInfoForm = React.createClass({
   },
 
   handleSubmit: function(e) {
+    let data = {};
+    if (this.state.selectedResidence) {
+      data.residenceId = this.state.selectedResidence;
+    }
+
+    if (this.state.answers) {
+      let answers = this.state.answers;
+      data.personality = {};
+      if (typeof answers[0] !== 'undefined') {
+        data.personality.party = answers[0];
+      }
+      if (typeof answers[1] !== 'undefined') {
+        data.personality.sports = answers[1];
+      }
+      if (typeof answers[2] !== 'undefined') {
+        data.personality.mugger = answers[2];
+      }
+      if (typeof answers[3] !== 'undefined') {
+        data.personality.introvert = answers[3];
+      }
+    }
+
+    PersonalInfoAction.edit(data);
   },
 
   render: function() {
-    console.log(this.state);
     let profile = this.state.profile;
     let residenceId = -1;
     let personalities = this.state.personalities;

@@ -3,13 +3,15 @@
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
 import PersonalInfoAction from 'actions/preference-action';
-import FacultyPickerStore from 'stores/faculty-picker-store';
+import ResidencePickerStore from 'stores/residence-picker-store';
+import RegisterQuestionsStore from 'stores/register-questions-store';
 
 var PersonalInfoStore = Reflux.createStore({
   listenables: [PersonalInfoAction],
 
   init: function() {
-    this.listenTo(FacultyPickerStore, this.updateSelectedFaculty);
+    this.listenTo(ResidencePickerStore, this.updateSelectedResidence);
+    this.listenTo(RegisterQuestionsStore, this.updateRegisterQuestions);
   },
 
   onEdit: function(res) {
@@ -26,7 +28,11 @@ var PersonalInfoStore = Reflux.createStore({
     this.trigger(res);
   },
 
-  updateSelectedFaculty: function(res) {
+  updateSelectedResidence: function(res) {
+    this.trigger(res);
+  },
+
+  updateRegisterQuestions: function(res) {
     this.trigger(res);
   }
 
