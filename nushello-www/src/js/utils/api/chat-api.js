@@ -14,6 +14,7 @@ class ChatAPI extends BaseAPI {
     let facebookId = cookie.load('current_user').userID;
     let request = this.get(APIEndPoints.CHAT_API_TOKEN(facebookId));
     request.then((res)=> {
+      cookie.save('firebaseAuthToken', res.data.firebaseToken);
     })
     .catch((error)=> {
       if (error.status === 401) {

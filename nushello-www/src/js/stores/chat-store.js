@@ -17,6 +17,9 @@ let ChatStore = Reflux.createStore({
   onInitCompleted: function(res) {
     let authToken = res.data.firebaseToken;
     cookie.save('firebaseAuthToken', authToken);
+    this.trigger({
+      action: 'init'
+    });
   },
 
   onInitFailed: function(msg) {
@@ -39,12 +42,20 @@ let ChatStore = Reflux.createStore({
   onCreateNewConversationCompleted: function(res) {
     this.trigger({
       action: 'createNewConversation',
+      convoId: 0, // TODO: add in convoId for new conversation
       data: res
     });
   },
 
   onCreateNewConversationFailed: function(res) {
     console.log(res);
+  },
+
+  // Async listeners for authenticateFirebase -- ChatAction
+  onAuthenticateFirebaseCompleted: function(res) {
+    this.trigger({
+      action: 'authenticateFirebase'
+    });
   },
 
   // Async listeners for getAllMessages -- ChatAction
@@ -59,16 +70,8 @@ let ChatStore = Reflux.createStore({
     console.log(msg);
   },
 
-  // Async Listeners for listenToChatUpdates -- ChatAction
-  onListenToChatUpdatesCompleted: function(res) {
-    this.trigger({
-      action: 'listenToChatUpdates',
-      data: res
-    });
-  },
-
-  onListenToChatUpdatesFailed: function(msg) {
-    console.log(msg);
+  onSendMessage: function(convoId, text) {
+    FirebaseAPI.sendMessage(convoId, text);
   },
 
   updatePermission: function(res) {
