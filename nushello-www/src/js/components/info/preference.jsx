@@ -184,68 +184,68 @@ var PreferenceForm = React.createClass({
           </div>
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-              <form>
-                <FacultyPicker facultyId={facultyId}/>
-                <MajorPicker facultyId={facultyId} majorId={majorId}/>
+              <FacultyPicker facultyId={facultyId}/>
+              <MajorPicker facultyId={facultyId} majorId={majorId}/>
+
+              <div className="form-group">
+                  <label className="control-label">
+                    and gender is:
+                  </label>
+                  <br />
+                  <div className="gender-row btn-group" data-toggle='gender'>
+                    <button
+                    type="button"
+                    onClick={ this.selectGender('Male') }
+                    className={ maleClass }>
+                    Male
+                    </button>
+                    <button
+                    type="button"
+                    onClick={ this.selectGender('Female') }
+                    className={ femaleClass }>
+                    Female
+                    </button>
+                  </div>
+                </div>
 
                 <div className="form-group">
-                    <label className="control-label">
-                      and gender is:
-                    </label>
-                    <br />
-                    <div className="gender-row btn-group" data-toggle='gender'>
-                      <button
-                      type="button"
-                      onClick={ this.selectGender('Male') }
-                      className={ maleClass }>
-                      Male
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.selectGender('Female') }
-                      className={ femaleClass }>
-                      Female
-                      </button>
-                    </div>
+                  <label className="control-label">
+                    and personality is:
+                  </label>
+                  <br />
+                  <div className="personality-row btn-group" data-toggle='personality'>
+                    <button
+                    type="button"
+                    onClick={ this.togglePersonality('party') }
+                    className={ partyClass }>
+                      Party
+                    </button>
+                    <button
+                    type="button"
+                    onClick={ this.togglePersonality('sports') }
+                    className={ sportsClass }>
+                      Sports
+                    </button>
+                    <button
+                    type="button"
+                    onClick={ this.togglePersonality('mugger') }
+                    className={ muggerClass }>
+                      Mugger
+                    </button>
+                    <button
+                    type="button"
+                    onClick={ this.togglePersonality('introvert') }
+                    className={ introvertClass }>
+                      Introvert
+                    </button>
                   </div>
-
-                  <div className="form-group">
-                    <label className="control-label">
-                      and personality is:
-                    </label>
-                    <br />
-                    <div className="personality-row btn-group" data-toggle='personality'>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('party') }
-                      className={ partyClass }>
-                        Party
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('sports') }
-                      className={ sportsClass }>
-                        Sports
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('mugger') }
-                      className={ muggerClass }>
-                        Mugger
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('introvert') }
-                      className={ introvertClass }>
-                        Introvert
-                      </button>
-                    </div>
-                  </div>
-
-                <div className="pref-submit">
-                  <input type="submit" className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
                 </div>
-              </form>
+
+              <div className="pref-submit">
+                <button className="btn btn-default" onClick={ this.handleSubmit }>
+                  Alright, let's go!
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -4,8 +4,9 @@ import Reflux from 'reflux';
 import Route from 'react-router';
 import PersonalInfoAction from 'actions/personal-info-action';
 import PersonalInfoStore from 'stores/personal-info-store';
-import FacultyPicker from 'components/pickers/faculty-picker.jsx';
-import MajorPicker from 'components/pickers/major-picker.jsx';
+import ResidencePicker from 'components/pickers/residence-picker.jsx';
+import RegisterQuestion from 'components/register-question/register-question.jsx';
+import RegisterQuestions from 'components/register-question/register-questions.jsx';
 
 var PersonalInfoForm = React.createClass({
   mixins: [Reflux.connect(PersonalInfoStore), Route.Navigation],
@@ -17,109 +18,14 @@ var PersonalInfoForm = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if (this.state.goMatch) {
-      this.transitionTo('/matches');
-    }
-
     if (this.props.profile && !this.state.profile) {
       this.setState({
         profile: this.props.profile
       });
     }
-
-    if (!this.state.gender && this.state.profile && this.state.profile.preference) {
-      let gender = 'Both';
-      if (this.state.profile.preference.gender) {
-        gender = this.state.profile.preference.gender;
-      }
-      this.setState({
-        gender: gender
-      });
-    }
-
-    if (!this.state.personalities && this.state.profile) {
-      let personalities = {};
-      if (!this.state.profile.preference) {
-        personalities.party = false;
-        personalities.sports = false;
-        personalities.mugger = false;
-        personalities.introvert = false;
-      } else {
-        let preference = this.state.profile.preference;
-        if (preference.party) {
-          personalities.party = true;
-        } else {
-          personalities.party = false;
-        }
-
-        if (preference.sports) {
-          personalities.sports = true;
-        } else {
-          personalities.sports = false;
-        }
-
-        if (preference.mugger) {
-          personalities.mugger = true;
-        } else {
-          personalities.mugger = false;
-        }
-
-        if (preference.introvert) {
-          personalities.introvert = true;
-        } else {
-          personalities.introvert = false;
-        }
-      }
-
-      this.setState({
-        personalities: personalities
-      });
-    }
   },
 
   handleSubmit: function(e) {
-    e.preventDefault();
-    let preference = {
-      preference: {
-        'facultyId': this.state.selectedFacultyId,
-        'majorId': this.state.selectedMajorId,
-        ...this.state.personalities
-      }
-    };
-
-    if (this.state.gender && (this.state.gender !== 'Both')) {
-      preference.preference.gender = this.state.gender;
-    } else {
-      preference.preference.gender = null;
-    }
-
-    PersonalInfoAction.edit(preference);
-  },
-
-  selectGender: function(gender) {
-    let self = this;
-    return function() {
-      if (self.state.gender === gender) {
-        self.setState({
-          gender: 'Both'
-        });
-      } else {
-        self.setState({
-          gender: gender
-        });
-      }
-    };
-  },
-
-  togglePersonality: function(personality) {
-    let self = this;
-    return function() {
-      let personalities = self.state.personalities;
-      personalities[personality] = !personalities[personality];
-      self.setState({
-        personalities: personalities
-      });
-    };
   },
 
   render: function() {
@@ -176,76 +82,19 @@ var PersonalInfoForm = React.createClass({
 
     return (
       <div>
-        <div className="prefs">
+        <div className="personal-info">
           <div className="row">
             <div className="col-xs-10 col-xs-offset-1 page-title">
-              <h1>I&#39;m looking for a friend whose...</h1>
+              <h1>Here is my personal information</h1>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-              <form>
-                <FacultyPicker facultyId={facultyId}/>
-                <MajorPicker facultyId={facultyId} majorId={majorId}/>
-
-                <div className="form-group">
-                    <label className="control-label">
-                      and gender is:
-                    </label>
-                    <br />
-                    <div className="gender-row btn-group" data-toggle='gender'>
-                      <button
-                      type="button"
-                      onClick={ this.selectGender('Male') }
-                      className={ maleClass }>
-                      Male
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.selectGender('Female') }
-                      className={ femaleClass }>
-                      Female
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="control-label">
-                      and personality is:
-                    </label>
-                    <br />
-                    <div className="personality-row btn-group" data-toggle='personality'>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('party') }
-                      className={ partyClass }>
-                        Party
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('sports') }
-                      className={ sportsClass }>
-                        Sports
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('mugger') }
-                      className={ muggerClass }>
-                        Mugger
-                      </button>
-                      <button
-                      type="button"
-                      onClick={ this.togglePersonality('introvert') }
-                      className={ introvertClass }>
-                        Introvert
-                      </button>
-                    </div>
-                  </div>
-
-                <div className="pref-submit">
-                  <input type="submit" className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
-                </div>
-              </form>
+              <ResidencePicker />
+              <RegisterQuestions />
+              <button onClick={ this.handleSubmit } className="btn btn-default">
+                Update my information
+              </button>
             </div>
           </div>
         </div>

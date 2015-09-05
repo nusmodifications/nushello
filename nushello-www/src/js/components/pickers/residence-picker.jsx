@@ -27,7 +27,7 @@ var ResidencePicker = React.createClass({
       <div className="row">
       <div className="col-sm-6">
       <div className="form-group">
-        <label htmlFor="residence">Residence</label>
+        <label htmlFor="residence">residence</label>
         <select id="residence" onChange={ this.handleResidenceChange } className="form-control">
           <option key='-1'>None</option>
           { residences.map(function(residence) {
