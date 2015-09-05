@@ -150,8 +150,8 @@ var InfoPage = React.createClass({
         };
       }
 
-      var maleClass = 'btn btn-default';
-      var femaleClass = 'btn btn-default';
+      var maleClass = 'btn btn-default gender-btn';
+      var femaleClass = 'btn btn-default gender-btn';
       if (this.state.gender) {
         gender = this.state.gender;
       }
@@ -161,10 +161,10 @@ var InfoPage = React.createClass({
         femaleClass = `${femaleClass} selected`;
       }
 
-      var partyClass = 'btn btn-default';
-      var sportsClass = 'btn btn-default';
-      var muggerClass = 'btn btn-default';
-      var introvertClass = 'btn btn-default';
+      var partyClass = 'btn btn-default personality-btn';
+      var sportsClass = 'btn btn-default personality-btn';
+      var muggerClass = 'btn btn-default personality-btn';
+      var introvertClass = 'btn btn-default personality-btn';
       if (this.state.personalities) {
         personalities = this.state.personalities;
       }
@@ -185,14 +185,14 @@ var InfoPage = React.createClass({
 
       return (
         <div>
-          <div className="container prefs">
+          <div className="prefs">
             <div className="row">
-              <div className="col-sm-7 col-sm-offset-1">
+              <div className="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
                 <h1>I&#39;m looking for a friend whose...</h1>
               </div>
             </div>
             <div className="row">
-              <div className="col-sm-4 col-sm-offset-1">
+              <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
                 <form>
                   <FacultyPicker facultyId={facultyId}/>
                   <MajorPicker facultyId={facultyId} majorId={majorId}/>
@@ -202,7 +202,7 @@ var InfoPage = React.createClass({
                         and gender is:
                       </label>
                       <br />
-                       <div className="btn-group" data-toggle='gender'>
+                       <div className="gender-row btn-group" data-toggle='gender'>
                           <button
                             type="button"
                             onClick={ this.selectGender('Male') }
@@ -223,7 +223,7 @@ var InfoPage = React.createClass({
                         and personality is:
                       </label>
                       <br />
-                       <div className="btn-group" data-toggle='personality'>
+                       <div className="personality-row btn-group" data-toggle='personality'>
                           <button
                             type="button"
                             onClick={ this.togglePersonality('party') }
