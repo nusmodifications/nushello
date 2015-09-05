@@ -74,6 +74,13 @@ let ChatStore = Reflux.createStore({
     FirebaseAPI.sendMessage(convoId, text);
   },
 
+  onChangeChat: function(convoId) {
+    this.trigger({
+      action: 'changeChat',
+      data: convoId
+    });
+  },
+
   updatePermission: function(res) {
     if (res.canGo) {
       this.trigger({

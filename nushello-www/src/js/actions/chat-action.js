@@ -10,7 +10,8 @@ var ChatAction = Reflux.createActions({
 	'createNewConversation': {asyncResult: true},
 	'authenticateFirebase': {asyncResult: true},
 	'getAllMessages': {asyncResult: true},
-	'sendMessage': {asyncResult: false}
+	'sendMessage': {asyncResult: false},
+	'changeChat': {asyncResult: false}
 });
 
 ChatAction.init.listenAndPromise(() => {
