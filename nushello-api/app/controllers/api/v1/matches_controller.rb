@@ -14,7 +14,7 @@ class Api::V1::MatchesController < ApplicationController
 
   def random(pool = nil)
     pool = User.where.not(id: @user) if pool.blank?
-    result = pool.limit(8)
+    result = pool.limit(3)
     users = ActiveModel::ArraySerializer.new(result, each_serializer: MatchSerializer)
   end
 
@@ -22,7 +22,7 @@ class Api::V1::MatchesController < ApplicationController
     preference = @user.preference
     return generate_api_payload('matches', random) unless preference.present?
     faculty, major, gender = preference.get_filters
-    @possibilities = User.joins(:first_major, :personality)
+    @possibilities = User.joins(:first_major, :personality).where.not(id: @user)
     @possibilities = @possibilities.where('majors.faculty_id = ?', faculty) unless faculty.nil?
     @possibilities = @possibilities.where(gender: gender) unless gender.nil?
     @possibilities = @possibilities.where(first_major: major) unless major.nil?
@@ -41,12 +41,13 @@ class Api::V1::MatchesController < ApplicationController
     end
     party, sports, mugger, introvert = desires[:party], desires[:sports], desires[:mugger], desires[:introvert]
 
-    result = @possibilities.where(personalities: { party: party, sports: sports, mugger: mugger, introvert: introvert })
+    result = @possibilities.where(personalities: { party: party, sports: sports, mugger: mugger, introvert: introvert }).limit(3)
     return result unless result.empty?
     not_party = @possibilities.where(personalities: { sports: sports, mugger: mugger, introvert: introvert })
     not_sports = @possibilities.where(personalities: { party: party, mugger: mugger, introvert: introvert })
     not_mugger = @possibilities.where(personalities: { party: party, sports: sports, introvert: introvert })
     not_introvert = @possibilities.where(personalities: { party: party, sports: sports, mugger: mugger })
-    not_party | not_sports | not_mugger | not_introvert
+    result = not_party | not_sports | not_mugger | not_introvert
+    result[0..2]
   end
 end
