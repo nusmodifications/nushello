@@ -92,9 +92,11 @@ var PersonalInfoForm = React.createClass({
             <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
               <ResidencePicker />
               <RegisterQuestions />
-              <button onClick={ this.handleSubmit } className="btn btn-default">
-                Update my information
-              </button>
+              <div className='info-submit'>
+                <button onClick={ this.handleSubmit } className="btn btn-default">
+                  Update my information
+                </button>
+              </div>
             </div>
           </div>
         </div>

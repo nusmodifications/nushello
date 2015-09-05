@@ -52,30 +52,26 @@ var RegisterQuestion = React.createClass({
     }
 
     return (
-      <div className="container">
-        <div className="row">
-           <div className="form-group">
-              <label className="control-label">
-                { this.props.text }
-              </label>
-              <br />
-               <div className="btn-group" data-toggle={ `question-${this.props.questionId}` }>
-                  <button
-                    type="button"
-                    onClick={ this.handleClick(true) }
-                    className={ yesClass }>
-                    { this.props.yesText || 'Yes' }
-                  </button>
-                  <button
-                    type="button"
-                    onClick={ this.handleClick(false) }
-                    className={ noClass }>
-                    { this.props.noText  || 'No' }
-                  </button>
-               </div>
-           </div>
-        </div>
-      </div>
+     <div className="form-group">
+        <label className="control-label">
+          { this.props.text }
+        </label>
+        <br />
+         <div className="btn-group" data-toggle={ `question-${this.props.questionId}` }>
+            <button
+              type="button"
+              onClick={ this.handleClick(true) }
+              className={ yesClass }>
+              { this.props.yesText || 'Yes' }
+            </button>
+            <button
+              type="button"
+              onClick={ this.handleClick(false) }
+              className={ noClass }>
+              { this.props.noText  || 'No' }
+            </button>
+         </div>
+     </div>
     );
   }
 });
