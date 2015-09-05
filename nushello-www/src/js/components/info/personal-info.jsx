@@ -2,13 +2,13 @@
 import React from 'react';
 import Reflux from 'reflux';
 import Route from 'react-router';
-import PreferenceAction from 'actions/preference-action';
-import PreferenceStore from 'stores/preference-store';
+import PersonalInfoAction from 'actions/personal-info-action';
+import PersonalInfoStore from 'stores/personal-info-store';
 import FacultyPicker from 'components/pickers/faculty-picker.jsx';
 import MajorPicker from 'components/pickers/major-picker.jsx';
 
-var PreferenceForm = React.createClass({
-  mixins: [Reflux.connect(PreferenceStore), Route.Navigation],
+var PersonalInfoForm = React.createClass({
+  mixins: [Reflux.connect(PersonalInfoStore), Route.Navigation],
 
   getInitialState: function() {
   },
@@ -93,7 +93,7 @@ var PreferenceForm = React.createClass({
       preference.preference.gender = null;
     }
 
-    PreferenceAction.edit(preference);
+    PersonalInfoAction.edit(preference);
   },
 
   selectGender: function(gender) {
@@ -254,4 +254,4 @@ var PreferenceForm = React.createClass({
   }
 });
 
-module.exports = PreferenceForm;
+module.exports = PersonalInfoForm;

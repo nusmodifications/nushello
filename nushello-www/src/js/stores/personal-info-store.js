@@ -2,11 +2,11 @@
 
 import Reflux from 'reflux';
 import cookie from 'react-cookie';
-import PreferenceAction from 'actions/preference-action';
+import PersonalInfoAction from 'actions/preference-action';
 import FacultyPickerStore from 'stores/faculty-picker-store';
 
-var PreferenceStore = Reflux.createStore({
-  listenables: [PreferenceAction],
+var PersonalInfoStore = Reflux.createStore({
+  listenables: [PersonalInfoAction],
 
   init: function() {
     this.listenTo(FacultyPickerStore, this.updateSelectedFaculty);
@@ -32,5 +32,5 @@ var PreferenceStore = Reflux.createStore({
 
 });
 
-export default PreferenceStore;
+export default PersonalInfoStore;
 

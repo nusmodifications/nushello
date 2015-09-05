@@ -3,13 +3,13 @@
 import Reflux from 'reflux';
 import ProfileAPI from 'utils/api/profile-api';
 
-var PreferenceAction = Reflux.createActions({
+var PersonalInfoAction = Reflux.createActions({
   'edit': {asyncResult: true}
 });
 
-PreferenceAction.edit.listenAndPromise(function(data) {
+PersonalInfoAction.edit.listenAndPromise(function(data) {
   return ProfileAPI.editAll(data);
 });
 
-export default PreferenceAction;
+export default PersonalInfoAction;
 

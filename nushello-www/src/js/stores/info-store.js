@@ -12,6 +12,21 @@ var InfoStore = Reflux.createStore({
     this.listenTo(PermissionStore, this.updatePermission);
   },
 
+  onInit: function(res) {
+  },
+
+  onInitCompleted: function(res) {
+    if (res.type === 'userProfile') {
+      this.trigger({
+        profile: res.data
+      });
+    }
+  },
+
+  onInitFailed: function(msg) {
+    this.trigger(msg);
+  },
+
   updatePermission: function(res) {
     if (res.canGo) {
       this.trigger({

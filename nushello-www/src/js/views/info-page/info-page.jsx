@@ -5,6 +5,7 @@ import Router from 'react-router';
 import InfoAction from 'actions/info-action';
 import InfoStore from 'stores/info-store';
 import PreferenceForm from 'components/info/preference.jsx';
+import PersonalInfoForm from 'components/info/personal-info.jsx';
 import Permission from 'components/permission/permission.jsx';
 
 let UserPermission = require('constants/user-permission.js');
@@ -18,6 +19,7 @@ var InfoPage = React.createClass({
   },
 
   componentDidMount: function() {
+    InfoAction.init();
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -53,7 +55,8 @@ var InfoPage = React.createClass({
         infoClass = `${infoClass} selected`;
       }
 
-      let prefForm = <PreferenceForm />;
+      let prefForm = <PreferenceForm profile={ this.state.profile } />;
+      let infoForm = <PersonalInfoForm profile={ this.state.profile } />;
 
       return (
         <div className="info-page">
@@ -73,7 +76,7 @@ var InfoPage = React.createClass({
               </button>
             </div>
           </div>
-          { isInPref ? prefForm : null }
+          { isInPref ? prefForm : infoForm }
         </div>
       );
     }
