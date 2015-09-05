@@ -37,10 +37,10 @@ export default class MatchList extends React.Component {
 
   render() {
     let self = this;
-    let chatItems = _.map(this.state.users, (item) => {
+    let chatItems = _.map(this.state.users, (item, index) => {
       return (
         <li className="chat-item" onClick={self._handleClick.bind(this, item.id)}>
-          <ChatItem key={item.id} userId={item.friend.id} id={item.id} name={item.friend.fakeName} />
+          <ChatItem key={index} id={item.id} userId={item.friend.id} name={item.friend.fakeName} />
         </li>
       );
     });
