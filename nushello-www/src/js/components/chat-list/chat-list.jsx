@@ -26,7 +26,7 @@ export default class MatchList extends React.Component {
           this._loadAllConversations(res.data);
           break;
         default:
-          console.log('Invalid action - ', res.action);
+          break;
       }
     });
   }
@@ -52,13 +52,12 @@ export default class MatchList extends React.Component {
   }
 
   _loadAllConversations(res) {
-    console.log(res);
     this.setState({
       users: res.data
     });
   }
 
   _handleClick(convoId) {
-    ChatAction.getAllMessages(convoId);
+    ChatAction.changeChat(convoId);
   }
 }

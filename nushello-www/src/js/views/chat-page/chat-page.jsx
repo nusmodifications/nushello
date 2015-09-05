@@ -20,9 +20,6 @@ export default class ChatPage extends React.Component {
 
   componentWillMount() {
     ChatAction.init();
-
-    // Set firebase listener here because it's causing too many problems
-
   }
 
   componentDidMount() {
@@ -45,8 +42,11 @@ export default class ChatPage extends React.Component {
         case 'updatePermission':
           this._setPermission(res);
           break;
+        case 'changeChat':
+          this._changeChat(res.data);
+          break;
         default:
-          console.log('Invalid action declaration - ', res.action);
+          break;
       }
     });
   }
@@ -75,8 +75,10 @@ export default class ChatPage extends React.Component {
     ChatAction.authenticateFirebase();
   }
 
-  _setConversationId(res) {
-    let convoId = res.data[0].id;
+  _setConversationId(res, convoId) {
+    if (convoId === undefined ) {
+      convoId = res.data[0].id;
+    }
     this.setState({
       convoId: convoId
     });
@@ -99,6 +101,13 @@ export default class ChatPage extends React.Component {
       });
     });
     console.log('Firebase server listening...');
+  }
+
+  _changeChat(data) {
+    this.setState({
+      convoId: data
+    });
+    ChatAction.getAllMessages(data);
   }
 
   _setPermission(data) {
