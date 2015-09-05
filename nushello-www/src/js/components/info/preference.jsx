@@ -174,7 +174,7 @@ var PreferenceForm = React.createClass({
       <div>
         <div className="prefs">
           <div className="row">
-            <div className="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+            <div className="col-xs-10 col-xs-offset-1 page-title">
               <h1>I&#39;m looking for a friend whose...</h1>
             </div>
           </div>

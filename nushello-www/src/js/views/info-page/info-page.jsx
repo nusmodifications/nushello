@@ -11,10 +11,28 @@ let UserPermission = require('constants/user-permission.js');
 var InfoPage = React.createClass({
   mixins: [Reflux.connect(InfoStore)],
 
+  getInitialState: function() {
+    return {
+      isInPref: true
+    };
+  },
+
   componentDidMount: function() {
   },
 
   componentDidUpdate: function(prevProps, prevState) {
+  },
+
+  showPreference: function() {
+    this.setState({
+      isInPref: true
+    });
+  },
+
+  showInfo: function() {
+    this.setState({
+      isInPref: false
+    });
   },
 
   render: function() {
@@ -25,8 +43,38 @@ var InfoPage = React.createClass({
         </div>
       );
     } else {
+      let prefClass = 'btn btn-default tab-btn';
+      let infoClass = 'btn btn-default tab-btn';
+      let isInPref = false;
+      if (this.state.isInPref) {
+        prefClass = `${prefClass} selected`;
+        isInPref = true;
+      } else {
+        infoClass = `${infoClass} selected`;
+      }
+
+      let prefForm = <PreferenceForm />;
+
       return (
-        <PreferenceForm />
+        <div className="info-page">
+          <div className="tab-row">
+            <div className="btn-group" data-toggle='tab'>
+              <button
+              type="button"
+              onClick={ this.showPreference }
+              className={ prefClass }>
+              preference
+              </button>
+              <button
+              type="button"
+              onClick={ this.showInfo }
+              className={ infoClass }>
+              personal info
+              </button>
+            </div>
+          </div>
+          { isInPref ? prefForm : null }
+        </div>
       );
     }
   }
