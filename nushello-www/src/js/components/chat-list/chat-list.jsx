@@ -21,29 +21,25 @@ export default class MatchList extends React.Component {
 
   componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
-      if (res.type === 'conversations') {
-        this.setState({
-          users: res.data
-        });
+      switch(res.action) {
+        case 'getAllConversations':
+          this._loadAllConversations(res.data);
+          break;
+        default:
+          console.log('Invalid action - ', res.action);
       }
     });
-
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
-  handleClick(userId) {
-    ChatAction.updateChat(userId);
-    ChatAction.firebaseGetAll(userId);
-  }
-
   render() {
     let self = this;
     let chatItems = _.map(this.state.users, (item) => {
       return (
-        <li className="chat-item" onClick={self.handleClick.bind(this, item.id)}>
+        <li className="chat-item" onClick={self._handleClick.bind(this, item.id)}>
           <ChatItem key={item.id} userId={item.friend.id} id={item.id} name={item.friend.fakeName} />
         </li>
       );
@@ -53,5 +49,16 @@ export default class MatchList extends React.Component {
         {chatItems}
       </ul>
     );
+  }
+
+  _loadAllConversations(res) {
+    console.log(res);
+    this.setState({
+      users: res.data
+    });
+  }
+
+  _handleClick(convoId) {
+    ChatAction.getAllMessages(convoId);
   }
 }
