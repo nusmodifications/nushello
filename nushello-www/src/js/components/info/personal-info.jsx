@@ -61,7 +61,7 @@ var PersonalInfoForm = React.createClass({
           </div>
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-              <ResidencePicker />
+              <ResidencePicker residenceId={ residenceId } />
               <RegisterQuestions personalities={ personalities } />
               <div className='info-submit'>
                 <button onClick={ this.handleSubmit } className="btn btn-default">
