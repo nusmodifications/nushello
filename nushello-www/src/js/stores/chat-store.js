@@ -13,83 +13,82 @@ let ChatStore = Reflux.createStore({
     this.listenTo(PermissionStore, this.updatePermission);
   },
 
+  // Async listeners for init -- ChatAction
   onInitCompleted: function(res) {
     let authToken = res.data.firebaseToken;
     cookie.save('firebaseAuthToken', authToken);
+    this.trigger({
+      action: 'init'
+    });
   },
 
   onInitFailed: function(msg) {
     console.log(msg);
   },
 
-  onListenCompleted: function(snapshot) {
-    this.trigger('new chat');
-  },
-
-  onListenFailed: function(msg) {
-    console.log(msg);
-  },
-
-  onFetchConvoCompleted: function(res) {
-    this.trigger(res);
-  },
-
-  onFetchConvoFailed: function(msg) {
-    console.log(msg);
-  },
-
-  onNewConvoCompleted: function(res) {
-    this.trigger(res);
-  },
-
-  onUpdateChat: function(convoId) {
+  // Async listeners for getAllConversations -- ChatAction
+  onGetAllConversationsCompleted: function(res) {
     this.trigger({
-      type: 'update',
-      convoId: convoId
+      action: 'getAllConversations',
+      data: res
     });
   },
 
-  onNewConvoFailed: function(msg) {
+  onGetAllConversationsFailed: function(msg) {
     console.log(msg);
   },
 
-  onRefreshMessages: function() {
-    this.trigger('refresh');
-  },
-
-  onFirebaseAuth: function() {
-    FirebaseAPI.firebaseAuth();
-  },
-
-  onFirebaseListen: function(res) {
-    this.trigger(res);
-  },
-
-  onFirebaseGetAllCompleted: function(res) {
+  // Async listeners for createNewConversation -- ChatAction
+  onCreateNewConversationCompleted: function(res) {
     this.trigger({
-      type: 'messages',
-      data: res.val()
+      action: 'createNewConversation',
+      convoId: 0, // TODO: add in convoId for new conversation
+      data: res
     });
   },
 
-  onFirebaseSendMessage: function(convoId, content) {
-    FirebaseAPI.firebaseSendMessage(convoId, content);
-    this.trigger('message sent');
+  onCreateNewConversationFailed: function(res) {
+    console.log(res);
   },
 
-  onFirebaseSetReadCompleted: function() {
-    this.trigger('message read');
+  // Async listeners for authenticateFirebase -- ChatAction
+  onAuthenticateFirebaseCompleted: function(res) {
+    this.trigger({
+      action: 'authenticateFirebase'
+    });
+  },
+
+  // Async listeners for getAllMessages -- ChatAction
+  onGetAllMessagesCompleted: function(res) {
+    this.trigger({
+      action: 'getAllMessages',
+      data: res
+    });
+  },
+
+  onGetAllMessagesFailed: function(msg) {
+    console.log(msg);
+  },
+
+  onSendMessage: function(convoId, text) {
+    FirebaseAPI.sendMessage(convoId, text);
+  },
+
+  onChangeChat: function(convoId) {
+    this.trigger({
+      action: 'changeChat',
+      data: convoId
+    });
   },
 
   updatePermission: function(res) {
     if (res.canGo) {
       this.trigger({
-        type: 'permission',
+        action: 'updatePermission',
         canGo: res.canGo
       });
     }
   }
-
 });
 
 export default ChatStore;
