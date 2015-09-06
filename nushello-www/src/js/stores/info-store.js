@@ -36,10 +36,6 @@ var InfoStore = Reflux.createStore({
     }
   },
 
-  onInitFailed: function(msg) {
-    this.trigger(msg);
-  },
-
   onEdit: function(res) {
 
   },

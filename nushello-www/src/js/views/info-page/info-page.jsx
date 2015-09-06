@@ -15,9 +15,6 @@ var InfoPage = React.createClass({
   mixins: [Reflux.connect(InfoStore), Router.Navigation],
 
   getInitialState: function() {
-  },
-
-  getInitialState: function() {
     return {
       isInPref: true
     };
