@@ -54,6 +54,11 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def matches
+    users = ActiveModel::ArraySerializer.new(User.where.not(id: @user), each_serializer: MatchSerializer)
+    generate_api_payload('matches', users)
+  end
+
   def random_name
     @user.update_attribute(:fake_name, NameGenerator.random)
     generate_api_payload('newName', { fake_name: @user.fake_name })

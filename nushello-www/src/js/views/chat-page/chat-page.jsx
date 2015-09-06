@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import React from 'react';
 import cookie from 'react-cookie';
+import Firebase from 'firebase';
 
 import Chatbox from './chat-box.jsx';
 import ChatStore from 'stores/chat-store';
@@ -14,67 +15,44 @@ export default class ChatPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { convoId: '' };
-
-    this.onFetchConvo.bind(this);
-    this.onNewConvo.bind(this);
-    this.onChatUpdate.bind(this);
+    this.state = {};
   }
 
   componentWillMount() {
+    ChatAction.init();
+  }
+
+  componentDidMount() {
     this.unsubscribe = ChatStore.listen((res) => {
-      if (res.type === 'permission') {
-        this.setState({
-          canGo: res.canGo
-        });
-        ChatAction.init();
-        ChatAction.firebaseAuth();
-        ChatAction.fetchConvo();
-      } else if (res.type === 'messages') {
-        this.onGetAllMessages(res.data);
-      } else if (res === 'message sent') {
-        ChatAction.firebaseGetAll(this.state.convoId);
-      } else if (res.type === 'update' || res === 'new chat') {
-        this.onChatUpdate(res.convoId);
-      } else if (!_.isEmpty(res)) {
-        this.onFetchConvo(res);
+      let convoId = -1;
+
+      switch(res.action) {
+        case 'init':
+          this._initComplete();
+          break;
+        case 'getAllConversations':
+          this._setConversationId(res.data);
+          break;
+        case 'authenticateFirebase':
+          ChatAction.getAllConversations();
+          break;
+        case 'getAllMessages':
+          this._updateMessages(res.data.val());
+          break;
+        case 'updatePermission':
+          this._setPermission(res);
+          break;
+        case 'changeChat':
+          this._changeChat(res.data);
+          break;
+        default:
+          break;
       }
     });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
-  }
-
-  onFetchConvo(res) {
-    if (!_.isEmpty(res.data)) {
-      this.setState({
-        convoId: res.data[0].id
-      });
-      ChatAction.firebaseGetAll(this.state.convoId);
-      ChatAction.firebaseListen(this.state.convoId);
-    }
-  }
-
-  onNewConvo(res) {
-    if (!_.isEmpty(res.data)) {
-      this.setState({
-        convoId: res.data[0].id
-      });
-      ChatAction.firebaseListen(this.state.convoId);
-    }
-  }
-
-  onGetAllMessages(data) {
-    this.setState({
-      messages: data
-    });
-  }
-
-  onChatUpdate(convoId) {
-    this.setState({
-      convoId: convoId
-    });
   }
 
   render() {
@@ -91,5 +69,50 @@ export default class ChatPage extends React.Component {
         </div>
       );
     }
+  }
+
+  _initComplete() {
+    ChatAction.authenticateFirebase();
+  }
+
+  _setConversationId(res, convoId) {
+    if (convoId === undefined ) {
+      convoId = res.data[0].id;
+    }
+    this.setState({
+      convoId: convoId
+    });
+    ChatAction.getAllMessages(this.state.convoId);
+  }
+
+  _updateMessages(data) {
+    this.setState({
+      messages: data
+    });
+
+    // Firebase listener
+    let firebase = new Firebase('https://nushello.firebaseio.com/conversations');
+    let firebaseChild = firebase.child(this.state.convoId + '/messages');
+    let userId = cookie.load('current_user').id.toString();
+
+    firebaseChild.on('value', (res) => {
+      this.setState({
+        messages: res.val()
+      });
+    });
+    console.log('Firebase server listening...');
+  }
+
+  _changeChat(data) {
+    this.setState({
+      convoId: data
+    });
+    ChatAction.getAllMessages(data);
+  }
+
+  _setPermission(data) {
+    this.setState({
+      canGo: data.canGo
+    });
   }
 }
