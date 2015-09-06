@@ -7,7 +7,7 @@ class Major < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  before_create :notify_slack, if: proc { |m| Rails.env.production? }
+  before_create :notify_slack, if: -> { Rails.env.production? }
 
   def users
     home_users | other_users
