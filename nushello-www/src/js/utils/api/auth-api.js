@@ -41,11 +41,11 @@ class AuthAPI extends BaseAPI {
           let currentUser = { type, ...data };
           cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo }));
 
-          // Get id from API
-          ProfileAPI.init()
-            .then((res) => {
-              cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo, id: res.data.id }));
-            });
+          // // Get id from API
+          // ProfileAPI.init()
+          //   .then((res) => {
+          //     cookie.save(this.currentUserKey, JSON.stringify({ ...currentUser, ...userInfo, id: res.data.id }));
+          //   });
         }
       })
       .catch((error)=> {
