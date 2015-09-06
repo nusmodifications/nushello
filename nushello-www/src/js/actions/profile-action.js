@@ -8,16 +8,12 @@ var ProfileAction = Reflux.createActions({
   'edit': {asyncResult: true}
 });
 
-ProfileAction.init.listen(function() {
-  return ProfileAPI.init()
-    .then(this.completed)
-    .catch(this.failed);
+ProfileAction.init.listenAndPromise(function() {
+  return ProfileAPI.init();
 });
 
-ProfileAction.edit.listen(function(bio) {
-  return ProfileAPI.edit(bio)
-    .then(this.completed)
-    .catch(this.failed);
+ProfileAction.edit.listenAndPromise(function(bio) {
+  return ProfileAPI.edit(bio);
 });
 
 export default ProfileAction;

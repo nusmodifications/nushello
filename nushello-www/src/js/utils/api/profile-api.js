@@ -12,7 +12,8 @@ class ProfileAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load(this.currentUserKey).userID;
-    let req = this.get(APIEndPoints.USER_PROFILE_API(facebookId))
+    let req = this.get(APIEndPoints.USER_PROFILE_API(facebookId));
+    req
       .then((res)=> {
       })
       .catch((error)=> {
@@ -38,8 +39,8 @@ class ProfileAPI extends BaseAPI {
 
   editAll(data) {
     let facebookId = cookie.load(this.currentUserKey).userID;
-    let req = this.put(APIEndPoints.USER_UPDATE_API(facebookId), data)
-      .then((res)=> {
+    let req = this.put(APIEndPoints.USER_UPDATE_API(facebookId), data);
+    req.then((res)=> {
       })
       .catch((error)=> {
         if (error.status === 401) {
