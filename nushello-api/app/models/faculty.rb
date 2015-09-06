@@ -10,7 +10,7 @@ class Faculty < ActiveRecord::Base
 
   def notify_slack
     self.class.post(ENV['SLACK_WEBHOOK_URL'], body: {
-      text: "New faculty created: #{name}"
+      text: "New Faculty Created: *#{name}*"
     }.to_json)
   end
 end
