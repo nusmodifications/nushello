@@ -22,19 +22,21 @@ var ResidencePicker = React.createClass({
       residences = this.state.residences;
     }
 
+    let defaultResidenceId = this.props.residenceId;
+    if (!_.isEmpty(this.state.selectedResidence) && (this.state.selectedResidence !== -1)) {
+      defaultResidenceId = this.state.selectedResidence;
+    }
+
     return (
-      <div>
-      <div className="row">
-      <div className="col-sm-6">
       <div className="form-group">
-        <label htmlFor="residence">Residence</label>
-        <select id="residence" onChange={ this.handleResidenceChange } className="form-control">
+        <label htmlFor="residence">residence</label>
+        <select id="residence" value={ defaultResidenceId } onChange={ this.handleResidenceChange } className="form-control">
           <option key='-1'>None</option>
           { residences.map(function(residence) {
             return <option value={ residence.id } key={ residence.id }>{ residence.name }</option>;
           })}
         </select>
-      </div></div></div></div>
+      </div>
     );
   }
 });

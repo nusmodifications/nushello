@@ -28,6 +28,18 @@ var InfoStore = Reflux.createStore({
     this.trigger(msg);
   },
 
+  updatePermission: function(res) {
+    if (res.canGo) {
+      this.trigger({
+        profile: res.data
+      });
+    }
+  },
+
+  onInitFailed: function(msg) {
+    this.trigger(msg);
+  },
+
   onEdit: function(res) {
 
   },
