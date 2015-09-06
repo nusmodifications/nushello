@@ -11,6 +11,7 @@ var InfoStore = Reflux.createStore({
 
   init: function() {
     this.listenTo(FacultyPickerStore, this.updateSelectedFaculty);
+    this.listenTo(PermissionStore, this.updatePermission);
   },
 
   onInit: function(res) {
@@ -29,9 +30,9 @@ var InfoStore = Reflux.createStore({
   },
 
   updatePermission: function(res) {
-    if (res.canGo) {
+    if (!(typeof res.canGo === 'undefined')) {
       this.trigger({
-        profile: res.data
+        canGo: res.canGo
       });
     }
   },

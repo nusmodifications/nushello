@@ -21,7 +21,6 @@ var InfoPage = React.createClass({
   },
 
   componentDidMount: function() {
-    InfoAction.init();
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -144,6 +143,7 @@ var InfoPage = React.createClass({
 
   render: function() {
     if ((typeof this.state.canGo === 'undefined') || (!this.state.canGo)) {
+      console.log(this.state);
       return (
         <div>
           <Permission permission={UserPermission.EXISTING_USER_ONLY} />

@@ -129,16 +129,21 @@ var PreferenceForm = React.createClass({
     let gender = null;
     let personalities = null;
 
-    if ((typeof profile !== 'undefined') && (profile.preference)) {
-      let preference = profile.preference;
-      facultyId = preference.facultyId;
-      majorId = preference.majorId;
-      personalities = {
-        party: preference.party,
-        sports: preference.sports,
-        mugger: preference.mugger,
-        introvert: preference.introvert
-      };
+    if (typeof profile !== 'undefined') {
+      if (profile.preference) {
+        let preference = profile.preference;
+        if (profile.facultyId) {
+          facultyId = preference.facultyId;
+          majorId = preference.majorId;
+        }
+
+        personalities = {
+          party: preference.party,
+          sports: preference.sports,
+          mugger: preference.mugger,
+          introvert: preference.introvert
+        };
+      }
     }
 
     var maleClass = 'btn btn-default gender-btn';
