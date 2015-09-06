@@ -2,8 +2,10 @@
 import React from 'react';
 import Reflux from 'reflux';
 import Router from 'react-router';
-import InfoAction from '../../actions/info-action';
-import InfoStore from '../../stores/info-store';
+import InfoAction from 'actions/info-action';
+import InfoStore from 'stores/info-store';
+import PreferenceForm from 'components/info/preference.jsx';
+import PersonalInfoForm from 'components/info/personal-info.jsx';
 import Permission from 'components/permission/permission.jsx';
 import FacultyPicker from 'components/pickers/faculty-picker.jsx';
 import MajorPicker from 'components/pickers/major-picker.jsx';
@@ -13,9 +15,13 @@ var InfoPage = React.createClass({
   mixins: [Reflux.connect(InfoStore), Router.Navigation],
 
   getInitialState: function() {
+    return {
+      isInPref: true
+    };
   },
 
   componentDidMount: function() {
+    InfoAction.init();
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -124,6 +130,18 @@ var InfoPage = React.createClass({
     };
   },
 
+  showPreference: function() {
+    this.setState({
+      isInPref: true
+    });
+  },
+
+  showInfo: function() {
+    this.setState({
+      isInPref: false
+    });
+  },
+
   render: function() {
     if ((typeof this.state.canGo === 'undefined') || (!this.state.canGo)) {
       return (
@@ -132,130 +150,37 @@ var InfoPage = React.createClass({
         </div>
       );
     } else {
-      let profile = this.state.profile;
-      let facultyId = 1;
-      let majorId = 1;
-      let gender = null;
-      let personalities = null;
-
-      if ((typeof profile !== 'undefined') && (profile.preference)) {
-        let preference = profile.preference;
-        facultyId = preference.facultyId;
-        majorId = preference.majorId;
-        personalities = {
-          party: preference.party,
-          sports: preference.sports,
-          mugger: preference.mugger,
-          introvert: preference.introvert
-        };
+      let prefClass = 'btn btn-default tab-btn';
+      let infoClass = 'btn btn-default tab-btn';
+      let isInPref = false;
+      if (this.state.isInPref) {
+        prefClass = `${prefClass} selected`;
+        isInPref = true;
+      } else {
+        infoClass = `${infoClass} selected`;
       }
-
-      var maleClass = 'btn btn-default gender-btn';
-      var femaleClass = 'btn btn-default gender-btn';
-      if (this.state.gender) {
-        gender = this.state.gender;
-      }
-      if (gender === 'Male') {
-        maleClass = `${maleClass} selected`;
-      } else if (gender === 'Female') {
-        femaleClass = `${femaleClass} selected`;
-      }
-
-      var partyClass = 'btn btn-default personality-btn';
-      var sportsClass = 'btn btn-default personality-btn';
-      var muggerClass = 'btn btn-default personality-btn';
-      var introvertClass = 'btn btn-default personality-btn';
-      if (this.state.personalities) {
-        personalities = this.state.personalities;
-      }
-      if (personalities) {
-        if (personalities.party) {
-          partyClass = `${partyClass} selected`;
-        }
-        if (personalities.sports) {
-          sportsClass = `${sportsClass} selected`;
-        }
-        if (personalities.mugger) {
-          muggerClass = `${muggerClass} selected`;
-        }
-        if (personalities.introvert) {
-          introvertClass = `${introvertClass} selected`;
-        }
-      }
+      let prefForm = <PreferenceForm profile={ this.state.profile } />;
+      let infoForm = <PersonalInfoForm profile={ this.state.profile } />;
 
       return (
-        <div>
-          <div className="prefs">
-            <div className="row">
-              <div className="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-                <h1>I&#39;m looking for a friend whose...</h1>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-                <form>
-                  <FacultyPicker facultyId={facultyId}/>
-                  <MajorPicker facultyId={facultyId} majorId={majorId}/>
-
-                  <div className="form-group">
-                      <label className="control-label">
-                        and gender is:
-                      </label>
-                      <br />
-                       <div className="gender-row btn-group" data-toggle='gender'>
-                          <button
-                            type="button"
-                            onClick={ this.selectGender('Male') }
-                            className={ maleClass }>
-                            Male
-                          </button>
-                          <button
-                            type="button"
-                            onClick={ this.selectGender('Female') }
-                            className={ femaleClass }>
-                            Female
-                          </button>
-                       </div>
-                   </div>
-
-                   <div className="form-group">
-                      <label className="control-label">
-                        and personality is:
-                      </label>
-                      <br />
-                       <div className="personality-row btn-group" data-toggle='personality'>
-                          <button
-                            type="button"
-                            onClick={ this.togglePersonality('party') }
-                            className={ partyClass }>
-                            Party
-                          </button>
-                          <button
-                            type="button"
-                            onClick={ this.togglePersonality('sports') }
-                            className={ sportsClass }>
-                            Sports
-                          </button>
-                          <button
-                            type="button"
-                            onClick={ this.togglePersonality('mugger') }
-                            className={ muggerClass }>
-                            Mugger
-                          </button>
-                          <button
-                            type="button"
-                            onClick={ this.togglePersonality('introvert') }
-                            className={ introvertClass }>
-                            Introvert
-                          </button>
-                       </div>
-                   </div>
-
-                  <input type="submit" className="btn btn-default" onClick={this.handleSubmit} defaultValue="Alright, let's go!" />
-                </form>
-              </div>
+        <div className="info-page">
+          <div className="tab-row">
+            <div className="btn-group" data-toggle='tab'>
+              <button
+              type="button"
+              onClick={ this.showPreference }
+              className={ prefClass }>
+              preference
+              </button>
+              <button
+              type="button"
+              onClick={ this.showInfo }
+              className={ infoClass }>
+              personal info
+              </button>
             </div>
           </div>
+          { isInPref ? prefForm : infoForm }
         </div>
       );
     }

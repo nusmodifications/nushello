@@ -1,21 +1,7 @@
-.prefs {
-  h1 {
-    font-weight: 100;
-  }
-
-  .gender-row {
-    width: 100%;
-
-    .gender-btn {
-      width: 50%;
-    }
-  }
-
-  .personality-row {
-    width: 100%;
-
-    .personality-btn {
-      width: 25%;
-    }
+.info-page {
+  .tab-row {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
   }
 }

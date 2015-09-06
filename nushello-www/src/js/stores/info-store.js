@@ -10,7 +10,6 @@ var InfoStore = Reflux.createStore({
   listenables: [InfoAction],
 
   init: function() {
-    this.listenTo(PermissionStore, this.updatePermission);
     this.listenTo(FacultyPickerStore, this.updateSelectedFaculty);
   },
 
@@ -29,6 +28,14 @@ var InfoStore = Reflux.createStore({
     this.trigger(msg);
   },
 
+  updatePermission: function(res) {
+    if (res.canGo) {
+      this.trigger({
+        profile: res.data
+      });
+    }
+  },
+
   onEdit: function(res) {
 
   },
@@ -41,14 +48,6 @@ var InfoStore = Reflux.createStore({
 
   onEditFailed: function(res) {
     this.trigger(res);
-  },
-
-  updatePermission: function(res) {
-    if (res.canGo) {
-      this.trigger({
-        canGo: res.canGo
-      });
-    }
   },
 
   updateSelectedFaculty: function(res) {

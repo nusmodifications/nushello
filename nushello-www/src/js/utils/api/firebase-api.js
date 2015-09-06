@@ -13,30 +13,15 @@ class FirebaseAPI extends BaseAPI {
     super();
   }
 
-  firebaseAuth() {
+  auth() {
     let authToken = cookie.load('firebaseAuthToken');
-    let token = '';
-    firebase.authWithCustomToken(authToken, (err, authData) => {
-      if (err) {
-        console.log('Firebase auth failed. Please contact developer.');
-      } else {
-        token = authData.token;
-        cookie.save('firebaseToken', token);
-      }
-    });
-  }
-
-  firebaseListen(convoId) {
-    let firebaseChild = firebase.child(`${convoId}/messages`);
-    let userId = cookie.load('current_user').id.toString();
 
     return new Promise((fulfill, reject) => {
-      firebaseChild.on('child_added', fulfill, reject);
-      console.log('Firebase server listening...');
+      firebase.authWithCustomToken(authToken, fulfill);
     });
   }
 
-  firebaseGetAll(convoId) {
+  getAllMessages(convoId) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
@@ -45,7 +30,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseSendMessage(convoId, content) {
+  sendMessage(convoId, content) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     let userId = cookie.load('current_user').id.toString();
 
@@ -56,7 +41,7 @@ class FirebaseAPI extends BaseAPI {
     });
   }
 
-  firebaseSetRead(convoId, messageId) {
+  setRead(convoId, messageId) {
     let firebaseChild = firebase.child(`${convoId}/messages`);
     firebaseChild.child(messageId).update({
       read: true

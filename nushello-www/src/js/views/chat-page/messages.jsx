@@ -24,8 +24,8 @@ export default class Messages extends React.Component {
   }
 
   render() {
-    let messageItems = _.map(this.props.messages, (message) => {
-      return <Message body={message.content}/>;
+    let messageItems = _.map(this.props.messages, (message, index) => {
+      return <Message key={index} body={message.content}/>;
     });
 
     return (

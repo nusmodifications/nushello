@@ -75,13 +75,13 @@ var RegisterPage = React.createClass({
       <div className="col-sm-12">
         <h2>Please answer some questions so we can match you up!</h2>
         <hr/>
-          <ResidencePicker />
-          <RegisterQuestions />
-          <div>
-            <p>NUSHello is built specially for NUS Students. Login via IVLE to verify your identity:</p>
-          </div>
-          { isIvleLoggedIn ? ivlePassed : ivleLogin }
-          { isFormValidated ? proceedButton : null}
+        <ResidencePicker />
+        <RegisterQuestions />
+        <div>
+          <p>NUSHello is built specially for NUS Students. Login via IVLE to verify your identity:</p>
+        </div>
+        { isIvleLoggedIn ? ivlePassed : ivleLogin }
+        { isFormValidated ? proceedButton : null}
       </div>
     );
 
