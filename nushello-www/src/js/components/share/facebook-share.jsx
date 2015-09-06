@@ -44,9 +44,9 @@ var FacebookShare = React.createClass({
 
   render: function() {
     return (
-      <div className="col-xs-3">
+      <span className="facebook-share">
         <button onClick={this.handleClick} className="btn btn-fill btn-info">Share</button>
-      </div>
+      </span>
     );
   }
 });

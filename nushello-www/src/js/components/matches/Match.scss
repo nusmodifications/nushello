@@ -1,13 +1,13 @@
 .match-container {
   .match-card {
-    min-height: 200px;
-    max-height: 360px;
+    min-height: 250px;
+    max-height: 400px;
     overflow: auto;
-    margin-bottom: 4%;
+    padding-top: 3em;
+    padding-bottom: 3em;
   }
   .match-profile-pic {
     text-align: center;
-    padding-top: 10px;
     margin-bottom: -20px;
   }
   .match-detail {
