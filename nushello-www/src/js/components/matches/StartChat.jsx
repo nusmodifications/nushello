@@ -11,7 +11,7 @@ var StartChat = React.createClass({
   mixins: [Reflux.connect(ChatStore), Router.Navigation],
 
   handleClick: function() {
-    ChatAction.newConvo(this.props.userId);
+    ChatAction.createNewConversation(this.props.userId);
     this.transitionTo('chat');
   },
 
