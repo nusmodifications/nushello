@@ -1,0 +1,26 @@
+.ivle-button {
+  background-color: #FF6B00;
+  border-color: #FF2B10;
+  color: white;
+
+  &:hover, &:active, &:focus, &:active:focus {
+    background-color: #FF6B00;
+    border-color: #FF6B00;
+    color: white;
+  }
+}
+
+.ivle-logo {
+  height: 13px;
+  padding-bottom: 3px;
+}
+
+.ivle-finished-btn {
+  &, &:hover, &:active, &:focus, &:active:focus {
+    background-color: #888888;
+    border-color: #888888;
+    color: white;
+    cursor: not-allowed;
+    opacity: 1;
+  }
+}

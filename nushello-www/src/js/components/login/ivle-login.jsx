@@ -51,8 +51,8 @@ export default class IvleLogin extends React.Component {
 
   render() {
     return (
-      <button className="btn btn-primary" onClick={ this.ivleLogin }>
-        IVLE Login
+      <button className="btn btn-primary ivle-button" onClick={ this.ivleLogin }>
+        <img className="ivle-logo" src={require('images/ivle.png')}/>&nbsp;&nbsp;&nbsp;IVLE Login
       </button>
     );
 

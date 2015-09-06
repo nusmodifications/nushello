@@ -65,8 +65,12 @@ var RegisterPage = React.createClass({
   },
 
   render: function() {
-    let ivleLogin = <IvleLogin tokenHandler={ this.handleToken } />;
-    let ivlePassed = <div>OK</div>;
+    let ivleLogin = (<IvleLogin tokenHandler={ this.handleToken } />);
+    let ivlePassed = (
+        <button className="btn btn-default ivle-finished-btn">
+          <img className="ivle-logo" src={require('images/ivle.png')}/>&nbsp;&nbsp;&nbsp;authenticated <i className="fa fa-hand-peace-o"></i>
+        </button>
+    );
     let isIvleLoggedIn = this.state.ivleAuthenticated;
     let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
     let isFormValidated = this.validateForm();
@@ -80,12 +84,14 @@ var RegisterPage = React.createClass({
         <div>
           <p>NUSHello is built specially for NUS Students. Login via IVLE to verify your identity:</p>
         </div>
-        { isIvleLoggedIn ? ivlePassed : ivleLogin }
+        <div className="ivle-login">
+          { isIvleLoggedIn ? ivlePassed : ivleLogin }
+        </div>
         { isFormValidated ? proceedButton : null}
       </div>
     );
 
-    let permission = <Permission permission={UserPermission.NEW_USER_ONLY} />;
+    let permission = <Permission permission={UserPermission.ALL} />;
     let canGo = this.state.canGo;
 
     return (
