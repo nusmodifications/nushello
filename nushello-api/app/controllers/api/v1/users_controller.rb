@@ -16,8 +16,9 @@ class Api::V1::UsersController < ApplicationController
     end
 
     user = User.create_or_update_from_fb_info(fb_user_object, fb_long_live_token_info)
+    user_id = user.id
     user_type = user.nusnet_id.present? ? 'existingUser' : 'newUser'
-    generate_api_payload(user_type, { accessToken: user.access_token })
+    generate_api_payload(user_type, { accessToken: user.access_token, id: user_id })
   end
 
   def ivle_auth
