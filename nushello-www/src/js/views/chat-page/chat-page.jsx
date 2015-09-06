@@ -33,6 +33,9 @@ export default class ChatPage extends React.Component {
         case 'getAllConversations':
           this._setConversationId(res.data);
           break;
+        case 'createNewConversation':
+          this._setConversationId(res.data, res.data.data.id);
+          break;
         case 'authenticateFirebase':
           ChatAction.getAllConversations();
           break;
