@@ -89,7 +89,11 @@ var LoginPage = React.createClass({
           <div className="hero-banner container-fluid" style={{backgroundImage: 'url(' + require('images/background.jpg') + ')'}}>
             <div className="row">
               <div className="col-md-6 col-md-offset-3">
-                <h2>Say "Hello!" to a new NUS experience</h2>
+                <h2>Say&nbsp;
+                  <span className="hello">
+                    "Hello!"
+                  </span>
+                  &nbsp;to a new NUS experience</h2>
               </div>
             </div>
             <br/>

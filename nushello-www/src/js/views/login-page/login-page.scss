@@ -31,21 +31,26 @@
   .hero-banner {
     background-position: center;
     background-size: cover;
-    padding: 2vmin 0;
+    padding: 8vmin 0;
+    height: calc(100vh - 114px - 88px);
 
     h2 {
       color: #fff;
       font-size: 7em;
       margin: 0 0 .3em 0;
       line-height: 1.2em;
-      font-weight: 300;
+      font-weight: 400;
+
+      .hello {
+        color: $theme-green-light
+      }
     }
 
     p {
       color: #fff;
       font-size: 2em;
       line-height: 1.6em;
-      font-variant: small-caps;
+      // font-variant: small-caps;
     }
   }
 }
