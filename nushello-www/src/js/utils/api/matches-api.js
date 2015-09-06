@@ -11,7 +11,21 @@ class MatchesAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load('current_user').userID;
-    return this.get(APIEndPoints.MATCHES_GET_ALL(facebookId));
+    let req = this.get(APIEndPoints.MATCHES_GET_ALL(facebookId))
+      .then((res)=> {
+      })
+      .catch((error)=> {
+        if (error.status === 401) {
+          this.clean();
+          if ('API_HOST'['API_HOST'.length - 1] === '/') {
+            window.location.href = 'API_HOST';
+          } else {
+            window.location.href = 'API_HOST/';
+          }
+        }
+      });
+
+    return req;
   }
 }
 

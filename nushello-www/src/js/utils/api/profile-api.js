@@ -12,7 +12,21 @@ class ProfileAPI extends BaseAPI {
 
   init() {
     let facebookId = cookie.load(this.currentUserKey).userID;
-    return this.get(APIEndPoints.USER_PROFILE_API(facebookId));
+    let req = this.get(APIEndPoints.USER_PROFILE_API(facebookId))
+      .then((res)=> {
+      })
+      .catch((error)=> {
+        if (error.status === 401) {
+          this.clean();
+          if ('API_HOST'['API_HOST'.length - 1] === '/') {
+            window.location.href = 'API_HOST';
+          } else {
+            window.location.href = 'API_HOST/';
+          }
+        }
+      });
+
+    return req;
   }
 
   edit(bio) {
@@ -24,7 +38,21 @@ class ProfileAPI extends BaseAPI {
 
   editAll(data) {
     let facebookId = cookie.load(this.currentUserKey).userID;
-    return this.put(APIEndPoints.USER_UPDATE_API(facebookId), data);
+    let req = this.put(APIEndPoints.USER_UPDATE_API(facebookId), data)
+      .then((res)=> {
+      })
+      .catch((error)=> {
+        if (error.status === 401) {
+          this.clean();
+          if ('API_HOST'['API_HOST'.length - 1] === '/') {
+            window.location.href = 'API_HOST';
+          } else {
+            window.location.href = 'API_HOST/';
+          }
+        }
+      });
+
+    return req;
   }
 }
 

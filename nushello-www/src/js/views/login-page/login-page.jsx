@@ -49,7 +49,7 @@ var LoginPage = React.createClass({
       if (this.state.currentUser.type === 'newUser') {
         this.transitionTo('/register');
       } else if (this.state.currentUser.type === 'existingUser') {
-        this.transitionTo('/chat');
+        this.transitionTo('/profile');
       }
     }
   },
