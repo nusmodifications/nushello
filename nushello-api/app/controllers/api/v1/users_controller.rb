@@ -55,7 +55,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def matches
-    users = ActiveModel::ArraySerializer.new(User.where.not(id: @user), each_serializer: MatchSerializer)
+    users = ActiveModel::ArraySerializer.new(User.where.not(id: @user).limit(3),
+        each_serializer: MatchSerializer)
     generate_api_payload('matches', users)
   end
 
