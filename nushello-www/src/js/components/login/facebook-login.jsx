@@ -36,9 +36,16 @@ var FacebookLogin = React.createClass({
       isLogin = true;
     }
 
-    var button = <button onClick={ this.props.onClick } className="btn btn-fill btn-primary btn-lg facebook-login"><i className="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;Facebook login</button>;
+    var loginButton = (<button onClick={ this.props.onClick } className="btn btn-fill btn-primary btn-lg facebook-login">
+        <i className="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;Facebook login
+      </button>);
+
+    var loadingButton = (<button className="btn btn-fill btn-default btn-lg facebook-loading">
+        <i className="fa fa-facebook"></i>&nbsp;&nbsp;&nbsp;Loading...
+      </button>);
+
     return (
-      <div>{ isLogin ? null : button }</div>
+      <div>{ isLogin ? loadingButton : loginButton }</div>
     );
 
   }
