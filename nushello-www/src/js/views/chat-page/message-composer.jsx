@@ -24,7 +24,7 @@ export default class MessageComposer extends React.Component {
   render() {
     return (
       <input className="form-control" id="messageField" name="messageField" autoFocus={true}
-        value={this.state.text} onChange={this._onChange} onKeyDown={this._onKeyDown} />
+        value={this.state.text} onChange={this._onChange} onKeyDown={this._onKeyDown} placeholder="Press Enter to send" />
     );
   }
 
