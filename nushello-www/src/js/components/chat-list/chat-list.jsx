@@ -12,11 +12,8 @@ export default class MatchList extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      users: []
+      conversations: []
     };
-  }
-
-  componentWillMount() {
   }
 
   componentDidMount() {
