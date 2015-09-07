@@ -1,15 +1,13 @@
+@import '../../../styles/variables.scss';
+
 #messageField {
+  color: $gray;
   display: block;
   width: 100%;
   border: none;
-  height: 2em;
+  height: 3em;
   font-size: 1em;
-  opacity: 0.2;
-  transition: opacity 1s;
-  background-color: #999;
+  border: 1px solid $gray-lighterer;
+  opacity: 0.8;
 }
-#messageField:focus {
-  outline: 0;
-  background-color: #fff;
-  opacity: 1.0;
-}
+
