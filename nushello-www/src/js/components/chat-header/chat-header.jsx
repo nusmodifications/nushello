@@ -10,19 +10,19 @@ export default class ChatHeader extends React.Component {
   }
 
   render() {
+    let friend = this.props.friend;
     return (
       <div className="chat-header">
         <div className="row">
-          <div className="col-md-3">
-            <p>{this.props.name}</p>
+          <div className="header-bio col-md-3 text-center">
+            <p>{friend.bio}</p>
           </div>
-          <div className="col-md-9">
-            <p>Computer Science</p>
+          <div className="col-md-3 text-center">
+            <h2>{friend.fakeName}</h2>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-md-12">
-            <p>I love to talk to strangers</p>
+          <div className="header-info col-md-3 text-center">
+            <p>{friend.faculty}</p>
+            <p>{friend.firstMajor}</p>
           </div>
         </div>
       </div>

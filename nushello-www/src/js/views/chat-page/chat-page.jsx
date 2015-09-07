@@ -17,7 +17,10 @@ export default class ChatPage extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = {
+      friend: {},
+      convoId: 0
+    };
   }
 
   componentWillMount() {
@@ -70,7 +73,7 @@ export default class ChatPage extends React.Component {
     } else {
       return (
         <div>
-          <ChatHeader friendName = {this.state.friendName} />
+          <ChatHeader friend={this.state.friend} />
           <Chatbox friend={this.state.friend} messages={this.state.messages} convoId={this.state.convoId} />
         </div>
       );

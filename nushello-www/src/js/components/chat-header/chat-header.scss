@@ -4,8 +4,14 @@
   position: fixed;
   height: 100px;
   width: 100%;
-  background-color: $theme;
-  padding: 10px;
+  background-color: $theme-green;
+  padding: 20px 0 10px 0;
   margin: 0px auto;
+  color: white;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
 }
 
