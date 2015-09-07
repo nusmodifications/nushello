@@ -68,7 +68,7 @@ export default class ChatPage extends React.Component {
     } else {
       return (
         <div>
-          <Chatbox messages={this.state.messages} convoId={this.state.convoId} />
+          <Chatbox friendName={this.state.friendName} messages={this.state.messages} convoId={this.state.convoId} />
         </div>
       );
     }
@@ -83,7 +83,8 @@ export default class ChatPage extends React.Component {
       convoId = res.data[0].id;
     }
     this.setState({
-      convoId: convoId
+      convoId: convoId,
+      friendName: res.data[convoId].friend.fakeName
     });
     ChatAction.getAllMessages(this.state.convoId);
   }
@@ -108,9 +109,10 @@ export default class ChatPage extends React.Component {
 
   _changeChat(data) {
     this.setState({
-      convoId: data
+      convoId: data.id,
+      friendName: data.friend.fakeName
     });
-    ChatAction.getAllMessages(data);
+    ChatAction.getAllMessages(data.id);
   }
 
   _setPermission(data) {

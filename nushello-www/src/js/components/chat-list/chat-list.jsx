@@ -37,9 +37,9 @@ export default class MatchList extends React.Component {
 
   render() {
     let self = this;
-    let chatItems = _.map(this.state.users, (item, index) => {
+    let chatItems = _.map(this.state.conversations, (item, index) => {
       return (
-        <li className="chat-item" onClick={self._handleClick.bind(this, item.id)}>
+        <li className="chat-item" onClick={self._handleClick.bind(this, item)}>
           <ChatItem key={index} id={item.id} userId={item.friend.id} name={item.friend.fakeName} />
         </li>
       );
@@ -53,11 +53,11 @@ export default class MatchList extends React.Component {
 
   _loadAllConversations(res) {
     this.setState({
-      users: res.data
+      conversations: res.data
     });
   }
 
-  _handleClick(convoId) {
-    ChatAction.changeChat(convoId);
+  _handleClick(conversation) {
+    ChatAction.changeChat(conversation);
   }
 }
