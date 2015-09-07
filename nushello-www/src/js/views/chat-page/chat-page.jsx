@@ -5,6 +5,8 @@ import cookie from 'react-cookie';
 import Firebase from 'firebase';
 
 import Chatbox from './chat-box.jsx';
+import ChatHeader from 'components/chat-header/chat-header.jsx';
+
 import ChatStore from 'stores/chat-store';
 import ChatAction from 'actions/chat-action';
 import Permission from 'components/permission/permission.jsx';
@@ -68,7 +70,8 @@ export default class ChatPage extends React.Component {
     } else {
       return (
         <div>
-          <Chatbox friendName={this.state.friendName} messages={this.state.messages} convoId={this.state.convoId} />
+          <ChatHeader friendName = {this.state.friendName} />
+          <Chatbox friend={this.state.friend} messages={this.state.messages} convoId={this.state.convoId} />
         </div>
       );
     }
@@ -84,7 +87,7 @@ export default class ChatPage extends React.Component {
     }
     this.setState({
       convoId: convoId,
-      friendName: res.data[convoId].friend.fakeName
+      friend: res.data[convoId].friend
     });
     ChatAction.getAllMessages(this.state.convoId);
   }
@@ -110,7 +113,7 @@ export default class ChatPage extends React.Component {
   _changeChat(data) {
     this.setState({
       convoId: data.id,
-      friendName: data.friend.fakeName
+      friend: data.friend
     });
     ChatAction.getAllMessages(data.id);
   }

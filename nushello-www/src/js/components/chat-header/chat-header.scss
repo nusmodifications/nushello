@@ -1,0 +1,11 @@
+@import '../../../styles/variables.scss';
+
+.chat-header {
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  background-color: $theme;
+  padding: 10px;
+  margin: 0px auto;
+}
+

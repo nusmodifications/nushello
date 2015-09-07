@@ -26,7 +26,7 @@ export default class Messages extends React.Component {
     let messageItems = _.map(this.props.messages, (message, index) => {
       let messageHeader = 'Me';
       if (message.user_id !== currUserId) {
-        messageHeader = this.props.friendName;
+        messageHeader = this.props.friend.fakeName;
       }
       return <Message key={index} header={messageHeader} body={message.content}/>;
     });
