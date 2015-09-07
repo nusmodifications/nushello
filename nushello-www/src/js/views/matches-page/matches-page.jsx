@@ -63,8 +63,10 @@ export default class MatchesPage extends React.Component {
         <div className="matches-wrapper">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
-                <h1>All Friend Matches <FacebookShare appId="1467581460234203"/></h1>
+              <div className="col-sm-10 col-sm-offset-1">
+                <div className="page-title">
+                  All Friend Matches <FacebookShare appId="1467581460234203"/>
+                </div>
                 <div className="row all-matches">
                   {matches}
                 </div>

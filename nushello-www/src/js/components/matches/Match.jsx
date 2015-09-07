@@ -22,19 +22,19 @@ var Match = React.createClass({
           <div className="content">
 
             <div className="row">
-              <div className="col-sm-12 match-detail">
+              <div className="match-detail">
                 <h3>{this.props.fakeName}</h3>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-sm-12 match-detail">
+              <div className="match-detail">
                 <p>{this.props.bio}</p>
               </div>
             </div>
 
             <div className="row">
-              <div className="col-sm-12 match-detail">
+              <div className="match-detail">
                 <StartChat name={this.props.fakeName} userId={this.props.userId}/>
               </div>
             </div>

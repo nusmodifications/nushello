@@ -77,7 +77,7 @@ var PersonalInfoForm = React.createClass({
         <div className="personal-info">
           <div className="row">
             <div className="col-xs-10 col-xs-offset-1 page-title">
-              <h1>Here is my personal information</h1>
+              Here is my personal information
             </div>
           </div>
           <div className="row">
@@ -88,6 +88,8 @@ var PersonalInfoForm = React.createClass({
                 <button onClick={ this.handleSubmit } className="btn btn-default">
                   Update my information
                 </button>
+                <br />
+                <br />
               </div>
             </div>
           </div>
