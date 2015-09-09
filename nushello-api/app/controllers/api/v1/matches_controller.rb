@@ -27,9 +27,9 @@ class Api::V1::MatchesController < ApplicationController
     @possibilities = @possibilities.where(gender: gender) unless gender.nil?
     @possibilities = @possibilities.where(first_major: major) unless major.nil?
 
-    matches_by_preference = matches(preference)
-    matches = matches_by_preference.empty? ? random(gender, @possibilities) : ActiveModel::ArraySerializer.new(matches_by_preference, each_serializer: MatchSerializer)
-    generate_api_payload('matches', matches)
+    # matches_by_preference = matches(preference)
+    # matches = matches_by_preference.empty? ? random(gender, @possibilities) : ActiveModel::ArraySerializer.new(matches_by_preference, each_serializer: MatchSerializer)
+    generate_api_payload('matches', random(gender, @possibilities))
   end
 
   private
