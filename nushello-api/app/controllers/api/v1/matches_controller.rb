@@ -12,8 +12,8 @@ class Api::V1::MatchesController < ApplicationController
     generate_api_payload('friendProfile', result)
   end
 
-  def random(pool = nil)
-    pool = User.where.not(id: @user) if pool.blank?
+  def random(gender, pool = nil)
+    pool = User.where.not(id: @user).where(gender: gender) if pool.blank?
     result = pool.limit(3)
     users = ActiveModel::ArraySerializer.new(result, each_serializer: MatchSerializer)
   end
@@ -28,7 +28,7 @@ class Api::V1::MatchesController < ApplicationController
     @possibilities = @possibilities.where(first_major: major) unless major.nil?
 
     matches_by_preference = matches(preference)
-    matches = matches_by_preference.empty? ? random(@possibilities) : ActiveModel::ArraySerializer.new(matches_by_preference, each_serializer: MatchSerializer)
+    matches = matches_by_preference.empty? ? random(gender, @possibilities) : ActiveModel::ArraySerializer.new(matches_by_preference, each_serializer: MatchSerializer)
     generate_api_payload('matches', matches)
   end
 
