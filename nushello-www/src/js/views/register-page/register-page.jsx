@@ -72,7 +72,11 @@ var RegisterPage = React.createClass({
         </button>
     );
     let isIvleLoggedIn = this.state.ivleAuthenticated;
-    let proceedButton = <button onClick={ this.register } className="btn btn-default">Register</button>;
+    let proceedButton = (
+      <div className="register-btn">
+        <button onClick={ this.register } className="btn btn-default">Register</button>
+      </div>
+    );
     let isFormValidated = this.validateForm();
 
     let content = (
@@ -91,7 +95,7 @@ var RegisterPage = React.createClass({
       </div>
     );
 
-    let permission = <Permission permission={UserPermission.NEW_USER_ONLY} />;
+    let permission = <Permission permission={UserPermission.ALL} />;
     let canGo = this.state.canGo;
 
     return (
