@@ -6,11 +6,21 @@
     padding-top: 3em;
     padding-bottom: 3em;
   }
+
   .match-profile-pic {
     text-align: center;
     margin-bottom: -20px;
   }
+
   .match-detail {
     text-align: center;
+  }
+
+  .content-bio {
+    height: 60px;
+
+    .content {
+      font-size: 10px;
+    }
   }
 }

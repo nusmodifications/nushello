@@ -20,21 +20,20 @@ var Match = React.createClass({
           </div>
 
           <div className="content">
-
             <div className="row">
-              <div className="match-detail">
+              <div className="match-detail content-fake-name">
                 <h3>{this.props.fakeName}</h3>
               </div>
             </div>
 
             <div className="row">
-              <div className="match-detail">
-                <p>{this.props.bio}</p>
+              <div className="match-detail content-bio">
+                <div className="content">{this.props.bio ? this.props.bio : ' '}</div>
               </div>
             </div>
 
             <div className="row">
-              <div className="match-detail">
+              <div className="match-detail content-start-chat">
                 <StartChat name={this.props.fakeName} userId={this.props.userId}/>
               </div>
             </div>
