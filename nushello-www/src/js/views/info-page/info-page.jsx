@@ -84,51 +84,6 @@ var InfoPage = React.createClass({
     }
   },
 
-  handleSubmit: function(e) {
-    e.preventDefault();
-    let preference = {
-      preference: {
-        'facultyId': this.state.selectedFacultyId,
-        'majorId': this.state.selectedMajorId,
-        ...this.state.personalities
-      }
-    };
-
-    if (this.state.gender && (this.state.gender !== 'Both')) {
-      preference.preference.gender = this.state.gender;
-    } else {
-      preference.preference.gender = null;
-    }
-
-    InfoAction.edit(preference);
-  },
-
-  selectGender: function(gender) {
-    let self = this;
-    return function() {
-      if (self.state.gender === gender) {
-        self.setState({
-          gender: 'Both'
-        });
-      } else {
-        self.setState({
-          gender: gender
-        });
-      }
-    };
-  },
-
-  togglePersonality: function(personality) {
-    let self = this;
-    return function() {
-      let personalities = self.state.personalities;
-      personalities[personality] = !personalities[personality];
-      self.setState({
-        personalities: personalities
-      });
-    };
-  },
-
   showPreference: function() {
     this.setState({
       isInPref: true

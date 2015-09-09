@@ -24,7 +24,6 @@ var ProfileStore = Reflux.createStore({
   },
 
   onEdit: function(res) {
-
   },
 
   onEditCompleted: function(res) {
