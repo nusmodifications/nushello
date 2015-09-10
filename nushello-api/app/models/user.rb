@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   before_save :generate_access_token, if: :facebook_token_changed?
   before_create :build_preference
+  before_create :notify_slack, if: -> { Rails.env.production? }
 
   def conversations
     active_conversations | passive_conversations
@@ -45,6 +46,12 @@ class User < ActiveRecord::Base
 
     self.first_major = first_major
     self.second_major = second_major
+  end
+
+  def notify_slack
+    self.class.post(ENV['SLACK_WEBHOOK_URL'], body: {
+      text: "New User Joined: *#{name}* (#{fake_name})"
+    }.to_json)
   end
 
   class << self
