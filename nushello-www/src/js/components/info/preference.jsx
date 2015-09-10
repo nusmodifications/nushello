@@ -132,7 +132,8 @@ var PreferenceForm = React.createClass({
     if (typeof profile !== 'undefined') {
       if (profile.preference) {
         let preference = profile.preference;
-        if (profile.facultyId) {
+
+        if (preference.facultyId) {
           facultyId = preference.facultyId;
           majorId = preference.majorId;
         }

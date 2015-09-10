@@ -18,6 +18,7 @@ var PreferenceStore = Reflux.createStore({
 
   onEditCompleted: function(res) {
     this.trigger({
+      profile: res.data,
       goMatch: true
     });
   },
