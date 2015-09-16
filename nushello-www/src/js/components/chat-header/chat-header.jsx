@@ -22,9 +22,6 @@ export default class ChatHeader extends React.Component {
             <h2>{friend.fakeName}</h2>
             <p>{friend.bio}</p>
           </div>
-          // <div className="header-info col-md-3 text-center">
-          //   <button className="btn btn-default" onClick={this._revealIdentity}>Reveal my identity</button>
-          // </div>
         </div>
       </div>
     );
